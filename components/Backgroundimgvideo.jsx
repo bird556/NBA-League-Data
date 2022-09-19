@@ -16,24 +16,42 @@ function Backgroundimgvideo() {
   function determineText() {
     if (isLargerThanHD) {
       // return `lebrondunk.mp4`;
-      return `antdunk1.mp4`;
+      return (
+        <video
+          src="antdunk1.mp4"
+          className="backgroundimg"
+          autoPlay
+          muted
+          loop
+        ></video>
+      );
     } else if (isLargerThanMID) {
-      return `antdunk1.mp4`;
+      return (
+        <video
+          src="antdunk.mp4"
+          className="backgroundimg"
+          autoPlay
+          muted
+          loop
+        ></video>
+      );
     } else {
-      return `jadunk.mp4`;
+      return (
+        <Image
+          src="/bron.jpg"
+          // src="/1.jpg"
+          alt="Ja Morant"
+          className="backgroundimg"
+          fallbackSrc="/1 copy.jpg"
+        />
+      );
     }
   }
 
   return (
     <>
       <div className="blackBackground"></div>
-      <video
-        src={determineText()}
-        className="backgroundimg"
-        autoPlay
-        muted
-        loop
-      ></video>
+      {determineText()}
     </>
   );
 }
