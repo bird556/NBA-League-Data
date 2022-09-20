@@ -5,8 +5,6 @@ import Backgroundimgvideo from '../components/Backgroundimgvideo';
 import Slider from '../components/Slider/Slider';
 //
 export default function Home(data) {
-  const topPlayers = data.top50Players;
-  console.log(topPlayers.assists);
   const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)');
   const [isLargerThanHD, isDisplayingInBrowser] = useMediaQuery([
     '(min-width: 1920px)',
@@ -50,14 +48,3 @@ export default function Home(data) {
     </>
   );
 }
-
-// export async function getStaticProps() {
-//   const top50Players = await fetchApi(
-//     `${baseUrl}/api/basketball/tournament/132/season/38191/best-players/regularseason`
-//   );
-//   return {
-//     props: {
-//       top50Players: top50Players?.topPlayers,
-//     },
-//   };
-// }
