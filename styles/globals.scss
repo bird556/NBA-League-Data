@@ -149,7 +149,7 @@ a {
 
 .overlay {
   @include position-ab-left();
-  @include width-height-100();
+  @include width-height-100(100vh);
   background-color: #03a9f4;
   background-color: rgb(58, 58, 58, 0.3);
   background-color: rgba(113, 113, 113, 0.7);
@@ -162,11 +162,12 @@ a {
   @include position-ab-left();
   @include width-height-100();
   background-color: #090909c3;
-  background-color: rgba(9, 9, 9, 0.2);
   // background-color: rgb(58, 58, 58, 0.3);
   // background-color: rgba(113, 113, 113, 0.7);
   // background-color: #03a8f454;
   z-index: 99;
+  background-color: rgba(9, 9, 9, 0.2);
   backdrop-filter: blur(5px);
+  position: fixed;
   transition: all 1s;
 }
