@@ -48,14 +48,3 @@ export default function Home(data) {
     </>
   );
 }
-
-// export async function getStaticProps() {
-//   const top50Players = await fetchApi(
-//     `${baseUrl}/api/basketball/tournament/132/season/38191/best-players/regularseason`
-//   );
-//   return {
-//     props: {
-//       top50Players: top50Players?.topPlayers,
-//     },
-//   };
-// }

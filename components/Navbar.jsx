@@ -18,6 +18,7 @@ import {
 } from '@chakra-ui/react';
 import { BiSearch } from 'react-icons/bi';
 function navbar() {
+  const inputTest = (e) => console.log(e.target.value);
   return (
     <nav>
       <div className="blur"></div>
@@ -29,7 +30,7 @@ function navbar() {
           cursor="pointer"
         />
       </Link>
-      <Flex wrap="wrap" justifyContent="space-between">
+      <Flex wrap="wrap" justifyContent="space-between" alignItems="center">
         <ul
           className="list"
           onClick={(e) => {
@@ -88,18 +89,24 @@ function navbar() {
             </li>
           </Link> */}
         </ul>
-        <Box zIndex="5">
+
+        <Flex
+          zIndex="5"
+          // p="2.4rem"
+          alignItems="center"
+        >
+          <input
+            onChange={inputTest}
+            className="search-input"
+            type="text"
+            placeholder="Search a Player or Team"
+          />
+
           <button>
             <BiSearch fontSize="3rem" className="searchIcon" />
           </button>
-        </Box>
+        </Flex>
       </Flex>
-      {/* <Image
-        src="/player-img/jamorant.png"
-        className="player-body-img"
-        alt="ja morant"
-        pointerEvents="none"
-      /> */}
     </nav>
   );
 }

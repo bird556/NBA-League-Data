@@ -19,6 +19,8 @@ const playerDetails = ({
   draftDetails,
   playoffStats,
 }) => {
+  const team = playerDetails.player.team.name;
+  console.log(team);
   const fullName = playerDetails.player.name;
   const [first, last] = fullName.split(' ');
   const country = playerDetails.player.country.name;
@@ -246,21 +248,31 @@ const playerDetails = ({
   const draftYearReal = () => {
     let draft =
       draftDetails.transferHistory[draftDetails.transferHistory.length - 1];
+    console.log(draft);
     let unixTimeStamp = draft.transferDateTimestamp;
     let d = new Date(unixTimeStamp * 1000);
     let round = draft.round;
     let pick = draft.pick;
     let team = draft.transferTo.nameCode;
-    return (
-      <Flex maxWidth="36rem" justifyContent="space-between">
-        <p>Draft:</p>
-        <p>
-          {`${round}${nth(round)} Round ${pick}${nth(
-            pick
-          )} Pick ${d.getFullYear()} (${team})`}
-        </p>
-      </Flex>
-    );
+    if (round) {
+      return (
+        <Flex maxWidth="36rem" justifyContent="space-between">
+          <p>Draft:</p>
+          <p>
+            {`${round}${nth(round)} Round ${pick}${nth(
+              pick
+            )} Pick ${d.getFullYear()} (${team})`}
+          </p>
+        </Flex>
+      );
+    } else {
+      return (
+        <Flex maxWidth="36rem" justifyContent="space-between">
+          <p>Draft Year:</p>
+          <p>{d.getFullYear()}</p>
+        </Flex>
+      );
+    }
   };
 
   const customBackground = `/player-background/${playerDetails.player.slug}.jpg`;
@@ -420,7 +432,7 @@ const playerDetails = ({
                 p="0.8rem 8rem"
               >
                 <h4>{playerStats.statistics.type.slice(7)}</h4>
-                <Box
+                <div
                   data-aos="fade-right"
                   data-aos-delay="600"
                   data-aos-offset="-700"
@@ -561,7 +573,7 @@ const playerDetails = ({
                       </Flex>
                     </Box>
                   </Flex>
-                </Box>
+                </div>
               </Flex>
               {playoffs()}
             </Flex>
