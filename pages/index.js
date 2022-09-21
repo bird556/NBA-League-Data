@@ -5,8 +5,6 @@ import Backgroundimgvideo from '../components/Backgroundimgvideo';
 import Slider from '../components/Slider/Slider';
 //
 export default function Home(data) {
-  const topPlayers = data.top50Players;
-  console.log(topPlayers.assists);
   const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)');
   const [isLargerThanHD, isDisplayingInBrowser] = useMediaQuery([
     '(min-width: 1920px)',
