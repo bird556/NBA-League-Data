@@ -92,7 +92,34 @@ nav {
   //
   z-index: 100;
 
+  input {
+    padding: 2.4rem;
+    font-size: 1.6rem;
+    background: none;
+    z-index: 100;
+    text-transform: capitalize;
+    font-family: inherit;
+    // border-bottom: 0.1px solid (rgba($text-primary-col, 0.3));
+
+    &:focus {
+      outline: none;
+      caret-color: auto;
+      color: $text-hover-col;
+      text-shadow: rgba(255, 255, 255, 0.9) 0px 0px 5px;
+    }
+
+    &::placeholder {
+      caret-color: auto;
+      color: $text-primary-col;
+    }
+  }
+
+  .search-input {
+    color: #fff;
+  }
+
   ul {
+    padding: 2.4rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -158,6 +185,7 @@ nav {
         position: absolute;
         display: flex;
         transform: translateY(25.5px);
+        // transform: translateY(22.5px);
         border: 2px solid #fff;
         border-radius: 5rem;
         width: 100%;
