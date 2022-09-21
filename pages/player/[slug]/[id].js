@@ -20,7 +20,7 @@ const playerDetails = ({
   playoffStats,
 }) => {
   const team = playerDetails.player.team.name;
-  console.log(team);
+  console.log(playerStats);
   const fullName = playerDetails.player.name;
   const [first, last] = fullName.split(' ');
   const country = playerDetails.player.country.name;
@@ -68,7 +68,8 @@ const playerDetails = ({
             data-aos-delay="600"
             data-aos-offset="-700"
           >
-            <h4>{playoffStats.statistics.type}</h4>
+            {/* <h4>{playoffStats.statistics.type}</h4> */}
+            <h4>Season Test</h4>
             <Box>
               <Flex gap="4.4rem">
                 {/* Points Per Game */}
@@ -79,12 +80,13 @@ const playerDetails = ({
                     alignItems="center"
                   >
                     <p>PPG</p>
-                    <h4>
+                    {/* <h4>
                       {(
                         playoffStats.statistics.points /
                         playoffStats.statistics.appearances
                       ).toFixed(1)}
-                    </h4>
+                    </h4> */}
+                    0
                   </Flex>
                 </Box>
 
@@ -96,12 +98,13 @@ const playerDetails = ({
                     alignItems="center"
                   >
                     <p>RPG</p>
-                    <h4>
+                    {/* <h4>
                       {(
                         playoffStats.statistics.rebounds /
                         playoffStats.statistics.appearances
                       ).toFixed(1)}
-                    </h4>
+                    </h4> */}
+                    <h4>0</h4>
                   </Flex>
                 </Box>
 
@@ -114,12 +117,13 @@ const playerDetails = ({
                   >
                     <p>AST</p>
 
-                    <h4>
+                    {/* <h4>
                       {(
                         playoffStats.statistics.assists /
                         playoffStats.statistics.appearances
                       ).toFixed(1)}
-                    </h4>
+                    </h4> */}
+                    <h4>0</h4>
                   </Flex>
                 </Box>
 
@@ -131,12 +135,13 @@ const playerDetails = ({
                     alignItems="center"
                   >
                     <p>BLK</p>
-                    <h4>
+                    {/* <h4>
                       {(
                         playoffStats.statistics.blocks /
                         playoffStats.statistics.appearances
                       ).toFixed(1)}
-                    </h4>
+                    </h4> */}
+                    <h4>0</h4>
                   </Flex>
                 </Box>
 
@@ -148,12 +153,13 @@ const playerDetails = ({
                     alignItems="center"
                   >
                     <p>STL</p>
-                    <h4>
+                    {/* <h4>
                       {(
                         playoffStats.statistics.steals /
                         playoffStats.statistics.appearances
                       ).toFixed(1)}
-                    </h4>
+                    </h4> */}
+                    <h4>0</h4>
                   </Flex>
                 </Box>
 
@@ -165,9 +171,10 @@ const playerDetails = ({
                     alignItems="center"
                   >
                     <p>FG%</p>
-                    <h4>
+                    {/* <h4>
                       {playoffStats.statistics.fieldGoalsPercentage.toFixed(1)}
-                    </h4>
+                    </h4> */}
+                    0
                   </Flex>
                 </Box>
 
@@ -179,10 +186,11 @@ const playerDetails = ({
                     alignItems="center"
                   >
                     <p>3P%</p>
-                    <h4>
+                    {/* <h4>
                       {' '}
                       {playoffStats.statistics.threePointsPercentage.toFixed(1)}
-                    </h4>
+                    </h4> */}
+                    <h4>0</h4>
                   </Flex>
                 </Box>
 
@@ -194,9 +202,10 @@ const playerDetails = ({
                     alignItems="center"
                   >
                     <p>FT%</p>
-                    <h4>
+                    {/* <h4>
                       {playoffStats.statistics.freeThrowsPercentage.toFixed(1)}
-                    </h4>
+                    </h4> */}
+                    <h4>0</h4>
                   </Flex>
                 </Box>
               </Flex>
@@ -411,7 +420,7 @@ const playerDetails = ({
                   </Flex>
 
                   {/* Draft */}
-                  {draftYearReal()}
+                  {/* {draftYearReal()} */}
                 </Flex>
               </Box>
             </Flex>
@@ -431,7 +440,8 @@ const playerDetails = ({
                 justifyContent="space-between"
                 p="0.8rem 8rem"
               >
-                <h4>{playerStats.statistics.type.slice(7)}</h4>
+                {/* <h4>{playerStats.statistics.type.slice(7)}</h4> */}
+                <h4>Season Test 2</h4>
                 <div
                   data-aos="fade-right"
                   data-aos-delay="600"
@@ -446,12 +456,13 @@ const playerDetails = ({
                         alignItems="center"
                       >
                         <p>PPG</p>
-                        <h4>
+                        {/* <h4>
                           {(
                             playerStats.statistics.points /
                             playerStats.statistics.appearances
                           ).toFixed(1)}
-                        </h4>
+                        </h4> */}
+                        <h4>0</h4>
                       </Flex>
                     </Box>
 
@@ -463,12 +474,13 @@ const playerDetails = ({
                         alignItems="center"
                       >
                         <p>RPG</p>
-                        <h4>
+                        {/* <h4>
                           {(
                             playerStats.statistics.rebounds /
                             playerStats.statistics.appearances
                           ).toFixed(1)}
-                        </h4>
+                        </h4> */}
+                        <h4>0</h4>
                       </Flex>
                     </Box>
 
@@ -481,12 +493,13 @@ const playerDetails = ({
                       >
                         <p>AST</p>
 
-                        <h4>
+                        {/* <h4>
                           {(
                             playerStats.statistics.assists /
                             playerStats.statistics.appearances
                           ).toFixed(1)}
-                        </h4>
+                        </h4> */}
+                        <h4>0</h4>
                       </Flex>
                     </Box>
 
@@ -498,12 +511,13 @@ const playerDetails = ({
                         alignItems="center"
                       >
                         <p>BLK</p>
-                        <h4>
+                        {/* <h4>
                           {(
                             playerStats.statistics.blocks /
                             playerStats.statistics.appearances
                           ).toFixed(1)}
-                        </h4>
+                        </h4> */}
+                        <h4>0</h4>
                       </Flex>
                     </Box>
 
@@ -515,12 +529,13 @@ const playerDetails = ({
                         alignItems="center"
                       >
                         <p>STL</p>
-                        <h4>
+                        {/* <h4>
                           {(
                             playerStats.statistics.steals /
                             playerStats.statistics.appearances
                           ).toFixed(1)}
-                        </h4>
+                        </h4> */}
+                        <h4>0</h4>
                       </Flex>
                     </Box>
 
@@ -532,11 +547,12 @@ const playerDetails = ({
                         alignItems="center"
                       >
                         <p>FG%</p>
-                        <h4>
+                        {/* <h4>
                           {playerStats.statistics.fieldGoalsPercentage.toFixed(
                             1
                           )}
-                        </h4>
+                        </h4> */}
+                        <h4>0</h4>
                       </Flex>
                     </Box>
 
@@ -548,12 +564,13 @@ const playerDetails = ({
                         alignItems="center"
                       >
                         <p>3P%</p>
-                        <h4>
+                        {/* <h4>
                           {' '}
                           {playerStats.statistics.threePointsPercentage.toFixed(
                             1
                           )}
-                        </h4>
+                        </h4> */}
+                        <h4>0</h4>
                       </Flex>
                     </Box>
 
@@ -565,11 +582,12 @@ const playerDetails = ({
                         alignItems="center"
                       >
                         <p>FT%</p>
-                        <h4>
+                        {/* <h4>
                           {playerStats.statistics.freeThrowsPercentage.toFixed(
                             1
                           )}
-                        </h4>
+                        </h4> */}
+                        <h4>0</h4>
                       </Flex>
                     </Box>
                   </Flex>
