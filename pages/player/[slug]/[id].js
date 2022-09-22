@@ -1,7 +1,5 @@
-import React from 'react';
 import Link from 'next/link';
 import styles from '../../../styles/Home.module.css';
-import ImageNext from 'next/image';
 import ImageWithFallback from '../../../components/ImageWithFallback';
 import {
   Image,
@@ -13,6 +11,8 @@ import {
   Spacer,
 } from '@chakra-ui/react';
 import { baseUrl, fetchApi } from '../../../utils/fetchApi';
+import PlayerTeam from '../../../components/shared/PlayerTeam';
+import Button from '../../../components/shared/Button';
 const playerDetails = ({
   playerStats,
   playerDetails,
@@ -20,7 +20,7 @@ const playerDetails = ({
   playoffStats,
 }) => {
   const team = playerDetails.player.team.name;
-  console.log(playerStats);
+  console.log(playerDetails);
   const fullName = playerDetails.player.name;
   const [first, last] = fullName.split(' ');
   const country = playerDetails.player.country.name;
@@ -68,8 +68,7 @@ const playerDetails = ({
             data-aos-delay="600"
             data-aos-offset="-700"
           >
-            {/* <h4>{playoffStats.statistics.type}</h4> */}
-            <h4>Season Test</h4>
+            <h4>{playoffStats.statistics.type}</h4>
             <Box>
               <Flex gap="4.4rem">
                 {/* Points Per Game */}
@@ -80,13 +79,12 @@ const playerDetails = ({
                     alignItems="center"
                   >
                     <p>PPG</p>
-                    {/* <h4>
+                    <h4>
                       {(
                         playoffStats.statistics.points /
                         playoffStats.statistics.appearances
                       ).toFixed(1)}
-                    </h4> */}
-                    0
+                    </h4>
                   </Flex>
                 </Box>
 
@@ -98,13 +96,12 @@ const playerDetails = ({
                     alignItems="center"
                   >
                     <p>RPG</p>
-                    {/* <h4>
+                    <h4>
                       {(
                         playoffStats.statistics.rebounds /
                         playoffStats.statistics.appearances
                       ).toFixed(1)}
-                    </h4> */}
-                    <h4>0</h4>
+                    </h4>
                   </Flex>
                 </Box>
 
@@ -117,13 +114,12 @@ const playerDetails = ({
                   >
                     <p>AST</p>
 
-                    {/* <h4>
+                    <h4>
                       {(
                         playoffStats.statistics.assists /
                         playoffStats.statistics.appearances
                       ).toFixed(1)}
-                    </h4> */}
-                    <h4>0</h4>
+                    </h4>
                   </Flex>
                 </Box>
 
@@ -135,13 +131,12 @@ const playerDetails = ({
                     alignItems="center"
                   >
                     <p>BLK</p>
-                    {/* <h4>
+                    <h4>
                       {(
                         playoffStats.statistics.blocks /
                         playoffStats.statistics.appearances
                       ).toFixed(1)}
-                    </h4> */}
-                    <h4>0</h4>
+                    </h4>
                   </Flex>
                 </Box>
 
@@ -153,13 +148,12 @@ const playerDetails = ({
                     alignItems="center"
                   >
                     <p>STL</p>
-                    {/* <h4>
+                    <h4>
                       {(
                         playoffStats.statistics.steals /
                         playoffStats.statistics.appearances
                       ).toFixed(1)}
-                    </h4> */}
-                    <h4>0</h4>
+                    </h4>
                   </Flex>
                 </Box>
 
@@ -171,10 +165,9 @@ const playerDetails = ({
                     alignItems="center"
                   >
                     <p>FG%</p>
-                    {/* <h4>
+                    <h4>
                       {playoffStats.statistics.fieldGoalsPercentage.toFixed(1)}
-                    </h4> */}
-                    0
+                    </h4>
                   </Flex>
                 </Box>
 
@@ -186,11 +179,10 @@ const playerDetails = ({
                     alignItems="center"
                   >
                     <p>3P%</p>
-                    {/* <h4>
+                    <h4>
                       {' '}
                       {playoffStats.statistics.threePointsPercentage.toFixed(1)}
-                    </h4> */}
-                    <h4>0</h4>
+                    </h4>
                   </Flex>
                 </Box>
 
@@ -202,10 +194,9 @@ const playerDetails = ({
                     alignItems="center"
                   >
                     <p>FT%</p>
-                    {/* <h4>
+                    <h4>
                       {playoffStats.statistics.freeThrowsPercentage.toFixed(1)}
-                    </h4> */}
-                    <h4>0</h4>
+                    </h4>
                   </Flex>
                 </Box>
               </Flex>
@@ -251,7 +242,12 @@ const playerDetails = ({
     let age_dt = new Date(month_diff);
     let year = age_dt.getUTCFullYear();
     let age = Math.abs(year - 1970);
-    return age;
+    return (
+      <Flex maxWidth="36rem" justifyContent="space-between">
+        <p>Age:</p>
+        <p>{age}</p>
+      </Flex>
+    );
   };
 
   const draftYearReal = () => {
@@ -284,6 +280,16 @@ const playerDetails = ({
     }
   };
 
+  const playerNumber = () => (
+    <>
+      <h4>{`#${playerDetails.player.shirtNumber}`}</h4>
+      <Center height="25px">
+        <Divider orientation="vertical" />
+      </Center>
+      <h4>{playerDetails.player.position.slice(0, 1)}</h4>
+    </>
+  );
+
   const customBackground = `/player-background/${playerDetails.player.slug}.jpg`;
   return (
     <>
@@ -300,9 +306,18 @@ const playerDetails = ({
       />
 
       <div className={styles.container}>
+        {/* <PlayerTeam
+          teamFirstName={first}
+          teamLastName={last.toUpperCase()}
+          avatarName={playerDetails.player.name}
+          avatarSrc={`https://api.sofascore.app/api/v1/player/${playerDetails.player.id}/image`}
+          linkHref={`/teams/${playerDetails.player.team.slug}/${playerDetails.player.team.id}`}
+          playerNumberPosition={playerNumber()}
+          age={age()}
+        /> */}
         <div className="player-team-details">
           <Box p="8rem" data-aos="fade-right">
-            <Flex flexWrap="wrap" flexDirection="column" bgColor="">
+            <Flex flexWrap="wrap" flexDirection="column">
               <Flex flexDirection="column" marginBottom="3.6rem">
                 <Flex alignItems="center" gap="2.4rem">
                   <h2 data-aos="fade-right" data-aos-delay="400">
@@ -349,40 +364,18 @@ const playerDetails = ({
                         boxSize="10rem"
                         alt={playerDetails.player.name}
                         src={`https://api.sofascore.app/api/v1/team/${playerDetails.player.team.id}/image`}
+                        fallbackSrc={
+                          'https://i.pinimg.com/736x/3f/6c/0b/3f6c0b67b844e82d8dd1e7a6d85a2b53.jpg'
+                        }
                       />
                     </Link>
-                    <Flex gap="1.2rem" alignItems="center">
-                      <h4>{`#${playerDetails.player.shirtNumber}`}</h4>
-                      <Center height="25px">
-                        <Divider orientation="vertical" />
-                      </Center>
-
-                      <h4>{playerDetails.player.position.slice(0, 1)}</h4>
-                      <Box marginLeft="3.6rem">
-                        <button
-                          id="btn-follow"
-                          onClick={(e) => {
-                            const btn = document.getElementById('btn-follow');
-                            btn.style.border =
-                              '2px rgba(92, 148, 13, 0.7) solid';
-                            btn.style.backgroundColor =
-                              'rgba(102, 168, 15, 0.5)';
-                            const followed = document.getElementById('follow');
-                            followed.innerHTML = `Followed`;
-                          }}
-                        >
-                          <a id="follow" href="#">
-                            Follow
-                            <span id="plus-sign"> +</span>
-                          </a>
-                        </button>
-                      </Box>
-                    </Flex>
+                    {playerNumber()}
+                    <Button />
                   </Flex>
                 </Flex>
               </Flex>
               {/* Height & Weight */}
-              <Box bgColor="">
+              <Box>
                 <Flex
                   gap="6.4rem"
                   bgColor=""
@@ -402,10 +395,7 @@ const playerDetails = ({
               <Box bgColor="">
                 <Flex flexDirection="column" gap="2.4rem">
                   {/* Born */}
-                  <Flex maxWidth="36rem" justifyContent="space-between">
-                    <p>Age:</p>
-                    <p>{age()}</p>
-                  </Flex>
+                  {age()}
 
                   {/* Born */}
                   <Flex maxWidth="36rem" justifyContent="space-between">
@@ -441,7 +431,11 @@ const playerDetails = ({
                 p="0.8rem 8rem"
               >
                 {/* <h4>{playerStats.statistics.type.slice(7)}</h4> */}
-                <h4>Season Test 2</h4>
+                <h4>
+                  {playerStats
+                    ? playerStats.statistics.type.slice(7)
+                    : 'Season 21-22'}
+                </h4>
                 <div
                   data-aos="fade-right"
                   data-aos-delay="600"
@@ -456,13 +450,14 @@ const playerDetails = ({
                         alignItems="center"
                       >
                         <p>PPG</p>
-                        {/* <h4>
-                          {(
-                            playerStats.statistics.points /
-                            playerStats.statistics.appearances
-                          ).toFixed(1)}
-                        </h4> */}
-                        <h4>0</h4>
+                        <h4>
+                          {playerStats
+                            ? (
+                                playerStats.statistics.points /
+                                playerStats.statistics.appearances
+                              ).toFixed(1)
+                            : 0}
+                        </h4>
                       </Flex>
                     </Box>
 
@@ -474,13 +469,14 @@ const playerDetails = ({
                         alignItems="center"
                       >
                         <p>RPG</p>
-                        {/* <h4>
-                          {(
-                            playerStats.statistics.rebounds /
-                            playerStats.statistics.appearances
-                          ).toFixed(1)}
-                        </h4> */}
-                        <h4>0</h4>
+                        <h4>
+                          {playerStats
+                            ? (
+                                playerStats.statistics.rebounds /
+                                playerStats.statistics.appearances
+                              ).toFixed(1)
+                            : 0}
+                        </h4>
                       </Flex>
                     </Box>
 
