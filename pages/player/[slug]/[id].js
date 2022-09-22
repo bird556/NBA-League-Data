@@ -251,32 +251,34 @@ const playerDetails = ({
   };
 
   const draftYearReal = () => {
-    let draft =
-      draftDetails.transferHistory[draftDetails.transferHistory.length - 1];
-    console.log(draft);
-    let unixTimeStamp = draft.transferDateTimestamp;
-    let d = new Date(unixTimeStamp * 1000);
-    let round = draft.round;
-    let pick = draft.pick;
-    let team = draft.transferTo.nameCode;
-    if (round) {
-      return (
-        <Flex maxWidth="36rem" justifyContent="space-between">
-          <p>Draft:</p>
-          <p>
-            {`${round}${nth(round)} Round ${pick}${nth(
-              pick
-            )} Pick ${d.getFullYear()} (${team})`}
-          </p>
-        </Flex>
-      );
-    } else {
-      return (
-        <Flex maxWidth="36rem" justifyContent="space-between">
-          <p>Draft Year:</p>
-          <p>{d.getFullYear()}</p>
-        </Flex>
-      );
+    if (draftDetails) {
+      let draft =
+        draftDetails.transferHistory[draftDetails.transferHistory.length - 1];
+      console.log(draft);
+      let unixTimeStamp = draft.transferDateTimestamp;
+      let d = new Date(unixTimeStamp * 1000);
+      let round = draft.round;
+      let pick = draft.pick;
+      let team = draft.transferTo.nameCode;
+      if (round) {
+        return (
+          <Flex maxWidth="36rem" justifyContent="space-between">
+            <p>Draft:</p>
+            <p>
+              {`${round}${nth(round)} Round ${pick}${nth(
+                pick
+              )} Pick ${d.getFullYear()} (${team})`}
+            </p>
+          </Flex>
+        );
+      } else {
+        return (
+          <Flex maxWidth="36rem" justifyContent="space-between">
+            <p>Draft Year:</p>
+            <p>{d.getFullYear()}</p>
+          </Flex>
+        );
+      }
     }
   };
 
@@ -301,7 +303,7 @@ const playerDetails = ({
         layout="fill"
         alt={`${first} ${last}`}
         src={customBackground}
-        fallbackSrc={'/player-background/defaultimage.jpg'}
+        fallbackSrc={'/player-background/defaultimage1.jpg'}
         className="backgroundimg"
       />
 
@@ -410,7 +412,7 @@ const playerDetails = ({
                   </Flex>
 
                   {/* Draft */}
-                  {/* {draftYearReal()} */}
+                  {draftYearReal()}
                 </Flex>
               </Box>
             </Flex>
