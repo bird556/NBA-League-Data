@@ -20,10 +20,18 @@ const playerDetails = ({
   playoffStats,
 }) => {
   const team = playerDetails.player.team.name;
-  console.log(playerDetails);
   const fullName = playerDetails.player.name;
   const [first, last] = fullName.split(' ');
-  const country = playerDetails.player.country.name;
+  const country = () => {
+    if (playerDetails.player.country.name) {
+      return (
+        <Flex maxWidth="36rem" justifyContent="space-between">
+          <p>Country:</p>
+          <p>{playerDetails.player.country.name}</p>
+        </Flex>
+      );
+    }
+  };
   const month = [
     'January',
     'February',
@@ -206,25 +214,43 @@ const playerDetails = ({
       );
     }
   };
+  const nameDivider = () => {
+    if (playerDetails.player.height) {
+      return (
+        <Box w="110%">
+          <Divider />
+        </Box>
+      );
+    }
+  };
 
   const height = () => {
     let cm = playerDetails.player.height;
     let inches = cm / 2.54;
     let foot = Math.floor(inches / 12);
     inches = Math.floor(inches - 12 * foot);
-    return (
-      <Flex gap="0.8rem">
-        <h3>
-          {foot}
-          <span>ft</span>
-        </h3>
-        <Spacer />
-        <h3>
-          {inches}
-          <span>in</span>
-        </h3>
-      </Flex>
-    );
+    if (playerDetails.player.height) {
+      return (
+        <Box>
+          <Flex gap="6.4rem" bgColor="" maxWidth="36rem" marginBottom="3.6rem">
+            <Flex flexDirection="column">
+              <p>Height</p>
+              <Flex gap="0.8rem">
+                <h3>
+                  {foot}
+                  <span>ft</span>
+                </h3>
+                <Spacer />
+                <h3>
+                  {inches}
+                  <span>in</span>
+                </h3>
+              </Flex>
+            </Flex>
+          </Flex>
+        </Box>
+      );
+    }
   };
 
   const birthDay = () => {
@@ -242,19 +268,27 @@ const playerDetails = ({
     let age_dt = new Date(month_diff);
     let year = age_dt.getUTCFullYear();
     let age = Math.abs(year - 1970);
-    return (
-      <Flex maxWidth="36rem" justifyContent="space-between">
-        <p>Age:</p>
-        <p>{age}</p>
-      </Flex>
-    );
+
+    if (age < 45) {
+      return (
+        <>
+          <Flex maxWidth="36rem" justifyContent="space-between">
+            <p>Age:</p>
+            <p>{age}</p>
+          </Flex>
+          <Flex maxWidth="36rem" justifyContent="space-between">
+            <p>Born:</p>
+            <p>{birthDay()}</p>
+          </Flex>
+        </>
+      );
+    }
   };
 
   const draftYearReal = () => {
     if (draftDetails) {
       let draft =
         draftDetails.transferHistory[draftDetails.transferHistory.length - 1];
-      console.log(draft);
       let unixTimeStamp = draft.transferDateTimestamp;
       let d = new Date(unixTimeStamp * 1000);
       let round = draft.round;
@@ -325,12 +359,14 @@ const playerDetails = ({
                   <h2 data-aos="fade-right" data-aos-delay="400">
                     {first}
                   </h2>
-                  {/* Avatar Image */}
-                  <Avatar
-                    pointerEvents="none"
-                    size="2xl"
-                    name={playerDetails.player.name}
+                  <Image
+                    boxSize="8rem"
                     src={`https://api.sofascore.app/api/v1/player/${playerDetails.player.id}/image`}
+                    alt={playerDetails.player.name}
+                    borderRadius="100%"
+                    fallbackSrc={
+                      'https://i.pinimg.com/736x/3f/6c/0b/3f6c0b67b844e82d8dd1e7a6d85a2b53.jpg'
+                    }
                   />
                 </Flex>
                 <Flex
@@ -344,9 +380,7 @@ const playerDetails = ({
                     <h1 data-aos="fade-up" data-aos-delay="600">
                       {last.toUpperCase()}
                     </h1>
-                    <Box w="110%">
-                      <Divider />
-                    </Box>
+                    {nameDivider()}
                   </Box>
                   {/* Team, Jersey Number, Position & Follow Button+ */}
                   <Flex
@@ -376,22 +410,9 @@ const playerDetails = ({
                   </Flex>
                 </Flex>
               </Flex>
-              {/* Height & Weight */}
-              <Box>
-                <Flex
-                  gap="6.4rem"
-                  bgColor=""
-                  maxWidth="36rem"
-                  marginBottom="3.6rem"
-                >
-                  <Flex flexDirection="column">
-                    <p>Height</p>
-                    {height()}
-                  </Flex>
-                </Flex>
-                <Box maxWidth="36rem" marginBottom="3.6rem">
-                  <Divider />
-                </Box>
+              {height()}
+              <Box maxWidth="36rem" marginBottom="3.6rem">
+                <Divider />
               </Box>
               {/* Born, Country, Team, Draft Team & Year */}
               <Box bgColor="">
@@ -400,16 +421,9 @@ const playerDetails = ({
                   {age()}
 
                   {/* Born */}
-                  <Flex maxWidth="36rem" justifyContent="space-between">
-                    <p>Born:</p>
-                    <p>{birthDay()}</p>
-                  </Flex>
 
                   {/* Country */}
-                  <Flex maxWidth="36rem" justifyContent="space-between">
-                    <p>Country:</p>
-                    <p>{country}</p>
-                  </Flex>
+                  {country()}
 
                   {/* Draft */}
                   {draftYearReal()}
@@ -432,11 +446,10 @@ const playerDetails = ({
                 justifyContent="space-between"
                 p="0.8rem 8rem"
               >
-                {/* <h4>{playerStats.statistics.type.slice(7)}</h4> */}
                 <h4>
                   {playerStats
                     ? playerStats.statistics.type.slice(7)
-                    : 'Season 21-22'}
+                    : 'Season'}
                 </h4>
                 <div
                   data-aos="fade-right"
@@ -490,14 +503,14 @@ const playerDetails = ({
                         alignItems="center"
                       >
                         <p>AST</p>
-
-                        {/* <h4>
-                          {(
-                            playerStats.statistics.assists /
-                            playerStats.statistics.appearances
-                          ).toFixed(1)}
-                        </h4> */}
-                        <h4>0</h4>
+                        <h4>
+                          {playerStats
+                            ? (
+                                playerStats.statistics.assists /
+                                playerStats.statistics.appearances
+                              ).toFixed(1)
+                            : 0}
+                        </h4>
                       </Flex>
                     </Box>
 
@@ -509,13 +522,14 @@ const playerDetails = ({
                         alignItems="center"
                       >
                         <p>BLK</p>
-                        {/* <h4>
-                          {(
-                            playerStats.statistics.blocks /
-                            playerStats.statistics.appearances
-                          ).toFixed(1)}
-                        </h4> */}
-                        <h4>0</h4>
+                        <h4>
+                          {playerStats
+                            ? (
+                                playerStats.statistics.blocks /
+                                playerStats.statistics.appearances
+                              ).toFixed(1)
+                            : 0}
+                        </h4>
                       </Flex>
                     </Box>
 
@@ -527,13 +541,14 @@ const playerDetails = ({
                         alignItems="center"
                       >
                         <p>STL</p>
-                        {/* <h4>
-                          {(
-                            playerStats.statistics.steals /
-                            playerStats.statistics.appearances
-                          ).toFixed(1)}
-                        </h4> */}
-                        <h4>0</h4>
+                        <h4>
+                          {playerStats
+                            ? (
+                                playerStats.statistics.steals /
+                                playerStats.statistics.appearances
+                              ).toFixed(1)
+                            : 0}
+                        </h4>
                       </Flex>
                     </Box>
 
@@ -545,12 +560,13 @@ const playerDetails = ({
                         alignItems="center"
                       >
                         <p>FG%</p>
-                        {/* <h4>
-                          {playerStats.statistics.fieldGoalsPercentage.toFixed(
-                            1
-                          )}
-                        </h4> */}
-                        <h4>0</h4>
+                        <h4>
+                          {playerStats
+                            ? playerStats.statistics.fieldGoalsPercentage.toFixed(
+                                1
+                              )
+                            : 0}
+                        </h4>
                       </Flex>
                     </Box>
 
@@ -562,13 +578,13 @@ const playerDetails = ({
                         alignItems="center"
                       >
                         <p>3P%</p>
-                        {/* <h4>
-                          {' '}
-                          {playerStats.statistics.threePointsPercentage.toFixed(
-                            1
-                          )}
-                        </h4> */}
-                        <h4>0</h4>
+                        <h4>
+                          {playerStats
+                            ? playerStats.statistics.threePointsPercentage.toFixed(
+                                1
+                              )
+                            : 0}
+                        </h4>
                       </Flex>
                     </Box>
 
@@ -580,12 +596,13 @@ const playerDetails = ({
                         alignItems="center"
                       >
                         <p>FT%</p>
-                        {/* <h4>
-                          {playerStats.statistics.freeThrowsPercentage.toFixed(
-                            1
-                          )}
-                        </h4> */}
-                        <h4>0</h4>
+                        <h4>
+                          {playerStats
+                            ? playerStats.statistics.freeThrowsPercentage.toFixed(
+                                1
+                              )
+                            : 0}
+                        </h4>
                       </Flex>
                     </Box>
                   </Flex>

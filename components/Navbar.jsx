@@ -17,6 +17,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { BiSearch } from 'react-icons/bi';
+import { NavLink } from './shared/NavLink';
 function navbar() {
   const inputTest = (e) => console.log(e.target.value);
   return (
@@ -39,55 +40,29 @@ function navbar() {
             // e.target.classList.toggle('active');
           }}
         >
-          <Link href="/">
-            <li>
-              <a href="#" className="btn active">
-                Home
-              </a>
-            </li>
-          </Link>
-          {/* <Link href="/players">
-            <li>
-              <a href="#" className="btn">
-                Players
-              </a>
-            </li>
-          </Link> */}
-          <Link href="/stats">
-            <li>
-              <a href="#" className="btn">
-                Stats
-              </a>
-            </li>
-          </Link>
-          <Link href="/playoffs">
-            <li>
-              <a href="#" className="btn">
-                Playoffs
-              </a>
-            </li>
-          </Link>
-          <Link href="/teams">
-            <li>
-              <a href="#" className="btn">
-                Teams
-              </a>
-            </li>
-          </Link>
-          <Link href="/standings">
-            <li>
-              <a href="#" className="btn">
-                Standings
-              </a>
-            </li>
-          </Link>
-          {/* <Link href="/summerleague">
-            <li>
-              <a href="#" className="btn">
-                Summer League
-              </a>
-            </li>
-          </Link> */}
+          <NavLink href="/" exact className="btn">
+            Home
+          </NavLink>
+
+          <NavLink href="/stats" className="btn">
+            Stats
+          </NavLink>
+
+          <NavLink href="/playoffs" className="btn">
+            Playoffs
+          </NavLink>
+
+          <NavLink href="/teams" className="btn">
+            Teams
+          </NavLink>
+
+          {/* <NavLink href="/standings" className="btn">
+            Standings
+          </NavLink>
+
+          <NavLink href="/summerleague" className="btn">
+            Summer League
+          </NavLink> */}
         </ul>
 
         <Flex

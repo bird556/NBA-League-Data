@@ -94,7 +94,6 @@ function Divisions({ division, divisionIfStatement, map }) {
         });
       }
     });
-  console.log(divisions());
   return (
     <>
       <Box

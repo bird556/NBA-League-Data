@@ -5,6 +5,7 @@ import ImageNext from 'next/image';
 import { Image, Flex, Divider, Box } from '@chakra-ui/react';
 import { baseUrl, fetchApi } from '../../../utils/fetchApi';
 import ImageWithFallback from '../../../components/ImageWithFallback';
+import Button from '../../../components/shared/Button';
 
 const teamDetails = ({ topPlayers, teamInfo, standings, media, roster }) => {
   let playerInfo = roster.players.map((data, index) => data);
@@ -81,31 +82,7 @@ const teamDetails = ({ topPlayers, teamInfo, standings, media, roster }) => {
                           src={`https://api.sofascore.app/api/v1/team/${teamInfo.team.id}/image`}
                         />
                       </Link>
-                      <Flex gap="1.2rem" alignItems="center">
-                        <Box marginLeft="3.6rem">
-                          <button
-                            id="btn-follow"
-                            onClick={(e) => {
-                              document.getElementById(
-                                'btn-follow'
-                              ).style.border =
-                                '2px rgba(92, 148, 13, 0.7) solid';
-                              document.getElementById(
-                                'btn-follow'
-                              ).style.backgroundColor =
-                                'rgba(102, 168, 15, 0.5)';
-                              const followed =
-                                document.getElementById('follow');
-                              followed.innerHTML = 'Followed';
-                            }}
-                          >
-                            <a id="follow" href="#">
-                              Follow
-                              <span id="plus-sign"> +</span>
-                            </a>
-                          </button>
-                        </Box>
-                      </Flex>
+                      <Button />
                     </Flex>
                   </Flex>
                 </Flex>
@@ -156,36 +133,33 @@ const teamDetails = ({ topPlayers, teamInfo, standings, media, roster }) => {
                   data-aos="fade-right"
                   data-aos-offset="700"
                 >
-                  {playerInfo.map((data, index) => (
-                    <>
-                      <Link
-                        key={data.id}
-                        href={`/player/${data.slug}/${data.id}`}
-                        passHref
-                      >
-                        <Flex
-                          alignItems="center"
-                          flexDirection="column"
-                          justifyContent="center"
-                          cursor="pointer"
-                        >
-                          <Image
-                            priority
-                            boxSize="150px"
-                            layout="fill"
-                            src={`https://api.sofascore.app/api/v1/player/${data.id}/image`}
-                            alt={data.name}
-                            borderRadius="100%"
-                            fallbackSrc={
-                              'https://i.pinimg.com/736x/3f/6c/0b/3f6c0b67b844e82d8dd1e7a6d85a2b53.jpg'
-                            }
-                          />
+                  {playerInfo.map((data, index) => {
+                    return (
+                      <Box key={data.id}>
+                        <Link href={`/player/${data.slug}/${data.id}`} passHref>
+                          <Flex
+                            alignItems="center"
+                            flexDirection="column"
+                            justifyContent="center"
+                            cursor="pointer"
+                          >
+                            <Image
+                              boxSize="150px"
+                              layout="fill"
+                              src={`https://api.sofascore.app/api/v1/player/${data.id}/image`}
+                              alt={data.name}
+                              borderRadius="100%"
+                              fallbackSrc={
+                                'https://i.pinimg.com/736x/3f/6c/0b/3f6c0b67b844e82d8dd1e7a6d85a2b53.jpg'
+                              }
+                            />
 
-                          <p key={index}>{data.shortName}</p>
-                        </Flex>
-                      </Link>
-                    </>
-                  ))}
+                            <p>{data.shortName}</p>
+                          </Flex>
+                        </Link>
+                      </Box>
+                    );
+                  })}
                 </Flex>
               </Box>
             </Flex>

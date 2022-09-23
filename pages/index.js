@@ -4,7 +4,7 @@ import { baseUrl, fetchApi } from '../utils/fetchApi';
 import Backgroundimgvideo from '../components/Backgroundimgvideo';
 import Slider from '../components/Slider/Slider';
 //
-export default function Home(data) {
+export default function Home() {
   const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)');
   const [isLargerThanHD, isDisplayingInBrowser] = useMediaQuery([
     '(min-width: 1920px)',
@@ -27,7 +27,7 @@ export default function Home(data) {
         </>
       );
     } else {
-      return `Ja Morant`;
+      return `Lebron #23`;
     }
 
     return isDisplayingInBrowser

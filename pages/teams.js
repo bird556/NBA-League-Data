@@ -6,8 +6,6 @@ import ImageWithFallback from '../components/ImageWithFallback';
 import { baseUrl, fetchApi } from '../utils/fetchApi';
 import Divisions from '../components/Divisions';
 const teams = (team) => {
-  // console.log(team.teams.standings);
-
   const eastTeams = () =>
     team.teams.standings.map((data, index) => {
       if (data.name == 'Eastern Conference') {
@@ -36,15 +34,6 @@ const teams = (team) => {
       }
     });
 
-  const atlanticDivision = () =>
-    team.teams.standings.map((data, index) => {
-      if (data.name == 'Atlantic Division') {
-        return data.rows.map((item, index) => {
-          return console.log(item);
-        });
-      }
-    });
-  console.log(atlanticDivision());
   return (
     <>
       <div className="blackBackground"></div>
@@ -54,8 +43,6 @@ const teams = (team) => {
           className="backgroundimg"
           priority
           layout="fill"
-          width="100%"
-          height="100%"
           alt={``}
           src={`https://media.gettyimages.com/photos/the-memphis-grizzlies-huddle-up-during-round-1-game-4-of-the-2022-nba-picture-id1240194361?s=2048x2048`}
           fallbackSrc={'/team-background/defaultimage.jpg'}
