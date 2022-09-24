@@ -8,10 +8,11 @@ import { BiSearch } from 'react-icons/bi';
 import { NavLink } from './shared/NavLink';
 import { useState } from 'react';
 function navbar() {
-  const [name, setName] = useState('empty');
+  // const [name, setName] = useState('empty');
   const inputTest = (e) => {
     if (e.target.value === '') {
-      return setName('');
+      // return setName('');
+      return;
     } else
       return (
         <Box
