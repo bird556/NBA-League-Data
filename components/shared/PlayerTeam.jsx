@@ -8,7 +8,15 @@ import {
   Center,
   Spacer,
 } from '@chakra-ui/react';
-function PlayerTeam() {
+function PlayerTeam({
+  firstName,
+  lastName,
+  avatarName,
+  avatarSrc,
+  linkHref,
+  playerNumberPosition,
+  age,
+}) {
   return (
     <>
       <div className="player-team-details">
@@ -17,14 +25,17 @@ function PlayerTeam() {
             <Flex flexDirection="column" marginBottom="3.6rem">
               <Flex alignItems="center" gap="2.4rem">
                 <h2 data-aos="fade-right" data-aos-delay="400">
-                  {first}
+                  {firstName}
                 </h2>
                 {/* Avatar Image */}
-                <Avatar
-                  pointerEvents="none"
-                  size="2xl"
-                  name={playerDetails.player.name}
-                  src={`https://api.sofascore.app/api/v1/player/${playerDetails.player.id}/image`}
+                <Image
+                  boxSize="8rem"
+                  src={avatarSrc}
+                  alt={avatarName}
+                  borderRadius="100%"
+                  fallbackSrc={
+                    'https://i.pinimg.com/736x/3f/6c/0b/3f6c0b67b844e82d8dd1e7a6d85a2b53.jpg'
+                  }
                 />
               </Flex>
               <Flex
@@ -36,7 +47,7 @@ function PlayerTeam() {
               >
                 <Box marginRight="6.4rem">
                   <h1 data-aos="fade-up" data-aos-delay="600">
-                    {last.toUpperCase()}
+                    {lastName}
                   </h1>
                   <Box w="110%">
                     <Divider />
@@ -320,3 +331,13 @@ function PlayerTeam() {
 }
 
 export default PlayerTeam;
+
+PlayerTeam.defaultProps = {
+  firstName: 'John',
+  lastName: 'Doe',
+  avatarName: 'NBA Player',
+  avatarSrc: '/team-background/defaultimage.jpg',
+  linkHref: `/teams/toronto-raptors/3433`,
+  playerNumberPosition: 'PG',
+  age: 27,
+};
