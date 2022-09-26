@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { baseUrl, fetchApi } from '../../../utils/fetchApi';
 import PlayerTeam from '../../../components/shared/PlayerTeam';
+import PlayerStats from '../../../components/shared/PlayerStats';
 import Button from '../../../components/shared/Button';
 const playerDetails = ({
   playerStats,
@@ -19,7 +20,6 @@ const playerDetails = ({
   draftDetails,
   playoffStats,
 }) => {
-  const team = playerDetails.player.team.name;
   const fullName = playerDetails.player.name;
   const [first, last] = fullName.split(' ');
   const country = () => {
@@ -61,159 +61,6 @@ const playerDetails = ({
     }
   };
 
-  const playoffs = () => {
-    if (playoffStats) {
-      return (
-        <>
-          <Center p="0 8rem">
-            <Divider orientation="horizontal" />
-          </Center>
-          <Flex
-            alignItems="center"
-            justifyContent="space-between"
-            p="0.8rem 8rem"
-            data-aos="fade-right"
-            data-aos-delay="600"
-            data-aos-offset="-700"
-          >
-            <h4>{playoffStats.statistics.type}</h4>
-            <Box>
-              <Flex gap="4.4rem">
-                {/* Points Per Game */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>PPG</p>
-                    <h4>
-                      {(
-                        playoffStats.statistics.points /
-                        playoffStats.statistics.appearances
-                      ).toFixed(1)}
-                    </h4>
-                  </Flex>
-                </Box>
-
-                {/* Rebounds Per Game */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>RPG</p>
-                    <h4>
-                      {(
-                        playoffStats.statistics.rebounds /
-                        playoffStats.statistics.appearances
-                      ).toFixed(1)}
-                    </h4>
-                  </Flex>
-                </Box>
-
-                {/* Assists Per Game */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>AST</p>
-
-                    <h4>
-                      {(
-                        playoffStats.statistics.assists /
-                        playoffStats.statistics.appearances
-                      ).toFixed(1)}
-                    </h4>
-                  </Flex>
-                </Box>
-
-                {/* Blocks Per Game */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>BLK</p>
-                    <h4>
-                      {(
-                        playoffStats.statistics.blocks /
-                        playoffStats.statistics.appearances
-                      ).toFixed(1)}
-                    </h4>
-                  </Flex>
-                </Box>
-
-                {/* Steals Per Game */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>STL</p>
-                    <h4>
-                      {(
-                        playoffStats.statistics.steals /
-                        playoffStats.statistics.appearances
-                      ).toFixed(1)}
-                    </h4>
-                  </Flex>
-                </Box>
-
-                {/* FG % */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>FG%</p>
-                    <h4>
-                      {playoffStats.statistics.fieldGoalsPercentage.toFixed(1)}
-                    </h4>
-                  </Flex>
-                </Box>
-
-                {/* 3P% */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>3P%</p>
-                    <h4>
-                      {' '}
-                      {playoffStats.statistics.threePointsPercentage.toFixed(1)}
-                    </h4>
-                  </Flex>
-                </Box>
-
-                {/* FT% */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>FT%</p>
-                    <h4>
-                      {playoffStats.statistics.freeThrowsPercentage.toFixed(1)}
-                    </h4>
-                  </Flex>
-                </Box>
-              </Flex>
-            </Box>
-          </Flex>
-        </>
-      );
-    }
-  };
   const nameDivider = () => {
     if (playerDetails.player.height) {
       return (
@@ -332,7 +179,6 @@ const playerDetails = ({
       <div className="blackBackground"></div>
 
       <ImageWithFallback
-        priority
         key={playerDetails.player.id}
         layout="fill"
         alt={`${first} ${last}`}
@@ -350,6 +196,14 @@ const playerDetails = ({
           linkHref={`/teams/${playerDetails.player.team.slug}/${playerDetails.player.team.id}`}
           playerNumberPosition={playerNumber()}
           age={age()}
+          height={height()}
+          country={country()}
+          draftYearReal={draftYearReal()}
+          playerStats={playerStats}
+          playoffStats={playoffStats}
+          nameDivider={nameDivider()}
+          teamID={playerDetails.player.team.id}
+          teamSrc={`https://api.sofascore.app/api/v1/team/${playerDetails.player.team.id}/image`}
         />
       </div>
     </>

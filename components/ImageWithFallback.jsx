@@ -7,6 +7,7 @@ const ImageWithFallback = (props) => {
 
   return (
     <Image
+      priority
       className="backgroundimg-box"
       {...rest}
       alt=""

@@ -28,10 +28,10 @@ function Navbar(data) {
     });
 
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
   };
 
-  console.log(data);
+  // console.log(data);
   const inputTest = (e) => setName(e.target.value);
 
   // {

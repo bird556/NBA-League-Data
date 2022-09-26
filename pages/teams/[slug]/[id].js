@@ -8,6 +8,7 @@ import ImageWithFallback from '../../../components/ImageWithFallback';
 import Button from '../../../components/shared/Button';
 
 const teamDetails = ({ topPlayers, teamInfo, standings, media, roster }) => {
+  console.log(teamInfo);
   let playerInfo = roster.players.map((data, index) => data);
   playerInfo = playerInfo.map((item) => item.player);
   const fullName = teamInfo.team.name;
@@ -108,17 +109,12 @@ const teamDetails = ({ topPlayers, teamInfo, standings, media, roster }) => {
                   <Flex flexDirection="column" gap="2.4rem">
                     {/* Born */}
                     <Flex maxWidth="36rem" justifyContent="space-between">
-                      <p>Age:</p>
+                      <p>Stadium:</p>
+                      <p>{teamInfo.team.venue.stadium.name}</p>
                     </Flex>
-
-                    {/* Born */}
                     <Flex maxWidth="36rem" justifyContent="space-between">
-                      <p>Born:</p>
-                    </Flex>
-
-                    {/* Country */}
-                    <Flex maxWidth="36rem" justifyContent="space-between">
-                      <p>Country:</p>
+                      <p>Capacity:</p>
+                      <p>{teamInfo.team.venue.stadium.capacity}</p>
                     </Flex>
 
                     {/* Draft */}
