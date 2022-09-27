@@ -4,7 +4,6 @@ import {
   HStack,
   Text,
   Image,
-  Avatar,
   Center,
   Divider,
 } from '@chakra-ui/react';

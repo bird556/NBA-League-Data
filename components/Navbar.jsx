@@ -1,7 +1,5 @@
-import React from 'react';
 import axios from 'axios';
 import { baseUrl, fetchApi } from '../utils/fetchApi';
-import styled from 'styled-components';
 import Link from 'next/link';
 import { Flex, Box, Image, Text, Divider, Center } from '@chakra-ui/react';
 import { BiSearch } from 'react-icons/bi';

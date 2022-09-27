@@ -1,5 +1,6 @@
 import { Flex, Box, Center, Divider } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
+import StatsBox from './StatsBox';
 
 function PlayerStats({ playerStats, playoffStats }) {
   const playoffs = () => {
@@ -21,133 +22,64 @@ function PlayerStats({ playerStats, playoffStats }) {
             <Box>
               <Flex gap="4.4rem">
                 {/* Points Per Game */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>PPG</p>
-                    <h4>
-                      {(
-                        playoffStats.statistics.points /
-                        playoffStats.statistics.appearances
-                      ).toFixed(1)}
-                    </h4>
-                  </Flex>
-                </Box>
-
+                <StatsBox
+                  perGame="PPG"
+                  stat={(
+                    playoffStats.statistics.points /
+                    playoffStats.statistics.appearances
+                  ).toFixed(1)}
+                />
                 {/* Rebounds Per Game */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>RPG</p>
-                    <h4>
-                      {(
-                        playoffStats.statistics.rebounds /
-                        playoffStats.statistics.appearances
-                      ).toFixed(1)}
-                    </h4>
-                  </Flex>
-                </Box>
-
+                <StatsBox
+                  perGame="RPG"
+                  stat={(
+                    playoffStats.statistics.rebounds /
+                    playoffStats.statistics.appearances
+                  ).toFixed(1)}
+                />
                 {/* Assists Per Game */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>AST</p>
-
-                    <h4>
-                      {(
-                        playoffStats.statistics.assists /
-                        playoffStats.statistics.appearances
-                      ).toFixed(1)}
-                    </h4>
-                  </Flex>
-                </Box>
+                <StatsBox
+                  perGame="AST"
+                  stat={(
+                    playoffStats.statistics.assists /
+                    playoffStats.statistics.appearances
+                  ).toFixed(1)}
+                />
 
                 {/* Blocks Per Game */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>BLK</p>
-                    <h4>
-                      {(
-                        playoffStats.statistics.blocks /
-                        playoffStats.statistics.appearances
-                      ).toFixed(1)}
-                    </h4>
-                  </Flex>
-                </Box>
+                <StatsBox
+                  perGame="BLK"
+                  stat={(
+                    playoffStats.statistics.blocks /
+                    playoffStats.statistics.appearances
+                  ).toFixed(1)}
+                />
 
                 {/* Steals Per Game */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>STL</p>
-                    <h4>
-                      {(
-                        playoffStats.statistics.steals /
-                        playoffStats.statistics.appearances
-                      ).toFixed(1)}
-                    </h4>
-                  </Flex>
-                </Box>
-
-                {/* FG % */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>FG%</p>
-                    <h4>
-                      {playoffStats.statistics.fieldGoalsPercentage.toFixed(1)}
-                    </h4>
-                  </Flex>
-                </Box>
-
+                <StatsBox
+                  perGame="STL"
+                  stat={(
+                    playoffStats.statistics.steals /
+                    playoffStats.statistics.appearances
+                  ).toFixed(1)}
+                />
+                {/* FG% */}
+                <StatsBox
+                  perGame="FG%"
+                  stat={playoffStats.statistics.fieldGoalsPercentage.toFixed(1)}
+                />
                 {/* 3P% */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>3P%</p>
-                    <h4>
-                      {' '}
-                      {playoffStats.statistics.threePointsPercentage.toFixed(1)}
-                    </h4>
-                  </Flex>
-                </Box>
-
+                <StatsBox
+                  perGame="3P%"
+                  stat={playoffStats.statistics.threePointsPercentage.toFixed(
+                    1
+                  )}
+                />
                 {/* FT% */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>FT%</p>
-                    <h4>
-                      {playoffStats.statistics.freeThrowsPercentage.toFixed(1)}
-                    </h4>
-                  </Flex>
-                </Box>
+                <StatsBox
+                  perGame="FT%"
+                  stat={playoffStats.statistics.freeThrowsPercentage.toFixed(1)}
+                />
               </Flex>
             </Box>
           </Flex>
@@ -181,149 +113,62 @@ function PlayerStats({ playerStats, playoffStats }) {
             >
               <Flex gap="4.4rem">
                 {/* Points Per Game */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>PPG</p>
-                    <h4>
-                      {playerStats
-                        ? (
-                            playerStats.statistics.points /
-                            playerStats.statistics.appearances
-                          ).toFixed(1)
-                        : 0}
-                    </h4>
-                  </Flex>
-                </Box>
-
+                <StatsBox
+                  perGame="PPG"
+                  stat={(
+                    playerStats.statistics.points /
+                    playerStats.statistics.appearances
+                  ).toFixed(1)}
+                />
                 {/* Rebounds Per Game */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>RPG</p>
-                    <h4>
-                      {playerStats
-                        ? (
-                            playerStats.statistics.rebounds /
-                            playerStats.statistics.appearances
-                          ).toFixed(1)
-                        : 0}
-                    </h4>
-                  </Flex>
-                </Box>
-
+                <StatsBox
+                  perGame="RPG"
+                  stat={(
+                    playerStats.statistics.rebounds /
+                    playerStats.statistics.appearances
+                  ).toFixed(1)}
+                />
                 {/* Assists Per Game */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>AST</p>
-                    <h4>
-                      {playerStats
-                        ? (
-                            playerStats.statistics.assists /
-                            playerStats.statistics.appearances
-                          ).toFixed(1)
-                        : 0}
-                    </h4>
-                  </Flex>
-                </Box>
+                <StatsBox
+                  perGame="AST"
+                  stat={(
+                    playerStats.statistics.assists /
+                    playerStats.statistics.appearances
+                  ).toFixed(1)}
+                />
 
                 {/* Blocks Per Game */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>BLK</p>
-                    <h4>
-                      {playerStats
-                        ? (
-                            playerStats.statistics.blocks /
-                            playerStats.statistics.appearances
-                          ).toFixed(1)
-                        : 0}
-                    </h4>
-                  </Flex>
-                </Box>
+                <StatsBox
+                  perGame="BLK"
+                  stat={(
+                    playerStats.statistics.blocks /
+                    playerStats.statistics.appearances
+                  ).toFixed(1)}
+                />
 
                 {/* Steals Per Game */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>STL</p>
-                    <h4>
-                      {playerStats
-                        ? (
-                            playerStats.statistics.steals /
-                            playerStats.statistics.appearances
-                          ).toFixed(1)
-                        : 0}
-                    </h4>
-                  </Flex>
-                </Box>
-
-                {/* FG % */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>FG%</p>
-                    <h4>
-                      {playerStats
-                        ? playerStats.statistics.fieldGoalsPercentage.toFixed(1)
-                        : 0}
-                    </h4>
-                  </Flex>
-                </Box>
-
+                <StatsBox
+                  perGame="STL"
+                  stat={(
+                    playerStats.statistics.steals /
+                    playerStats.statistics.appearances
+                  ).toFixed(1)}
+                />
+                {/* FG% */}
+                <StatsBox
+                  perGame="FG%"
+                  stat={playerStats.statistics.fieldGoalsPercentage.toFixed(1)}
+                />
                 {/* 3P% */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>3P%</p>
-                    <h4>
-                      {playerStats
-                        ? playerStats.statistics.threePointsPercentage.toFixed(
-                            1
-                          )
-                        : 0}
-                    </h4>
-                  </Flex>
-                </Box>
-
+                <StatsBox
+                  perGame="3P%"
+                  stat={playerStats.statistics.threePointsPercentage.toFixed(1)}
+                />
                 {/* FT% */}
-                <Box w="5rem">
-                  <Flex
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <p>FT%</p>
-                    <h4>
-                      {playerStats
-                        ? playerStats.statistics.freeThrowsPercentage.toFixed(1)
-                        : 0}
-                    </h4>
-                  </Flex>
-                </Box>
+                <StatsBox
+                  perGame="FT%"
+                  stat={playerStats.statistics.freeThrowsPercentage.toFixed(1)}
+                />
               </Flex>
             </div>
           </Flex>

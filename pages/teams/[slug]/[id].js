@@ -1,14 +1,10 @@
-import React from 'react';
-import Link from 'next/link';
 import styles from '../../../styles/Home.module.css';
-import ImageNext from 'next/image';
-import { Image, Flex, Divider, Box } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { baseUrl, fetchApi } from '../../../utils/fetchApi';
 import ImageWithFallback from '../../../components/ImageWithFallback';
-import Button from '../../../components/shared/Button';
+import PlayerTeam from '../../../components/shared/PlayerTeam';
 
-const teamDetails = ({ topPlayers, teamInfo, standings, media, roster }) => {
-  console.log(teamInfo);
+const teamDetails = ({ teamInfo, standings, roster }) => {
   let playerInfo = roster.players.map((data, index) => data);
   playerInfo = playerInfo.map((item) => item.player);
   const fullName = teamInfo.team.name;
@@ -30,7 +26,6 @@ const teamDetails = ({ topPlayers, teamInfo, standings, media, roster }) => {
   return (
     <>
       <div className="blackBackground"></div>
-
       <ImageWithFallback
         priority
         key={teamInfo.team.id}
@@ -40,125 +35,19 @@ const teamDetails = ({ topPlayers, teamInfo, standings, media, roster }) => {
         fallbackSrc={'/team-background/defaultimage.jpg'}
         className="backgroundimg"
       />
-
       <div className={styles.container}>
         <div className="player-team-details">
           <Box p="8rem" data-aos="fade-right">
-            <Flex alignItems="center" justifyContent="space-between">
-              <Flex flexWrap="wrap" flexDirection="column">
-                <Flex flexDirection="column" marginBottom="3.6rem">
-                  <Flex alignItems="center" gap="2.4rem">
-                    <h2 data-aos="fade-right" data-aos-delay="400">
-                      {first}
-                    </h2>
-                  </Flex>
-                  <Flex
-                    alignItems="center"
-                    gap="2.4rem"
-                    w="100%"
-                    maxWidth="115rem"
-                    flexWrap="wrap"
-                  >
-                    <Box marginRight="6.4rem">
-                      <h1 data-aos="fade-up" data-aos-delay="600">
-                        {last.toUpperCase()}
-                      </h1>
-                      <Box w="110%">
-                        <Divider />
-                      </Box>
-                    </Box>
-                    {/* Team, Jersey Number, Position & Follow Button+ */}
-                    <Flex
-                      alignItems="center"
-                      gap="2.4rem"
-                      flexWrap="wrap"
-                      data-aos="fade-down"
-                      data-aos-delay="500"
-                    >
-                      <Link href={`#`} passHref>
-                        <Image
-                          cursor="pointer"
-                          boxSize="10rem"
-                          alt={teamInfo.team.name}
-                          src={`https://api.sofascore.app/api/v1/team/${teamInfo.team.id}/image`}
-                        />
-                      </Link>
-                      <Button />
-                    </Flex>
-                  </Flex>
-                </Flex>
-                {/* Team Record */}
-                <Box bgColor="">
-                  <Flex
-                    gap="6.4rem"
-                    bgColor=""
-                    maxWidth="36rem"
-                    marginBottom="3.6rem"
-                  >
-                    <Flex flexDirection="column">
-                      <p>Record</p>
-                      {team()}
-                    </Flex>
-                  </Flex>
-                  <Box maxWidth="36rem" marginBottom="3.6rem">
-                    <Divider />
-                  </Box>
-                </Box>
-                {/* Born, Country, Team, Draft Team & Year */}
-                <Box bgColor="">
-                  <Flex flexDirection="column" gap="2.4rem">
-                    {/* Born */}
-                    <Flex maxWidth="36rem" justifyContent="space-between">
-                      <p>Stadium:</p>
-                      <p>{teamInfo.team.venue.stadium.name}</p>
-                    </Flex>
-                    <Flex maxWidth="36rem" justifyContent="space-between">
-                      <p>Capacity:</p>
-                      <p>{teamInfo.team.venue.stadium.capacity}</p>
-                    </Flex>
-
-                    {/* Draft */}
-                  </Flex>
-                </Box>
-              </Flex>
-              <Box w="50%">
-                <Flex
-                  flexWrap="wrap"
-                  gap="2.4rem"
-                  justifyContent="center"
-                  data-aos="fade-right"
-                  data-aos-offset="700"
-                >
-                  {playerInfo.map((data, index) => {
-                    return (
-                      <Box key={data.id}>
-                        <Link href={`/player/${data.slug}/${data.id}`} passHref>
-                          <Flex
-                            alignItems="center"
-                            flexDirection="column"
-                            justifyContent="center"
-                            cursor="pointer"
-                          >
-                            <Image
-                              boxSize="150px"
-                              layout="fill"
-                              src={`https://api.sofascore.app/api/v1/player/${data.id}/image`}
-                              alt={data.name}
-                              borderRadius="100%"
-                              fallbackSrc={
-                                'https://i.pinimg.com/736x/3f/6c/0b/3f6c0b67b844e82d8dd1e7a6d85a2b53.jpg'
-                              }
-                            />
-
-                            <p>{data.shortName}</p>
-                          </Flex>
-                        </Link>
-                      </Box>
-                    );
-                  })}
-                </Flex>
-              </Box>
-            </Flex>
+            <PlayerTeam
+              teamInfo={teamInfo}
+              firstName={first}
+              lastName={last}
+              avatarName={teamInfo.team.name}
+              teamSrc={`https://api.sofascore.app/api/v1/team/${teamInfo.team.id}/image`}
+              teamRecord={team()}
+              teamID={teamInfo.team.id}
+              playerInfo={playerInfo}
+            />
           </Box>
         </div>
       </div>

@@ -1,19 +1,9 @@
-import Link from 'next/link';
 import styles from '../../../styles/Home.module.css';
 import ImageWithFallback from '../../../components/ImageWithFallback';
-import {
-  Image,
-  Avatar,
-  Flex,
-  Divider,
-  Box,
-  Center,
-  Spacer,
-} from '@chakra-ui/react';
+import { Flex, Divider, Box, Center, Spacer } from '@chakra-ui/react';
 import { baseUrl, fetchApi } from '../../../utils/fetchApi';
 import PlayerTeam from '../../../components/shared/PlayerTeam';
 import PlayerStats from '../../../components/shared/PlayerStats';
-import Button from '../../../components/shared/Button';
 const playerDetails = ({
   playerStats,
   playerDetails,
@@ -188,23 +178,29 @@ const playerDetails = ({
       />
 
       <div className={styles.container}>
-        <PlayerTeam
-          firstName={first}
-          lastName={last.toUpperCase()}
-          avatarName={playerDetails.player.name}
-          avatarSrc={`https://api.sofascore.app/api/v1/player/${playerDetails.player.id}/image`}
-          linkHref={`/teams/${playerDetails.player.team.slug}/${playerDetails.player.team.id}`}
-          playerNumberPosition={playerNumber()}
-          age={age()}
-          height={height()}
-          country={country()}
-          draftYearReal={draftYearReal()}
-          playerStats={playerStats}
-          playoffStats={playoffStats}
-          nameDivider={nameDivider()}
-          teamID={playerDetails.player.team.id}
-          teamSrc={`https://api.sofascore.app/api/v1/team/${playerDetails.player.team.id}/image`}
-        />
+        <div className="player-team-details">
+          <Box p="8rem" data-aos="fade-right">
+            <PlayerTeam
+              playerDetails={playerDetails}
+              firstName={first}
+              lastName={last}
+              avatarName={playerDetails.player.name}
+              avatarSrc={`https://api.sofascore.app/api/v1/player/${playerDetails.player.id}/image`}
+              linkHref={`/teams/${playerDetails.player.team.slug}/${playerDetails.player.team.id}`}
+              playerNumberPosition={playerNumber()}
+              age={age()}
+              height={height()}
+              country={country()}
+              draftYearReal={draftYearReal()}
+              playerStats={playerStats}
+              playoffStats={playoffStats}
+              nameDivider={nameDivider()}
+              teamID={playerDetails.player.team.id}
+              teamSrc={`https://api.sofascore.app/api/v1/team/${playerDetails.player.team.id}/image`}
+            />
+          </Box>
+          <PlayerStats playerStats={playerStats} playoffStats={playoffStats} />
+        </div>
       </div>
     </>
   );
