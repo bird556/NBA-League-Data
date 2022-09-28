@@ -6,6 +6,7 @@ import ImageWithFallback from '../components/ImageWithFallback';
 import { baseUrl, fetchApi } from '../utils/fetchApi';
 import Divisions from '../components/Divisions';
 const teams = (team) => {
+  console.log(team.teams.standings);
   const eastTeams = () =>
     team.teams.standings.map((data, index) => {
       if (data.name == 'Eastern Conference') {

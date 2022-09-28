@@ -7,6 +7,7 @@ import PlayerTeam from '../../../components/shared/PlayerTeam';
 const teamDetails = ({ teamInfo, standings, roster }) => {
   let playerInfo = roster.players.map((data, index) => data);
   playerInfo = playerInfo.map((item) => item.player);
+  // console.log(playerInfo.map((data, index) => console.log(data.name)));
   const fullName = teamInfo.team.name;
   const [first, last] = fullName.split(' ');
   const team = () =>

@@ -5,7 +5,6 @@ import Backgroundimgvideo from '../components/Backgroundimgvideo';
 import Slider from '../components/Slider/Slider';
 //
 export default function Home() {
-  console.log(process.env.REACT_APP_NBAAPIKEY);
   const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)');
   const [isLargerThanHD, isDisplayingInBrowser] = useMediaQuery([
     '(min-width: 1920px)',

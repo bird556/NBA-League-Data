@@ -14,6 +14,7 @@ function StatsBox({ perGame, stat }) {
 
 export default StatsBox;
 
-StatsBox.PropTypes = {
+StatsBox.propTypes = {
   perGame: PropTypes.string,
+  stat: PropTypes.string,
 };
