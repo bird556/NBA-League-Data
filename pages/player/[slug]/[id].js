@@ -155,10 +155,18 @@ const playerDetails = ({
 
   const playerNumber = () => (
     <>
-      <h4>{`#${playerDetails.player.shirtNumber}`}</h4>
-      <Center height="25px">
-        <Divider orientation="vertical" />
-      </Center>
+      <h4>
+        {playerDetails.player.shirtNumber
+          ? `#${playerDetails.player.shirtNumber}`
+          : false}
+      </h4>
+      {playerDetails.player.shirtNumber ? (
+        <Center height="25px">
+          <Divider orientation="vertical" />
+        </Center>
+      ) : (
+        false
+      )}
       <h4>{playerDetails.player.position.slice(0, 1)}</h4>
     </>
   );
