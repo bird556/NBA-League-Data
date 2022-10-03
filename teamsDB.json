@@ -1,0 +1,130 @@
+{
+  "teamDataBase": [
+    {
+      "conference": "Eastern Conference",
+      "id": 85856,
+      "teams": [
+        {
+          "team": {
+            "conference": "Eastern Conference",
+            "id": 3435,
+            "name": "Miami Heat",
+            "nameCode": "MIA"
+          }
+        },
+        {
+          "team": {
+            "conference": "Eastern Conference",
+            "id": 3422,
+            "name": "Boston Celtics",
+            "nameCode": "BOS"
+          }
+        },
+        {
+          "team": {
+            "conference": "Eastern Conference",
+            "id": 3410,
+            "name": "Milwaukee Bucks",
+            "nameCode": "MIL"
+          }
+        },
+        {
+          "team": {
+            "conference": "Eastern Conference",
+            "id": 3420,
+            "name": "Philadelphia 76ers",
+            "nameCode": "PHI"
+          }
+        },
+        {
+          "team": {
+            "conference": "Eastern Conference",
+            "id": 3433,
+            "name": "Toronto Raptors",
+            "nameCode": "TOR"
+          }
+        },
+        {
+          "team": {
+            "conference": "Eastern Conference",
+            "id": 3409,
+            "name": "Chicago Bulls",
+            "nameCode": "CHI"
+          }
+        },
+        {
+          "team": {
+            "conference": "Eastern Conference",
+            "id": 3436,
+            "name": "Brooklyn Nets",
+            "nameCode": "BKN"
+          }
+        },
+        {
+          "team": {
+            "conference": "Eastern Conference",
+            "id": 3423,
+            "name": "Atlanta Hawks",
+            "nameCode": "ATL"
+          }
+        },
+        {
+          "team": {
+            "conference": "Eastern Conference",
+            "id": 3432,
+            "name": "Cleveland Cavaliers",
+            "nameCode": "CLE"
+          }
+        },
+        {
+          "team": {
+            "conference": "Eastern Conference",
+            "id": "3430",
+            "name": "Charlotte Hornets",
+            "nameCode": "CHA"
+          }
+        },
+        {
+          "team": {
+            "conference": "Eastern Conference",
+            "id": "3421",
+            "name": "New York Knicks",
+            "nameCode": "NYK"
+          }
+        },
+        {
+          "team": {
+            "conference": "Eastern Conference",
+            "id": "3431",
+            "name": "Washington Wizards",
+            "nameCode": "WAS"
+          }
+        },
+        {
+          "team": {
+            "conference": "Eastern Conference",
+            "id": "3419",
+            "name": "Indiana Pacers",
+            "nameCode": "IND"
+          }
+        },
+        {
+          "team": {
+            "conference": "Eastern Conference",
+            "id": "3424",
+            "name": "Detroit Pistons",
+            "nameCode": "DET"
+          }
+        },
+        {
+          "team": {
+            "conference": "Eastern Conference",
+            "id": "3437",
+            "name": "Orlando Magic",
+            "nameCode": "ORL"
+          }
+        }
+      ]
+    }
+  ]
+}

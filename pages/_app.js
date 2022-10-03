@@ -4,6 +4,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import '../styles/styles.scss';
 import '../styles/globals.scss';
 import '../styles/nprogress.css';
+import '../styles/media.scss';
 import theme from '..//chakra-theme/theme';
 import Layout from '../components/Layout';
 import { useEffect } from 'react';

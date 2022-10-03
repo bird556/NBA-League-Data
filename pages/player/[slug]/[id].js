@@ -69,7 +69,7 @@ const playerDetails = ({
     if (playerDetails.player.height) {
       return (
         <Box>
-          <Flex gap="6.4rem" bgColor="" maxWidth="36rem" marginBottom="3.6rem">
+          <Flex gap="6.4rem" bgColor="" maxWidth="36rem" margin="3.6rem 0">
             <Flex flexDirection="column">
               <p>Height</p>
               <Flex gap="0.8rem">

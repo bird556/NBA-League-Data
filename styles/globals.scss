@@ -50,6 +50,7 @@ SPACING SYSTEM (px)
 $text-primary-col: #ced4da;
 $text-hover-col: #fff;
 $bg-primary-col: #222222;
+$btn-outline-col: #228be6;
 
 // Mixing
 @mixin position-ab-left {
@@ -171,4 +172,29 @@ a {
   backdrop-filter: blur(5px);
   position: fixed;
   transition: all 1s;
+}
+
+button {
+  font-size: 1.6rem !important;
+  border: 2px $btn-outline-col solid !important;
+  border-radius: 2rem !important;
+  padding: 0.8rem 2.4rem !important;
+  background-color: darken(rgba($btn-outline-col, 0.3), 50%) !important;
+  transition: background-color 1s !important;
+  color: $text-hover-col !important;
+
+  &:hover {
+    background-color: darken(rgba($btn-outline-col, 0.4), 10%) !important;
+    cursor: pointer !important;
+    transition: background-color 1s !important;
+
+    span {
+      color: lighten($btn-outline-col, 20%) !important;
+      transition: color 1s !important;
+    }
+  }
+  span {
+    color: $btn-outline-col !important;
+    transition: color 1s !important;
+  }
 }

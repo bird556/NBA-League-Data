@@ -20,13 +20,10 @@ function Divisions({ division, divisionIfStatement, map }) {
           return (
             <div key={item.id}>
               <Flex
-                // w="3xl"
                 gap="3.2rem"
                 alignItems="center"
-                // bgColor="red.800"
                 h="10rem"
                 flexWrap="wrap"
-                // bgColor="green.800"
                 borderRadius="2xl"
               >
                 <Flex alignItems="center" gap="2rem">
@@ -50,7 +47,6 @@ function Divisions({ division, divisionIfStatement, map }) {
                 <Flex
                   alignItems="center"
                   justifyContent="space-between"
-                  // bgColor="blue"
                   flexWrap="wrap"
                 >
                   <Box>
@@ -101,7 +97,6 @@ function Divisions({ division, divisionIfStatement, map }) {
         p="2rem"
         className="box-container divisions"
       >
-        {/* <div className="blur"></div> */}
         <Flex flexDirection="column" gap="2rem" zIndex="100" flexWrap="wrap">
           <Flex alignItems="center">
             <HStack gap="0.5rem">

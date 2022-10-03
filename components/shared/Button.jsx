@@ -21,7 +21,7 @@ function Button({ name }) {
             btn.style.backgroundColor = 'rgba(102, 168, 15, 0.5)';
             const followed = document.getElementById('follow');
             followed.innerHTML = `
-            <div style="display: flex;">
+            <div style="display: flex; align-items: center;">
             Followed             <img
               style="height: 25px; display: inline-block; transform: translate(8px, -2px);"
               src="https://i.giphy.com/media/CWTz6ddR9Hsj35kE4l/giphy.webp"

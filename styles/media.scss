@@ -1,0 +1,26 @@
+@media screen and (max-width: 80.5rem) {
+  nav {
+    display: flex;
+    justify-content: center;
+    .nav-flex {
+      justify-content: center !important;
+      .list {
+        background-color: blue;
+        display: none;
+      }
+    }
+    .burgerMenu {
+      display: block;
+      align-self: center;
+      justify-items: flex-end !important;
+      position: absolute;
+      right: 0;
+      margin-right: 2.4rem;
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      display: block;
+    }
+  }
+}

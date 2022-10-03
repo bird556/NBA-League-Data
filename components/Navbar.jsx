@@ -1,25 +1,20 @@
-import axios from 'axios';
-import { baseUrl, fetchApi } from '../utils/fetchApi';
+import { baseUrl } from '../utils/fetchApi';
 import Link from 'next/link';
-import { Flex, Box, Image, Text, Divider, Center } from '@chakra-ui/react';
+import { Flex, Box, Image, Text, Divider } from '@chakra-ui/react';
 import { BiSearch } from 'react-icons/bi';
 import { NavLink } from './shared/NavLink';
 import { useState } from 'react';
 import { useEffect } from 'react';
-
-// export async function getServerSideProps() {
-//   const res = await fetch;
-// }
-
+import { TiThMenu } from 'react-icons/ti';
+import MobileMenu from './shared/MobileMenu';
 function Navbar(data) {
-  const [name, setName] = useState('');
+  const [name, setName] = useState('anthony');
   const [info, setInfo] = useState([]);
+  const [team, setTeam] = useState([]);
   const [res, setRes] = useState([]);
-  console.log(typeof name);
-  console.log(info);
   useEffect(() => {
-    // searchPlayer();
     searchUsers(name);
+    // teams();
   }, [name]);
 
   const inputTest = (e) => {
@@ -28,28 +23,69 @@ function Navbar(data) {
     }
     return setName('');
   };
-  // setName(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1));
-  // setName(e.target.value);
 
   const searchUsers = async (name) => {
     const res = await fetch(`${baseUrl}/api/basketball/search/${name}`, {
       headers: {
-        'X-RapidAPI-Key': 'ffab0449d9msh821216a3c72087fp1edd91jsn59babfa2c26d',
+        // 'X-RapidAPI-Key': 'ffab0449d9msh821216a3c72087fp1edd91jsn59babfa2c26d',
+        // Hide API Below 👇
+        'X-RapidAPI-Key': process.env.REACT_APP_NBAAPIKEY,
+        // 'X-RapidAPI-Key': 'ffab0449d9msh821216a3c72087fp1edd91jsn59babfa2c26d',
         'X-RapidAPI-Host': 'basketapi1.p.rapidapi.com',
       },
     });
 
     const data = await res.json();
-
-    // console.log(data.results.map((data) => console.log(data.entity.name)));
-
-    // console.log(data.results.map((data) => console.log(data)));
     const searchInfo = data.results;
     setInfo(searchInfo);
     setRes(res);
+    console.log(searchInfo);
   };
-  console.log(res);
 
+  // const teams = async () => {
+  //   const res = await fetch(`http://localhost:5000/teamDataBase`);
+  //   const data = await res.json();
+  //   const teams = data
+  //     .map((info) => info.teams)
+  //     .map((info) => info.map((data) => data.team));
+  //   setTeam(teams);
+  // };
+
+  const nbaTeams = team.map((info) => info.map((curr) => curr.name));
+
+  const nbaTeamsFull = [
+    'Miami Heat',
+    'Boston Celtics',
+    'Milwaukee Bucks',
+    'Philadelphia 76ers',
+    'Toronto Raptors',
+    'Chicago Bulls',
+    'Brooklyn Nets',
+    'Atlanta Hawks',
+    'Cleveland Cavaliers',
+    'Charlotte Hornets',
+    'New York Knicks',
+    'Washington Wizards',
+    'Indiana Pacers',
+    'Detroit Pistons',
+    'Orlando Magic',
+    'Phoenix Suns',
+    'Memphis Grizzlies',
+    'Golden State Warriors',
+    'Dallas Mavericks',
+    'Utah Jazz',
+    'Denver Nuggets',
+    'Minnesota Timberwolves',
+    'New Orleans Pelicans',
+    'Los Angeles Clippers',
+    'San Antonio Spurs',
+    'Los Angeles Lakers',
+    'Sacramento Kings',
+    'Portland Trail Blazers',
+    'Oklahoma City Thunder',
+    'Houston Rockets',
+  ];
+  console.log(nbaTeamsFull.includes('Miami Heat'));
   return (
     <>
       <nav>
@@ -62,11 +98,107 @@ function Navbar(data) {
             cursor="pointer"
           />
         </Link>
-        <Flex wrap="wrap" justifyContent="space-between" alignItems="center">
+        <Flex
+          className="nav-flex"
+          wrap="wrap"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          {info ? (
+            <Box
+              zIndex="500"
+              backgroundColor="rgba(34, 34, 34, 0.868)"
+              position="absolute"
+              top="8rem"
+              right="2.6rem"
+              p="1.6rem 2.6rem 1.6rem"
+              borderRadius="1rem"
+              w="30rem"
+            >
+              <Flex flexDirection="column" gap="2rem">
+                {info
+                  .filter((item, index) => index < 10)
+                  .map((info) => {
+                    const data = info.entity;
+                    console.log(data.team);
+                    if (
+                      info.type === 'player' &&
+                      nbaTeamsFull.includes(data.team.name)
+                    ) {
+                      return (
+                        <Link
+                          key={data.id}
+                          href={`/player/${data.slug}/${data.id}`}
+                          passHref
+                        >
+                          <Box cursor="pointer">
+                            <Flex gap="1.8rem" alignItems="center">
+                              <Image
+                                boxSize="5rem"
+                                src={`https://api.sofascore.app/api/v1/player/${data.id}/image`}
+                                alt={data.name}
+                                borderRadius="100%"
+                                fallbackSrc={
+                                  'https://i.pinimg.com/736x/3f/6c/0b/3f6c0b67b844e82d8dd1e7a6d85a2b53.jpg'
+                                }
+                              />
+                              <Box>
+                                <Text fontSize="2xl">{data.name}</Text>
+                                <Flex gap="0.8rem" alignItems="center">
+                                  <Image
+                                    boxSize="3rem"
+                                    src={`https://api.sofascore.app/api/v1/team/${data.team.id}/image`}
+                                    alt="Memphis"
+                                    fallbackSrc={
+                                      'https://i.pinimg.com/736x/3f/6c/0b/3f6c0b67b844e82d8dd1e7a6d85a2b53.jpg'
+                                    }
+                                  />
+                                  <Text fontSize="2xl">{data.team.name}</Text>
+                                </Flex>
+                              </Box>
+                            </Flex>
+                            <Box p="1.6rem">
+                              <Divider />
+                            </Box>
+                          </Box>
+                        </Link>
+                      );
+                    } else if (
+                      info.type === 'team' &&
+                      nbaTeamsFull.includes(info.entity.name)
+                    ) {
+                      return (
+                        <Link href={`/teams/${data.slug}/${data.id}`} passHref>
+                          <Box cursor="pointer">
+                            <Flex gap="1.8rem" alignItems="center">
+                              <Image
+                                boxSize="5rem"
+                                src={`https://api.sofascore.app/api/v1/team/${data.id}/image`}
+                                alt={data.name}
+                                fallbackSrc={
+                                  'https://i.pinimg.com/736x/3f/6c/0b/3f6c0b67b844e82d8dd1e7a6d85a2b53.jpg'
+                                }
+                              />
+                              <Box>
+                                <Text fontSize="2xl">{data.name}</Text>
+                              </Box>
+                            </Flex>
+                            <Box p="1.6rem">
+                              <Divider />
+                            </Box>
+                          </Box>
+                        </Link>
+                      );
+                    }
+                  })}
+              </Flex>
+            </Box>
+          ) : (
+            false
+          )}
           <ul className="list">
             <NavLink href="/" exact className="btn">
               Home
-              {/* {fetchApi()} */}
             </NavLink>
 
             <NavLink href="/stats" className="btn">
@@ -75,7 +207,6 @@ function Navbar(data) {
 
             <NavLink href="/playoffs" className="btn">
               Playoffs
-              {/* {name} */}
             </NavLink>
 
             <NavLink href="/teams" className="btn">
@@ -87,7 +218,6 @@ function Navbar(data) {
             <div className="search-input">
               <input
                 onChange={inputTest}
-                // onChange={test}
                 className="search"
                 type="text"
                 placeholder="Search a Player or Team"
@@ -96,97 +226,15 @@ function Navbar(data) {
             </div>
           </Flex>
         </Flex>
+        <TiThMenu
+          fontSize="3rem"
+          className="burgerMenu"
+          onClick={() => {
+            document.getElementById('menu').classList.remove('closed-menu');
+          }}
+        />
+        <MobileMenu />
       </nav>
-      {info ? (
-        <Box
-          zIndex="500"
-          backgroundColor="rgba(34, 34, 34, 0.868)"
-          position="absolute"
-          top="8rem"
-          right="2.6rem"
-          p="1.6rem 2.6rem 1.6rem"
-          borderRadius="1rem"
-          w="30rem"
-        >
-          <Flex flexDirection="column" gap="2rem">
-            {info
-              .filter((item, index) => index < 6)
-              .map((info) => {
-                const data = info.entity;
-                if (info.type === 'player') {
-                  return (
-                    <Link
-                      key={data.id}
-                      href={`/player/${data.slug}/${data.id}`}
-                      passHref
-                    >
-                      <Box cursor="pointer">
-                        <Flex gap="1.8rem" alignItems="center">
-                          <Image
-                            boxSize="5rem"
-                            src={`https://api.sofascore.app/api/v1/player/${data.id}/image`}
-                            alt={data.name}
-                            borderRadius="100%"
-                            fallbackSrc={
-                              'https://i.pinimg.com/736x/3f/6c/0b/3f6c0b67b844e82d8dd1e7a6d85a2b53.jpg'
-                            }
-                          />
-                          <Box>
-                            <Text fontSize="2xl">{data.name}</Text>
-                            <Flex gap="0.8rem" alignItems="center">
-                              <Image
-                                boxSize="3rem"
-                                src={`https://api.sofascore.app/api/v1/team/${data.team.id}/image`}
-                                alt="Memphis"
-                                // borderRadius="100%"
-                                fallbackSrc={
-                                  'https://i.pinimg.com/736x/3f/6c/0b/3f6c0b67b844e82d8dd1e7a6d85a2b53.jpg'
-                                }
-                              />
-                              <Text fontSize="2xl">{data.team.name}</Text>
-                            </Flex>
-                          </Box>
-                        </Flex>
-                        <Box p="1.6rem">
-                          <Divider />
-                        </Box>
-                      </Box>
-                    </Link>
-                  );
-                } else if (
-                  info.type === 'team' &&
-                  info.entity.country.name === 'USA'
-                ) {
-                  return (
-                    <Link href={`/teams/${data.slug}/${data.id}`} passHref>
-                      <Box cursor="pointer">
-                        <Flex gap="1.8rem" alignItems="center">
-                          <Image
-                            boxSize="5rem"
-                            src={`https://api.sofascore.app/api/v1/team/${data.id}/image`}
-                            alt={data.name}
-                            // borderRadius="100%"
-                            fallbackSrc={
-                              'https://i.pinimg.com/736x/3f/6c/0b/3f6c0b67b844e82d8dd1e7a6d85a2b53.jpg'
-                            }
-                          />
-                          <Box>
-                            <Text fontSize="2xl">{data.name}</Text>
-                          </Box>
-                        </Flex>
-                        <Box p="1.6rem">
-                          <Divider />
-                        </Box>
-                      </Box>
-                    </Link>
-                  );
-                }
-              })}
-          </Flex>
-        </Box>
-      ) : (
-        false
-      )}
     </>
   );
 }
