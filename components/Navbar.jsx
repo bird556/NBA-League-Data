@@ -203,17 +203,18 @@ function Navbar(data) {
               Home
             </NavLink>
 
-            <NavLink href="/stats" className="btn" onClick={clear}>
-              Stats
-            </NavLink>
-
-            <NavLink href="/playoffs" className="btn" onClick={clear}>
-              Playoffs
-            </NavLink>
-
             <NavLink href="/teams" className="btn" onClick={clear}>
               Teams
             </NavLink>
+
+            <NavLink href="#" className="btn" onClick={clear}>
+              Stats
+            </NavLink>
+
+            <NavLink href="#" className="btn" onClick={clear}>
+              Playoffs
+            </NavLink>
+
             {/* <NavLink href="/summerleague" className="btn 
             onClick={clear}
             

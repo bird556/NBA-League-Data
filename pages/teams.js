@@ -45,7 +45,7 @@ const teams = (team) => {
           priority
           layout="fill"
           alt={``}
-          src={`https://media.gettyimages.com/photos/the-memphis-grizzlies-huddle-up-during-round-1-game-4-of-the-2022-nba-picture-id1240194361?s=2048x2048`}
+          src="/teams.jpg"
           fallbackSrc={'/team-background/defaultimage.jpg'}
         />
       </div>

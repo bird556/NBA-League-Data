@@ -25,20 +25,20 @@ function MobileMenu() {
               Home
             </NavLink>
 
-            <NavLink onClick={closeMenu} href="/stats" className="btn">
+            <NavLink onClick={closeMenu} href="#" className="btn">
               Stats
             </NavLink>
 
-            <NavLink onClick={closeMenu} href="/playoffs" className="btn">
+            {/* <NavLink onClick={closeMenu} href="/playoffs" className="btn">
               Playoffs
-            </NavLink>
+            </NavLink> */}
 
             <NavLink onClick={closeMenu} href="/teams" className="btn">
               Teams
             </NavLink>
-            <NavLink onClick={closeMenu} href="/summerleague" className="btn">
+            {/* <NavLink onClick={closeMenu} href="/summerleague" className="btn">
               Summer League
-            </NavLink>
+            </NavLink> */}
           </Flex>
         </Center>
       </div>

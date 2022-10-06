@@ -89,7 +89,7 @@ nav {
   position: fixed;
   width: 100%;
   border-bottom: 1px solid rgba(222, 226, 230, 0.355);
-  height: 7.25rem;
+  // height: 7.25rem;
   z-index: 100;
   .nav-flex {
     position: relative;
@@ -182,7 +182,7 @@ nav {
             content: '';
             position: absolute;
             display: flex;
-            transform: translateY(22.5px);
+            transform: translateY(2.25rem);
             border: 2px solid #fff;
             border-radius: 5rem;
             width: 100%;
@@ -193,7 +193,7 @@ nav {
           content: '';
           position: absolute;
           display: flex;
-          transform: translateY(22.5px);
+          transform: translateY(2.25rem);
           border: 2px solid rgba(255, 255, 255, 0);
           border-radius: 5rem;
           width: 0%;
@@ -207,7 +207,8 @@ nav {
         content: '';
         position: absolute;
         display: flex;
-        transform: translateY(22.5px);
+        transform: translateY(2.25rem);
+
         // transform: translateY(22.5px);
         border: 2px solid #fff;
         border-radius: 5rem;
