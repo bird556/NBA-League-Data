@@ -287,6 +287,10 @@ nav {
     right: 0;
     filter: grayscale(60%);
   }
+
+  #Search-Box {
+    display: block;
+  }
 }
 
 // Container
@@ -386,10 +390,12 @@ nav {
 //Player Info
 .player-team-details {
   z-index: 3;
-  margin: 8rem 0;
+  // overflow: auto;
+  margin: 8rem 0 0;
   width: 100%;
-  position: fixed;
+  // position: fixed;
   height: 100vh;
+
   top: 0;
   text-transform: capitalize;
   h1 {
@@ -459,6 +465,10 @@ nav {
       @include width-height-100-abs-0();
       z-index: -1;
     }
+  }
+
+  .roster {
+    margin-top: 8rem;
   }
 }
 

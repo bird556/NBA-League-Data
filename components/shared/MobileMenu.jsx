@@ -2,41 +2,42 @@ import { Center, Box, VStack, Flex } from '@chakra-ui/react';
 import { NavLink } from './NavLink';
 import { BsXLg } from 'react-icons/bs';
 function MobileMenu() {
+  const closeMenu = () => {
+    document.getElementById('menu').classList.add('closed-menu');
+  };
   return (
     <>
       <div className="mobile-menu closed-menu" id="menu">
         <div className="blur"></div>
-        <BsXLg
-          fontSize="3rem"
-          className="menu-close"
-          onClick={() => {
-            document.getElementById('menu').classList.add('closed-menu');
-          }}
-        />
+        <BsXLg fontSize="3rem" className="menu-close" onClick={closeMenu} />
         <Center>
           <Flex
             zIndex="9999"
-            fontSize="6xl"
+            fontSize="3.6rem"
             flexDirection="column"
             height="100vh"
             justifyContent="center"
             alignItems="center"
             gap="3.6rem"
+            className="closemenu-flex"
           >
-            <NavLink href="/" exact className="btn">
+            <NavLink onClick={closeMenu} href="/" exact className="btn">
               Home
             </NavLink>
 
-            <NavLink href="/stats" className="btn">
+            <NavLink onClick={closeMenu} href="/stats" className="btn">
               Stats
             </NavLink>
 
-            <NavLink href="/playoffs" className="btn">
+            <NavLink onClick={closeMenu} href="/playoffs" className="btn">
               Playoffs
             </NavLink>
 
-            <NavLink href="/teams" className="btn">
+            <NavLink onClick={closeMenu} href="/teams" className="btn">
               Teams
+            </NavLink>
+            <NavLink onClick={closeMenu} href="/summerleague" className="btn">
+              Summer League
             </NavLink>
           </Flex>
         </Center>

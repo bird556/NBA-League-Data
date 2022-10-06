@@ -27,8 +27,12 @@ function PlayerTeam({
   const ageCountryDraft = () => {
     if (playerDetails) {
       return (
-        <Box bgColor="">
-          <Flex flexDirection="column" gap="2.4rem">
+        <Box>
+          <Flex
+            className="Player-Team-Info-Flex"
+            flexDirection="column"
+            gap="2.4rem"
+          >
             {/* Born */}
             {age}
             {/* Country */}
@@ -60,14 +64,8 @@ function PlayerTeam({
   const roster = () => {
     if (teamInfo) {
       return (
-        <Box w="50%">
-          <Flex
-            flexWrap="wrap"
-            gap="2.4rem"
-            justifyContent="center"
-            data-aos="fade-right"
-            data-aos-offset="700"
-          >
+        <Box className="roster">
+          <Flex flexWrap="wrap" gap="2.4rem" justifyContent="center">
             {playerInfo.map((data, index) => {
               return (
                 <Box key={data.id}>
@@ -79,7 +77,8 @@ function PlayerTeam({
                       cursor="pointer"
                     >
                       <Image
-                        boxSize="150px"
+                        boxSize="12rem"
+                        marginBottom="1.2rem"
                         layout="fill"
                         src={`https://api.sofascore.app/api/v1/player/${data.id}/image`}
                         alt={data.name}
@@ -89,7 +88,7 @@ function PlayerTeam({
                         }
                       />
 
-                      <p>{data.shortName}</p>
+                      <p>{data.name}</p>
                     </Flex>
                   </Link>
                 </Box>
@@ -103,7 +102,11 @@ function PlayerTeam({
 
   return (
     <>
-      <Flex alignItems="center" justifyContent="space-between">
+      <Flex
+        alignItems="center"
+        justifyContent="space-between"
+        flexDirection="column"
+      >
         <Flex flexWrap="wrap" flexDirection="column" alignSelf="flex-start">
           <Flex flexDirection="column" marginBottom="3.6rem">
             <Flex alignItems="center" gap="2.4rem">
@@ -158,7 +161,7 @@ function PlayerTeam({
               ) : (
                 <>
                   <p>Record</p>
-                  {teamRecord}
+                  {teamRecord ? teamRecord : `0 - 0`}
                 </>
               )}
               <Box maxWidth="36rem" marginBottom="3.6rem">
@@ -204,6 +207,8 @@ PlayerTeam.defaultProps = {
     'https://i.pinimg.com/736x/3f/6c/0b/3f6c0b67b844e82d8dd1e7a6d85a2b53.jpg',
   linkHref: `#`,
   playerNumberPosition: 'PG',
+  teamSrc:
+    'https://i.pinimg.com/736x/3f/6c/0b/3f6c0b67b844e82d8dd1e7a6d85a2b53.jpg',
 };
 
 PlayerTeam.propTypes = {
@@ -213,7 +218,7 @@ PlayerTeam.propTypes = {
   avatarName: PropTypes.string,
   avatarSrc: PropTypes.string,
   linkHref: PropTypes.string,
-  playerNumberPosition: PropTypes.string,
+  playerNumberPosition: PropTypes.object,
   age: PropTypes.object,
   height: PropTypes.object,
   country: PropTypes.object,

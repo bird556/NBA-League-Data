@@ -1398,3 +1398,111 @@
             </Flex>
           </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+        (
+            <Box
+              zIndex="500"
+              backgroundColor="rgba(34, 34, 34, 0.868)"
+              position="absolute"
+              top="8rem"
+              right="2.6rem"
+              p="1.6rem 2.6rem 1.6rem"
+              borderRadius="1rem"
+              w="30rem"
+            >
+              <Flex flexDirection="column" gap="2rem">
+                {info
+                  ? info
+                      .filter((item, index) => index < 10)
+                      .map((info) => {
+                        const data = info.entity;
+                        if (
+                          info.type === 'player' &&
+                          nbaTeamsFull.includes(data.team.name)
+                        ) {
+                          return (
+                            <>
+                              <Link
+                                key={data.id}
+                                href={`/player/${data.slug}/${data.id}`}
+                                passHref
+                              >
+                                <Box cursor="pointer" onClick={clear}>
+                                  <Flex gap="1.8rem" alignItems="center">
+                                    <Image
+                                      boxSize="5rem"
+                                      src={`https://api.sofascore.app/api/v1/player/${data.id}/image`}
+                                      alt={data.name}
+                                      borderRadius="100%"
+                                      fallbackSrc={
+                                        'https://i.pinimg.com/736x/3f/6c/0b/3f6c0b67b844e82d8dd1e7a6d85a2b53.jpg'
+                                      }
+                                    />
+                                    <Box>
+                                      <Text fontSize="2xl">{data.name}</Text>
+                                      <Flex gap="0.8rem" alignItems="center">
+                                        <Image
+                                          boxSize="3rem"
+                                          src={`https://api.sofascore.app/api/v1/team/${data.team.id}/image`}
+                                          alt={data.team.name}
+                                          fallbackSrc={
+                                            'https://i.pinimg.com/736x/3f/6c/0b/3f6c0b67b844e82d8dd1e7a6d85a2b53.jpg'
+                                          }
+                                        />
+                                        <Text fontSize="2xl">
+                                          {data.team.name}
+                                        </Text>
+                                      </Flex>
+                                    </Box>
+                                  </Flex>
+                                  <Box p="1.6rem">
+                                    <Divider />
+                                  </Box>
+                                </Box>
+                              </Link>
+                            </>
+                          );
+                        } else if (
+                          info.type === 'team' &&
+                          nbaTeamsFull.includes(info.entity.name)
+                        ) {
+                          return (
+                            <Link
+                              href={`/teams/${data.slug}/${data.id}`}
+                              passHref
+                            >
+                              <Box cursor="pointer" onClick={clear}>
+                                <Flex gap="1.8rem" alignItems="center">
+                                  <Image
+                                    boxSize="5rem"
+                                    src={`https://api.sofascore.app/api/v1/team/${data.id}/image`}
+                                    alt={data.name}
+                                    fallbackSrc={
+                                      'https://i.pinimg.com/736x/3f/6c/0b/3f6c0b67b844e82d8dd1e7a6d85a2b53.jpg'
+                                    }
+                                  />
+                                  <Box>
+                                    <Text fontSize="2xl">{data.name}</Text>
+                                  </Box>
+                                </Flex>
+                                <Box p="1.6rem">
+                                  <Divider />
+                                </Box>
+                              </Box>
+                            </Link>
+                          );
+                        }
+                      })
+                  : []}
+              </Flex>
+            </Box>
+          )

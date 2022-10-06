@@ -14,13 +14,11 @@ function PlayerStats({ playerStats, playoffStats }) {
             alignItems="center"
             justifyContent="space-between"
             p="0.8rem 8rem"
-            data-aos="fade-right"
-            data-aos-delay="600"
-            data-aos-offset="-700"
+            className="Stats-Flex"
           >
             <h4>{playoffStats.statistics.type}</h4>
             <Box>
-              <Flex gap="4.4rem">
+              <Flex gap="4.4rem" className="Avg-Flex">
                 {/* Points Per Game */}
                 <StatsBox
                   perGame="PPG"
@@ -90,18 +88,14 @@ function PlayerStats({ playerStats, playoffStats }) {
 
   if (playerStats) {
     return (
-      <div
-        className="season-careers-stats"
-        data-aos="fade-down"
-        data-aos-delay="200"
-        data-aos-offset="-100"
-      >
+      <div className="season-careers-stats">
         <div className="blur"></div>
         <Flex flexDirection="column">
           <Flex
             alignItems="center"
             justifyContent="space-between"
             p="0.8rem 8rem"
+            className="Stats-Flex"
           >
             <h4>
               {playerStats ? playerStats.statistics.type.slice(7) : 'Season'}
@@ -111,7 +105,7 @@ function PlayerStats({ playerStats, playoffStats }) {
               data-aos-delay="600"
               data-aos-offset="-700"
             >
-              <Flex gap="4.4rem">
+              <Flex gap="4.4rem" className="Avg-Flex">
                 {/* Points Per Game */}
                 <StatsBox
                   perGame="PPG"
@@ -180,3 +174,8 @@ function PlayerStats({ playerStats, playoffStats }) {
 }
 
 export default PlayerStats;
+
+PlayerStats.propTypes = {
+  playerStats: PropTypes.object,
+  playoffStats: PropTypes.object,
+};

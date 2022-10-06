@@ -126,7 +126,7 @@ a {
   @include width-height-100(100vh);
   object-fit: cover;
   pointer-events: none;
-  position: fixed;
+  position: fixed !important;
 }
 .backgroundimgNav {
   z-index: 99;
@@ -174,27 +174,28 @@ a {
   transition: all 1s;
 }
 
-button {
-  font-size: 1.6rem !important;
-  border: 2px $btn-outline-col solid !important;
-  border-radius: 2rem !important;
-  padding: 0.8rem 2.4rem !important;
-  background-color: darken(rgba($btn-outline-col, 0.3), 50%) !important;
+button,
+#btn-boxscore {
+  font-size: 1.6rem;
+  border: 2px $btn-outline-col solid;
+  border-radius: 2rem;
+  padding: 0.8rem 2.4rem;
+  background-color: darken(rgba($btn-outline-col, 0.3), 50%);
   transition: background-color 1s !important;
-  color: $text-hover-col !important;
+  color: $text-hover-col;
 
   &:hover {
-    background-color: darken(rgba($btn-outline-col, 0.4), 10%) !important;
-    cursor: pointer !important;
-    transition: background-color 1s !important;
+    background-color: darken(rgba($btn-outline-col, 0.4), 10%);
+    cursor: pointer;
+    transition: background-color 1s;
 
     span {
-      color: lighten($btn-outline-col, 20%) !important;
-      transition: color 1s !important;
+      color: lighten($btn-outline-col, 20%);
+      transition: color 1s;
     }
   }
   span {
-    color: $btn-outline-col !important;
-    transition: color 1s !important;
+    color: $btn-outline-col;
+    transition: color 1s;
   }
 }
