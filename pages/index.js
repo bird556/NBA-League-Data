@@ -9,9 +9,7 @@ import {
   useMediaQuery,
   Box,
   Flex,
-  HStack,
   Text,
-  Avatar,
   Image,
   Grid,
   GridItem,
@@ -21,6 +19,7 @@ import { baseUrl, fetchApi } from '../utils/fetchApi';
 import Backgroundimgvideo from '../components/Backgroundimgvideo';
 import Slider from '../components/Slider/Slider';
 import ImageWithFallback from '../components/ImageWithFallback';
+import Games from '../components/shared/Games';
 //
 export default function Home() {
   const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)');
@@ -124,352 +123,16 @@ export default function Home() {
   return (
     <>
       <Backgroundimgvideo />
-
       <div className={styles.container}>
         <div className="home">
           <div data-aos="fade-down">
             {schedule.events ? (
-              <Flex justifyContent="center" flexWrap="wrap" p="8rem">
-                {schedule ? (
-                  <Box>
-                    <Center>
-                      <Box p="8rem">
-                        <h1>Recent Games</h1>
-                      </Box>
-                    </Center>
-                    <div data-aos="fade-down">
-                      <Flex
-                        flexWrap="wrap"
-                        justifyContent="center"
-                        maxW="160rem"
-                      >
-                        {schedule.events
-                          .map((data) => {
-                            if (typeof data.homeScore.current == 'number') {
-                              if (
-                                data.tournament.slug === 'nba-2223' ||
-                                data.tournament.slug === 'nba-preseason'
-                              ) {
-                                return (
-                                  <div className="leader-container">
-                                    <Box
-                                      key={data.id}
-                                      maxW="38rem"
-                                      h="24rem"
-                                      overflow="hidden"
-                                      p="2rem"
-                                      display="flex"
-                                      justifyContent="center"
-                                      alignItems="center"
-                                      className="box-container"
-                                    >
-                                      <Grid
-                                        key={data.id}
-                                        w="3xl"
-                                        gap="0.8rem"
-                                        templateRows="repeat(4, 1fr)"
-                                        templateColumns="repeat(5, 2fr)"
-                                      >
-                                        <div className="blur"></div>
-
-                                        <GridItem rowSpan={4} colSpan={5}>
-                                          <Text fontSize="1.2rem">
-                                            {gameDate(data.startTimestamp)}
-                                          </Text>
-
-                                          <Text
-                                            fontSize="1.2rem"
-                                            fontWeight="extrabold"
-                                            float="right"
-                                            mr="0.5rem"
-                                          >
-                                            {`total`.toUpperCase()}
-                                          </Text>
-                                        </GridItem>
-
-                                        <GridItem colSpan={5}>
-                                          <Flex
-                                            alignItems="center"
-                                            alignSelf="center"
-                                            justifyContent="space-between"
-                                          >
-                                            <Flex
-                                              alignItems="center"
-                                              justifyContent="center"
-                                              w="15rem"
-                                              gap={5}
-                                            >
-                                              <Link
-                                                key={data.awayTeam.id}
-                                                href={`/teams/${data.awayTeam.slug}/${data.awayTeam.id}`}
-                                                passHref
-                                              >
-                                                <Image
-                                                  cursor="pointer"
-                                                  boxSize="5rem"
-                                                  objectFit="cover"
-                                                  src={`https://api.sofascore.app/api/v1/team/${data.awayTeam.id}/image`}
-                                                  alt={data.awayTeam.shortName}
-                                                />
-                                              </Link>
-                                              <Center w="16rem">
-                                                <Text
-                                                  fontSize="2xl"
-                                                  fontWeight="extrabold"
-                                                >
-                                                  {teamName(data.awayTeam.name)}
-                                                </Text>
-                                              </Center>
-                                            </Flex>
-
-                                            {/* Score */}
-                                            <Flex>
-                                              <Box w="18rem">
-                                                <Flex
-                                                  alignItems="center"
-                                                  justifyContent="space-around"
-                                                  gap="0.8rem"
-                                                >
-                                                  <VStack w="3.2rem">
-                                                    <Text fontSize="1.2rem">
-                                                      1
-                                                    </Text>
-                                                    <Text fontSize="1.6rem">
-                                                      {data.awayScore.period1
-                                                        ? data.awayScore.period1
-                                                        : 0}
-                                                    </Text>
-                                                  </VStack>
-                                                  <VStack w="3.2rem">
-                                                    <Text fontSize="1.2rem">
-                                                      2
-                                                    </Text>
-
-                                                    <Text fontSize="1.6rem">
-                                                      {data.awayScore.period2
-                                                        ? data.awayScore.period2
-                                                        : 0}
-                                                    </Text>
-                                                  </VStack>
-
-                                                  <VStack w="3.2rem">
-                                                    <Text fontSize="1.2rem">
-                                                      3
-                                                    </Text>
-
-                                                    <Text fontSize="1.6rem">
-                                                      {data.awayScore.period3
-                                                        ? data.awayScore.period3
-                                                        : 0}
-                                                    </Text>
-                                                  </VStack>
-
-                                                  <VStack w="3.2rem">
-                                                    <Text fontSize="1.2rem">
-                                                      4
-                                                    </Text>
-
-                                                    <Text fontSize="1.6rem">
-                                                      {data.awayScore.period4
-                                                        ? data.awayScore.period4
-                                                        : 0}
-                                                    </Text>
-                                                  </VStack>
-                                                  {data.awayScore.overtime ? (
-                                                    <VStack w="3.2rem">
-                                                      <Text fontSize="1.2rem">
-                                                        OT
-                                                      </Text>
-
-                                                      <Text fontSize="1.6rem">
-                                                        {data.awayScore.overtime
-                                                          ? data.awayScore
-                                                              .overtime
-                                                          : 0}
-                                                      </Text>
-                                                    </VStack>
-                                                  ) : (
-                                                    data.awayScore.overtime
-                                                  )}
-                                                  <Flex
-                                                    w="4.8rem"
-                                                    alignItems="center"
-                                                    justifyContent="space-around"
-                                                    alignSelf="end"
-                                                  >
-                                                    <Text fontSize="1.6rem">
-                                                      {data.awayScore.current}
-                                                    </Text>
-                                                  </Flex>
-                                                </Flex>
-                                              </Box>
-                                            </Flex>
-                                          </Flex>
-                                        </GridItem>
-
-                                        {/* HOME TEAM */}
-                                        <GridItem colSpan={5}>
-                                          <Flex
-                                            alignItems="center"
-                                            alignSelf="center"
-                                            justifyContent="space-between"
-                                          >
-                                            <Flex
-                                              alignItems="center"
-                                              justifyContent="center"
-                                              w="15rem"
-                                              gap={5}
-                                            >
-                                              <Link
-                                                key={data.homeTeam.id}
-                                                href={`/teams/${data.homeTeam.slug}/${data.homeTeam.id}`}
-                                                passHref
-                                              >
-                                                <Image
-                                                  cursor="pointer"
-                                                  boxSize="5rem"
-                                                  objectFit="cover"
-                                                  src={`https://api.sofascore.app/api/v1/team/${data.homeTeam.id}/image`}
-                                                  alt={data.homeTeam.shortName}
-                                                />
-                                              </Link>
-                                              <Center w="16rem">
-                                                <Text
-                                                  fontSize="2xl"
-                                                  fontWeight="extrabold"
-                                                >
-                                                  {teamName(data.homeTeam.name)}
-                                                </Text>
-                                              </Center>
-                                            </Flex>
-
-                                            {/* Score */}
-                                            <Flex>
-                                              <Box w="18rem">
-                                                <Flex
-                                                  alignItems="center"
-                                                  justifyContent="space-around"
-                                                  gap="0.8rem"
-                                                >
-                                                  <VStack w="3.2rem">
-                                                    <Text fontSize="1.2rem">
-                                                      1
-                                                    </Text>
-                                                    <Text fontSize="1.6rem">
-                                                      {data.homeScore.period1
-                                                        ? data.homeScore.period1
-                                                        : 0}
-                                                    </Text>
-                                                  </VStack>
-                                                  <VStack w="3.2rem">
-                                                    <Text fontSize="1.2rem">
-                                                      2
-                                                    </Text>
-
-                                                    <Text fontSize="1.6rem">
-                                                      {data.homeScore.period2
-                                                        ? data.homeScore.period2
-                                                        : 0}
-                                                    </Text>
-                                                  </VStack>
-
-                                                  <VStack w="3.2rem">
-                                                    <Text fontSize="1.2rem">
-                                                      3
-                                                    </Text>
-
-                                                    <Text fontSize="1.6rem">
-                                                      {data.homeScore.period3
-                                                        ? data.homeScore.period3
-                                                        : 0}
-                                                    </Text>
-                                                  </VStack>
-
-                                                  <VStack w="3.2rem">
-                                                    <Text fontSize="1.2rem">
-                                                      4
-                                                    </Text>
-
-                                                    <Text fontSize="1.6rem">
-                                                      {data.homeScore.period4
-                                                        ? data.homeScore.period4
-                                                        : 0}
-                                                    </Text>
-                                                  </VStack>
-                                                  {data.homeScore.overtime ? (
-                                                    <VStack w="3.2rem">
-                                                      <Text fontSize="1.2rem">
-                                                        OT
-                                                      </Text>
-
-                                                      <Text fontSize="1.6rem">
-                                                        {data.homeScore.overtime
-                                                          ? data.homeScore
-                                                              .overtime
-                                                          : 0}
-                                                      </Text>
-                                                    </VStack>
-                                                  ) : (
-                                                    data.homeScore.overtime
-                                                  )}
-                                                  <Flex
-                                                    w="4.8rem"
-                                                    alignItems="center"
-                                                    justifyContent="space-around"
-                                                    alignSelf="end"
-                                                  >
-                                                    <Text fontSize="1.6rem">
-                                                      {data.homeScore.current}
-                                                    </Text>
-                                                  </Flex>
-                                                </Flex>
-                                              </Box>
-                                            </Flex>
-                                          </Flex>
-                                        </GridItem>
-
-                                        <GridItem colSpan={5} b>
-                                          <Center>
-                                            <button id="btn-boxscore">
-                                              <Flex
-                                                alignItems="center"
-                                                gap="0.8rem"
-                                              >
-                                                <a
-                                                  id="follow"
-                                                  target="_blank"
-                                                  rel="noreferrer"
-                                                  href="https://reddit.rnbastreams.com/"
-                                                >
-                                                  {data.status.type ===
-                                                  'finished'
-                                                    ? `Highlights`
-                                                    : `Watch Live`}
-                                                </a>
-                                                <span id="plus-sign">
-                                                  <MdOutlineSmartDisplay fontSize="2.4rem" />
-                                                </span>
-                                              </Flex>
-                                            </button>
-                                          </Center>
-                                        </GridItem>
-                                      </Grid>
-                                    </Box>
-                                  </div>
-                                );
-                              }
-                            }
-                          })
-                          .reverse()}
-                      </Flex>
-                    </div>
-                  </Box>
-                ) : (
-                  <Center>
-                    <h1>{determineText()}</h1>
-                  </Center>
-                )}
-              </Flex>
+              <Games
+                title={`Today's Games`}
+                schedule={schedule}
+                gameDate={gameDate}
+                teamName={teamName}
+              />
             ) : (
               <Center>
                 <h1>{determineText()}</h1>
@@ -477,12 +140,6 @@ export default function Home() {
             )}
           </div>
         </div>
-
-        {/* <div className="home">
-          <Center>
-            <h1>{determineText()}</h1>
-          </Center>
-        </div> */}
       </div>
     </>
   );
