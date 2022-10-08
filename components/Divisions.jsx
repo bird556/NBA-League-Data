@@ -92,7 +92,7 @@ function Divisions({ division, divisionIfStatement, map }) {
   return (
     <>
       <Box
-        w="3xl"
+        maxW="48rem"
         overflow="hidden"
         p="2rem"
         className="box-container divisions"

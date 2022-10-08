@@ -62,6 +62,11 @@
   }
 }
 @media screen and (max-width: 40rem) {
+  .home {
+    h1 {
+      font-size: 2.4rem;
+    }
+  }
   .season-careers-stats {
     .Stats-Flex {
       padding: 0.8rem 0rem;
@@ -74,16 +79,22 @@
     font-size: 55.5%;
   }
 }
-@media screen and (max-width: 24rem) {
+@media screen and (max-width: 26rem) {
   html,
   body {
     font-size: 52.5%;
+  }
+
+  .player-team-details {
+    p {
+      font-size: 1.6rem;
+    }
   }
 }
 @media screen and (max-width: 18rem) {
   html,
   body {
-    font-size: 35.5%;
+    font-size: 35.5% !important;
   }
 
   nav .navLogo {
@@ -133,6 +144,7 @@
   html,
   body {
     font-size: 50.5%;
+    font-size: 48.5%;
   }
   nav {
     .btn {
@@ -155,6 +167,15 @@
 }
 
 @media screen and (max-height: 40rem) {
+  // @media screen and (max-height: 43.5rem) {
+  .player-team-details {
+    .season-careers-stats {
+      position: relative;
+    }
+  }
+}
+@media screen and (max-height: 41rem) and (max-width: 43.5rem) {
+  // @media screen and (max-height: 43.5rem) {
   .player-team-details {
     .season-careers-stats {
       position: relative;

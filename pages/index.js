@@ -115,9 +115,12 @@ export default function Home() {
   };
 
   const teamName = (name) => {
+    console.log(name);
     const fullName = name;
-    const [first, last] = fullName.split(' ');
-    return last;
+    const teamName = fullName.split(' ');
+
+    // const [first, last] = fullName.split(' ');
+    return teamName[teamName.length - 1];
   };
 
   return (
