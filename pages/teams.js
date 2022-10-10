@@ -93,7 +93,7 @@ const teams = (team) => {
           )}
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
