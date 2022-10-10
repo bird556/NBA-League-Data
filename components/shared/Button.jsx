@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { Flex, Box } from '@chakra-ui/react';
-import { FaThumbsUp } from 'react-icons/fa';
 function Button({ name }) {
   const instaGram = () => {
     if (name === 'LeBron James') {

@@ -8,14 +8,6 @@ function LeagueLeaders({ perGame, perGameShort, map }) {
   return (
     <SplideSlide>
       <Box w="3xl" overflow="hidden" p="2rem" className="box-container">
-        {/* <ImageWithFallback
-          className="backgroundimg-box"
-          priority
-          layout="fill"
-          alt={``}
-          src={`https://i.pinimg.com/564x/f9/4a/a8/f94aa8165977ac33b9c3f7f7eeba9b56.jpg`}
-          fallbackSrc={'/team-background/defaultimage.jpg'}
-        /> */}
         <div className="blur"></div>
         <Flex flexDirection="column" gap="2rem" zIndex="100">
           <Flex alignItems="center" justifyContent="space-between">

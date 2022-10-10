@@ -88,7 +88,8 @@ function PlayerTeam({
                         }
                       />
 
-                      <p>{data.name}</p>
+                      <p>{data.shortName}</p>
+                      {/* <p>{data.name}</p> */}
                     </Flex>
                   </Link>
                 </Box>

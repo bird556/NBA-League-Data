@@ -13,7 +13,7 @@ export default function Custom404() {
       />
       <div className={styles.container}>
         <div className="home">
-          <Center>
+          <Center h="95vh">
             <h1>404 - Page Not Found</h1>
           </Center>
         </div>

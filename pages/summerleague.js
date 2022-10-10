@@ -20,8 +20,6 @@ function summerleague() {
     return strTime;
   };
 
-  console.log(formatAMPM(new Date()));
-
   return (
     <>
       <div className="blackBackground"></div>

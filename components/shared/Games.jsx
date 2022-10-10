@@ -1,14 +1,16 @@
-import { MdOutlineSmartDisplay } from 'react-icons/md';
 import PropTypes from 'prop-types';
 import { Center, Box, Flex, Text, Grid, GridItem } from '@chakra-ui/react';
 import TeamScore from './TeamScore';
+import UseAnimations from 'react-useanimations';
+// EVERY ANIMATION NEEDS TO BE IMPORTED FIRST -> YOUR BUNDLE WILL INCLUDE ONLY WHAT IT NEEDS
+import airplay from 'react-useanimations/lib/airplay';
 function Games({ schedule, gameDate, teamName, title }) {
   return (
     <Flex justifyContent="center" flexWrap="wrap" p="8rem">
       {schedule ? (
         <Box>
           <Center>
-            <Box p="8rem">
+            <Box p="4rem">
               <h1>{title}</h1>
             </Box>
           </Center>
@@ -79,7 +81,12 @@ function Games({ schedule, gameDate, teamName, title }) {
                                           : `Watch Live`}
                                       </a>
                                       <span id="plus-sign">
-                                        <MdOutlineSmartDisplay fontSize="2.4rem" />
+                                        {/* <MdOutlineSmartDisplay fontSize="2.4rem" /> */}
+                                        <UseAnimations
+                                          animation={airplay}
+                                          size="24"
+                                          strokeColor="#228be6"
+                                        />
                                       </span>
                                     </Flex>
                                   </button>

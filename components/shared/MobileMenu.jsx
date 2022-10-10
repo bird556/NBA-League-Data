@@ -1,4 +1,4 @@
-import { Center, Box, VStack, Flex } from '@chakra-ui/react';
+import { Center, Flex } from '@chakra-ui/react';
 import { NavLink } from './NavLink';
 import { BsXLg } from 'react-icons/bs';
 function MobileMenu() {
@@ -25,17 +25,18 @@ function MobileMenu() {
               Home
             </NavLink>
 
+            <NavLink onClick={closeMenu} href="/teams" className="btn">
+              Teams
+            </NavLink>
+
             <NavLink onClick={closeMenu} href="#" className="btn">
               Stats
             </NavLink>
 
-            {/* <NavLink onClick={closeMenu} href="/playoffs" className="btn">
+            <NavLink onClick={closeMenu} href="#" className="btn">
               Playoffs
-            </NavLink> */}
-
-            <NavLink onClick={closeMenu} href="/teams" className="btn">
-              Teams
             </NavLink>
+
             {/* <NavLink onClick={closeMenu} href="/summerleague" className="btn">
               Summer League
             </NavLink> */}

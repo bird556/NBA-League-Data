@@ -1,25 +1,10 @@
 import styles from '../styles/Home.module.css';
-import { FaBasketballBall } from 'react-icons/fa';
-import Link from 'next/link';
-import { BsBell } from 'react-icons/bs';
-import { MdOutlineSmartDisplay } from 'react-icons/md';
 import { useState, useEffect } from 'react';
-import {
-  Center,
-  useMediaQuery,
-  Box,
-  Flex,
-  Text,
-  Image,
-  Grid,
-  GridItem,
-  VStack,
-} from '@chakra-ui/react';
-import { baseUrl, fetchApi } from '../utils/fetchApi';
+import { Center, useMediaQuery } from '@chakra-ui/react';
+import { baseUrl } from '../utils/fetchApi';
 import Backgroundimgvideo from '../components/Backgroundimgvideo';
-import Slider from '../components/Slider/Slider';
-import ImageWithFallback from '../components/ImageWithFallback';
 import Games from '../components/shared/Games';
+import Footer from '../components/Footer';
 //
 export default function Home() {
   const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)');
@@ -38,22 +23,13 @@ export default function Home() {
       // return `Lebron James`;
       return `NBA League Data`;
     } else if (isLargerThanMID) {
-      return (
-        <>
-          <h1>NBA League Data</h1>
-        </>
-      );
+      return `NBA League Data`;
     } else {
-      return `Lebron #23`;
+      return `NBA League Data`;
     }
-
-    return isDisplayingInBrowser
-      ? 'rendering in a browser'
-      : 'rendering on something else, e.g. PWA';
   }
 
   const [schedule, setSchedule] = useState([]);
-  const [highlights, setHighlights] = useState([]);
   useEffect(() => {
     getSchedule();
   }, []);
@@ -66,8 +42,8 @@ export default function Home() {
       `${baseUrl}/api/basketball/matches/${day}/${month}/2022`,
       {
         headers: {
-          'X-RapidAPI-Key': process.env.NEXT_PUBLIC_REACT_APP_NBAAPIKEY,
-          'X-RapidAPI-Host': 'basketapi1.p.rapidapi.com',
+          'X-RapidAPI-Key': process.env.REACT_APP_NBAAPIKEY,
+          'X-RapidAPI-Host': process.env.REACT_APP_URL_HOST,
         },
       }
     );
@@ -75,7 +51,6 @@ export default function Home() {
     const data = await res.json();
     const schedules = data;
     setSchedule(schedules);
-    // console.log(schedules.events.map((data) => data.tournament.slug));
   };
 
   const month = [
@@ -118,8 +93,6 @@ export default function Home() {
     console.log(name);
     const fullName = name;
     const teamName = fullName.split(' ');
-
-    // const [first, last] = fullName.split(' ');
     return teamName[teamName.length - 1];
   };
 
@@ -137,11 +110,14 @@ export default function Home() {
                 teamName={teamName}
               />
             ) : (
-              <Center>
-                <h1>{determineText()}</h1>
-              </Center>
+              <div data-aos="fade-up">
+                <Center h="95vh">
+                  <h1>{determineText()}</h1>
+                </Center>
+              </div>
             )}
           </div>
+          <Footer />
         </div>
       </div>
     </>

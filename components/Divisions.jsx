@@ -12,11 +12,9 @@ import Link from 'next/link';
 
 function Divisions({ division, divisionIfStatement, map }) {
   const divisions = () =>
-    map.map((data, index) => {
+    map.map((data) => {
       if (data.name == divisionIfStatement) {
-        return data.rows.map((item, index) => {
-          const [first, last] = item.team.name.split(' ');
-
+        return data.rows.map((item) => {
           return (
             <div key={item.id}>
               <Flex
@@ -60,11 +58,27 @@ function Divisions({ division, divisionIfStatement, map }) {
                     </Flex>
                     <div className="Links">
                       <Flex gap="1.5rem" alignItems="center">
-                        <a href={`#`}>Statistics</a>
-                        <a href={`#`}>Schedule</a>
-                        <a href={`/teams/${item.team.slug}/${item.team.id}`}>
-                          Roster
-                        </a>
+                        <Link
+                          key={item.id}
+                          href={`/teams/${item.team.slug}/${item.team.id}`}
+                          passHref
+                        >
+                          <a href={`#`}>Statistics</a>
+                        </Link>
+                        <Link
+                          key={item.id}
+                          href={`/teams/${item.team.slug}/${item.team.id}`}
+                          passHref
+                        >
+                          <a href={`#`}>Schedule</a>
+                        </Link>
+                        <Link
+                          key={item.id}
+                          href={`/teams/${item.team.slug}/${item.team.id}`}
+                          passHref
+                        >
+                          <a>Roster</a>
+                        </Link>
                         <a
                           target="_blank"
                           rel="noreferrer"
@@ -79,7 +93,6 @@ function Divisions({ division, divisionIfStatement, map }) {
                     </div>
                   </Box>
                 </Flex>
-                {/* </Link> */}
               </Flex>
               <Center>
                 <Divider w="80%" />

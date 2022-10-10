@@ -13,7 +13,7 @@ export default function Custom500() {
       />
       <div className={styles.container}>
         <div className="home">
-          <Center>
+          <Center h="95vh">
             <h1>500 - Server-side error occurred</h1>
           </Center>
         </div>

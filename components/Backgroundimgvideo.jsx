@@ -25,21 +25,10 @@ function Backgroundimgvideo() {
           loop
         ></video>
       );
-    } else if (isLargerThanMID) {
-      return (
-        <video
-          src="antdunk.mp4"
-          className="backgroundimg"
-          autoPlay
-          muted
-          loop
-        ></video>
-      );
     } else {
       return (
         <Image
           src="/bron.jpg"
-          // src="/1.jpg"
           alt="Ja Morant"
           className="backgroundimg"
           fallbackSrc="/1 copy.jpg"

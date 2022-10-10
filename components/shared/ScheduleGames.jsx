@@ -3,12 +3,6 @@ import { MdOutlineSmartDisplay } from 'react-icons/md';
 import { Box, Flex, Text, Image } from '@chakra-ui/react';
 function ScheduleGames() {
   return (
-    // if (
-    //   data.tournament.slug === 'nba-2223' ||
-    //   data.tournament.slug === 'nba-preseason'
-    // ) {
-
-    //   return (
     <Box
       key={data.id}
       className="stats-home"
@@ -115,8 +109,6 @@ function ScheduleGames() {
         </Box>
       </div>
     </Box>
-    //   );
-    // }
   );
 }
 

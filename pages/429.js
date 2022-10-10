@@ -13,7 +13,7 @@ export default function Custom429() {
       />
       <div className={styles.container}>
         <div className="home">
-          <Center>
+          <Center h="95vh">
             <h1>429 - Too Many Requests</h1>
           </Center>
         </div>
