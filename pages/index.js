@@ -42,8 +42,8 @@ export default function Home() {
       `${baseUrl}/api/basketball/matches/${day}/${month}/2022`,
       {
         headers: {
-          'X-RapidAPI-Key': process.env.REACT_APP_NBAAPIKEY,
-          'X-RapidAPI-Host': process.env.REACT_APP_URL_HOST,
+          'X-RapidAPI-Key': process.env.NEXT_PUBLIC_REACT_APP_NBAAPIKEY,
+          'X-RapidAPI-Host': process.env.NEXT_PUBLIC_REACT_APP_URL_HOST,
         },
       }
     );
