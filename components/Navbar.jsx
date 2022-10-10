@@ -205,12 +205,12 @@ function Navbar(data) {
               Teams
             </NavLink>
 
-            <NavLink href="#" className="btn" onClick={clear}>
-              Stats
+            <NavLink href="/player" className="btn" onClick={clear}>
+              Player
             </NavLink>
 
             <NavLink href="#" className="btn" onClick={clear}>
-              Playoffs
+              Stats
             </NavLink>
 
             {/* <NavLink href="/summerleague" className="btn 

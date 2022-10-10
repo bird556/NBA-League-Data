@@ -176,6 +176,6 @@ function PlayerStats({ playerStats, playoffStats }) {
 export default PlayerStats;
 
 PlayerStats.propTypes = {
-  playerStats: PropTypes.object,
-  playoffStats: PropTypes.object,
+  playerStats: PropTypes.string,
+  playoffStats: PropTypes.string,
 };

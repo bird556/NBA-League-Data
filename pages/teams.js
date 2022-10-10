@@ -4,6 +4,8 @@ import ImageWithFallback from '../components/ImageWithFallback';
 import { baseUrl, fetchApi } from '../utils/fetchApi';
 import Divisions from '../components/Divisions';
 import Footer from '../components/Footer';
+import UseAnimations from 'react-useanimations';
+import infinity from 'react-useanimations/lib/infinity';
 
 const teams = (team) => {
   return (
@@ -21,62 +23,77 @@ const teams = (team) => {
       </div>
       <div className={styles.container}>
         <div className="stats-home">
-          <div className="leader-container" data-aos="fade-down">
-            <Center>
-              <h1 data-aos="fade-down" data-aos-delay="600">
-                Teams
-              </h1>
-            </Center>
-            <Flex flexDirection="column" flexWrap="wrap" gap="2rem">
+          {team ? (
+            <div className="leader-container" data-aos="fade-down">
               <Center>
-                <Flex justifyContent="center" flexWrap="wrap" gap="2rem">
-                  <div data-aos="fade-right" data-aos-delay="200">
+                <h1 data-aos="fade-down" data-aos-delay="600">
+                  Teams
+                </h1>
+              </Center>
+              <Flex flexDirection="column" flexWrap="wrap" gap="2rem">
+                <Center>
+                  <Flex justifyContent="center" flexWrap="wrap" gap="2rem">
+                    <div data-aos="fade-right" data-aos-delay="200">
+                      <Divisions
+                        division="Atlantic"
+                        divisionIfStatement="Atlantic Division"
+                        map={team.teams.standings}
+                      />
+                    </div>
                     <Divisions
-                      division="Atlantic"
-                      divisionIfStatement="Atlantic Division"
+                      division="Pacific"
+                      divisionIfStatement="Pacific Division"
                       map={team.teams.standings}
                     />
-                  </div>
-                  <Divisions
-                    division="Pacific"
-                    divisionIfStatement="Pacific Division"
-                    map={team.teams.standings}
+                  </Flex>
+                </Center>
+                <Center>
+                  <Flex flexWrap="wrap" justifyContent="center" gap="2rem">
+                    <Divisions
+                      division="Central"
+                      divisionIfStatement="Central Division"
+                      map={team.teams.standings}
+                    />
+                  </Flex>
+                </Center>
+                <Center>
+                  <Flex flexWrap="wrap" justifyContent="center" gap="2rem">
+                    <Divisions
+                      division="Northwest"
+                      divisionIfStatement="Northwest Division"
+                      map={team.teams.standings}
+                    />
+                    <Divisions
+                      division="Southeast"
+                      divisionIfStatement="Southeast Division"
+                      map={team.teams.standings}
+                    />
+                    <Divisions
+                      division="Southwest"
+                      divisionIfStatement="Southwest Division"
+                      map={team.teams.standings}
+                    />
+                  </Flex>
+                </Center>
+              </Flex>
+            </div>
+          ) : (
+            <div data-aos="fade-up">
+              <Center h="100vh">
+                <Flex flexDirection="column" alignItems="center">
+                  <h1>API Loading</h1>
+                  <UseAnimations
+                    animation={infinity}
+                    size="24"
+                    strokeColor="#fff"
                   />
                 </Flex>
               </Center>
-              <Center>
-                <Flex flexWrap="wrap" justifyContent="center" gap="2rem">
-                  <Divisions
-                    division="Central"
-                    divisionIfStatement="Central Division"
-                    map={team.teams.standings}
-                  />
-                </Flex>
-              </Center>
-              <Center>
-                <Flex flexWrap="wrap" justifyContent="center" gap="2rem">
-                  <Divisions
-                    division="Northwest"
-                    divisionIfStatement="Northwest Division"
-                    map={team.teams.standings}
-                  />
-                  <Divisions
-                    division="Southeast"
-                    divisionIfStatement="Southeast Division"
-                    map={team.teams.standings}
-                  />
-                  <Divisions
-                    division="Southwest"
-                    divisionIfStatement="Southwest Division"
-                    map={team.teams.standings}
-                  />
-                </Flex>
-              </Center>
-            </Flex>
-          </div>
-          <Footer />
+            </div>
+          )}
         </div>
       </div>
+      <Footer />
     </>
   );
 };
