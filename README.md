@@ -10,6 +10,7 @@
 - Optimized Images via **nextjs** ✅
 - **Adobe Photoshop 2022** was used to add **curve, saturation, noise/distort** for **Team & Player Images** ✅
 - **Search featured** added, clear search when value is **empty** and when **team** or **player** is clicked ✅
+- **Burger Menu** implemented on **smaller screens**, Regular Nav on **desktop screens** ✅
 - Blurry loading screen with animations when page is loading ✅
 - Beautiful UI Design inspired by [**Kostia Osadchy**](https://dribbble.com/shots/4747073-NBA-Player-Profile-Redesign)
 
@@ -19,7 +20,14 @@
 
 ## Lessons Learned
 
-What did you learn while building this project? What challenges did you face and how did you overcome them?
+### What did you learn while building this project?
+
+- Proptypes & Components
+- getServerSideProps ([ link id context])
+- How to add class to an active nav link (underlined white on active tab)
+- useEffect, useRef, useState hooks
+
+What challenges did you face and how did you overcome them?
 
 ## Acknowledgements
 
