@@ -2,7 +2,7 @@
 
 ## Screenshots
 
-![App Screenshot](player.jpg)
+![App Screenshot](public/player.jpg)
 
 ## Optimizations
 
@@ -15,7 +15,7 @@
 - Blurry loading screen with animations when page is loading ✅
 - Beautiful UI Design inspired by [**Kostia Osadchy**](https://dribbble.com/shots/4747073-NBA-Player-Profile-Redesign)
 
-![Logo](cover.jpg)
+![Logo](public/cover.jpg)
 
 ## Lessons Learned
 
