@@ -219,7 +219,7 @@ PlayerTeam.propTypes = {
   avatarName: PropTypes.string,
   avatarSrc: PropTypes.string,
   linkHref: PropTypes.string,
-  playerNumberPosition: PropTypes.object,
+  playerNumberPosition: PropTypes.string,
   age: PropTypes.object,
   height: PropTypes.object,
   country: PropTypes.object,
