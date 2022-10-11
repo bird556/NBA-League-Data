@@ -7,6 +7,7 @@ import Games from '../components/shared/Games';
 import Footer from '../components/Footer';
 //
 export default function Home() {
+  console.log(process.env.API_HOST);
   const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)');
   const [isLargerThanHD, isDisplayingInBrowser] = useMediaQuery([
     '(min-width: 1920px)',
