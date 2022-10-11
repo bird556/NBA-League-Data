@@ -1,7 +1,7 @@
 import styles from '../styles/Home.module.css';
 import { useState, useEffect } from 'react';
 import { Center, useMediaQuery } from '@chakra-ui/react';
-import { baseUrl } from '../utils/fetchApi';
+import { baseUrl, apiKey, apiHost } from '../utils/fetchApi';
 import Backgroundimgvideo from '../components/Backgroundimgvideo';
 import Games from '../components/shared/Games';
 import Footer from '../components/Footer';
@@ -42,8 +42,8 @@ export default function Home() {
       `${baseUrl}/api/basketball/matches/${day}/${month}/2022`,
       {
         headers: {
-          'X-RapidAPI-Key': process.env.REACT_APP_NBAAPIKEY,
-          'X-RapidAPI-Host': process.env.REACT_APP_URL_HOST,
+          'X-RapidAPI-Key': `${apiKey}`,
+          'X-RapidAPI-Host': `${apiHost}`,
         },
       }
     );

@@ -12,9 +12,6 @@ const nextConfig = {
       'media.gettyimages.com',
     ],
   },
-  env: {
-    BASE_URL: process.env.REACT_APP_NBAAPIKEY,
-  },
 };
 
 module.exports = nextConfig;
