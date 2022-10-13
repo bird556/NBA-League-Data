@@ -1,7 +1,7 @@
 import styles from '../../../styles/Home.module.css';
 import ImageWithFallback from '../../../components/ImageWithFallback';
 import { Flex, Divider, Box, Center, Spacer } from '@chakra-ui/react';
-import { baseUrl, fetchApi } from '../../../utils/fetchApi';
+import { baseUrl, fetchApi } from '../../../utils/.fetchApi';
 import PlayerTeam from '../../../components/shared/PlayerTeam';
 import PlayerStats from '../../../components/shared/PlayerStats';
 const playerDetails = ({

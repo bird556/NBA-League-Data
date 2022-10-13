@@ -1,6 +1,6 @@
 import styles from '../../../styles/Home.module.css';
 import { Box } from '@chakra-ui/react';
-import { baseUrl, fetchApi } from '../../../utils/fetchApi';
+import { baseUrl, fetchApi } from '../../../utils/.fetchApi';
 import ImageWithFallback from '../../../components/ImageWithFallback';
 import PlayerTeam from '../../../components/shared/PlayerTeam';
 

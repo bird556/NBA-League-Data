@@ -1,6 +1,6 @@
 import styles from '../styles/Home.module.css';
 import { Image, Flex, Center, Text } from '@chakra-ui/react';
-import { baseUrl, fetchApi } from '../utils/fetchApi';
+import { baseUrl, fetchApi } from '../utils/.fetchApi';
 import { Splide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import PointsLeaders from '../components/Leaders/PointsLeaders';

@@ -1,6 +1,6 @@
 import styles from '../styles/Home.module.css';
 import { Center, useMediaQuery } from '@chakra-ui/react';
-import { baseUrl, fetchApi } from '../utils/fetchApi';
+import { baseUrl, fetchApi } from '../utils/.fetchApi';
 import Backgroundimgvideo from '../components/Backgroundimgvideo';
 import Games from '../components/shared/Games';
 //
