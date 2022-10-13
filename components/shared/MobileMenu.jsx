@@ -30,11 +30,11 @@ function MobileMenu() {
             </NavLink>
 
             <NavLink onClick={closeMenu} href="#" className="btn">
-              Stats
+              Player
             </NavLink>
 
             <NavLink onClick={closeMenu} href="#" className="btn">
-              Playoffs
+              Stats
             </NavLink>
 
             {/* <NavLink onClick={closeMenu} href="/summerleague" className="btn">

@@ -13,6 +13,7 @@ import Lineloader from '../components/loader/Lineloader';
 import Script from 'next/script';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { SearchProvider } from '../context/SearchContext';
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     AOS.init();
@@ -31,9 +32,11 @@ function MyApp({ Component, pageProps }) {
     <>
       <ChakraProvider theme={theme}>
         <Lineloader />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <SearchProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </SearchProvider>
       </ChakraProvider>
       <Script src="https://unpkg.com/aos@next/dist/aos.js"></Script>
     </>

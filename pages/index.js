@@ -1,13 +1,11 @@
 import styles from '../styles/Home.module.css';
-import { useState, useEffect } from 'react';
 import { Center, useMediaQuery } from '@chakra-ui/react';
-import { baseUrl, apiKey, apiHost } from '../utils/fetchApi';
+import { baseUrl, fetchApi } from '../utils/.fetchApi';
 import Backgroundimgvideo from '../components/Backgroundimgvideo';
 import Games from '../components/shared/Games';
-import Footer from '../components/Footer';
 //
-export default function Home() {
-  console.log(process.env.API_HOST);
+
+export default function Home({ recentGames }) {
   const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)');
   const [isLargerThanHD, isDisplayingInBrowser] = useMediaQuery([
     '(min-width: 1920px)',
@@ -29,30 +27,6 @@ export default function Home() {
       return `NBA League Data`;
     }
   }
-
-  const [schedule, setSchedule] = useState([]);
-  useEffect(() => {
-    getSchedule();
-  }, []);
-
-  const getSchedule = async () => {
-    const day = new Date().getDate();
-    const month = new Date().getMonth() + 1;
-
-    const res = await fetch(
-      `${baseUrl}/api/basketball/matches/${day}/${month}/2022`,
-      {
-        headers: {
-          'X-RapidAPI-Key': `${apiKey}`,
-          'X-RapidAPI-Host': `${apiHost}`,
-        },
-      }
-    );
-
-    const data = await res.json();
-    const schedules = data;
-    setSchedule(schedules);
-  };
 
   const month = [
     'January',
@@ -102,10 +76,10 @@ export default function Home() {
       <div className={styles.container}>
         <div className="home">
           <div data-aos="fade-down">
-            {schedule.events ? (
+            {recentGames ? (
               <Games
-                title={`Today's Games`}
-                schedule={schedule}
+                title="Recent Games"
+                schedule={recentGames}
                 gameDate={gameDate}
                 teamName={teamName}
               />
@@ -117,9 +91,22 @@ export default function Home() {
               </div>
             )}
           </div>
-          {/* <Footer /> */}
         </div>
       </div>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const day = new Date().getDate();
+  const month = new Date().getMonth() + 1;
+  const recentGames = await fetchApi(
+    `${baseUrl}/api/basketball/matches/${day}/${month}/2022`
+  );
+
+  return {
+    props: {
+      recentGames: recentGames,
+    },
+  };
 }

@@ -1,13 +1,11 @@
 import styles from '../styles/Home.module.css';
 import { Center, Flex } from '@chakra-ui/react';
 import ImageWithFallback from '../components/ImageWithFallback';
-import { baseUrl, fetchApi } from '../utils/fetchApi';
+import { baseUrl, fetchApi } from '../utils/.fetchApi';
 import Divisions from '../components/Divisions';
-import Footer from '../components/Footer';
 import UseAnimations from 'react-useanimations';
 import infinity from 'react-useanimations/lib/infinity';
-
-const teams = (team) => {
+const teams = ({ teams }) => {
   return (
     <>
       <div className="blackBackground"></div>
@@ -23,7 +21,7 @@ const teams = (team) => {
       </div>
       <div className={styles.container}>
         <div className="stats-home">
-          {team ? (
+          {teams ? (
             <div className="leader-container" data-aos="fade-down">
               <Center>
                 <h1 data-aos="fade-down" data-aos-delay="600">
@@ -37,13 +35,13 @@ const teams = (team) => {
                       <Divisions
                         division="Atlantic"
                         divisionIfStatement="Atlantic Division"
-                        map={team.teams.standings}
+                        map={teams.standings}
                       />
                     </div>
                     <Divisions
                       division="Pacific"
                       divisionIfStatement="Pacific Division"
-                      map={team.teams.standings}
+                      map={teams.standings}
                     />
                   </Flex>
                 </Center>
@@ -52,7 +50,7 @@ const teams = (team) => {
                     <Divisions
                       division="Central"
                       divisionIfStatement="Central Division"
-                      map={team.teams.standings}
+                      map={teams.standings}
                     />
                   </Flex>
                 </Center>
@@ -61,17 +59,17 @@ const teams = (team) => {
                     <Divisions
                       division="Northwest"
                       divisionIfStatement="Northwest Division"
-                      map={team.teams.standings}
+                      map={teams.standings}
                     />
                     <Divisions
                       division="Southeast"
                       divisionIfStatement="Southeast Division"
-                      map={team.teams.standings}
+                      map={teams.standings}
                     />
                     <Divisions
                       division="Southwest"
                       divisionIfStatement="Southwest Division"
-                      map={team.teams.standings}
+                      map={teams.standings}
                     />
                   </Flex>
                 </Center>

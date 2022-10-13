@@ -1,4 +1,4 @@
-import { baseUrl, apiKey, apiHost } from '../utils/fetchApi';
+import { baseUrl, apiKey, apiHost } from '../utils/.fetchApi';
 import Link from 'next/link';
 import { Flex, Box, Image, Text, Divider } from '@chakra-ui/react';
 import { BiSearch } from 'react-icons/bi';
@@ -6,7 +6,7 @@ import { NavLink } from './shared/NavLink';
 import { useState, useEffect, useRef } from 'react';
 import { TiThMenu } from 'react-icons/ti';
 import MobileMenu from './shared/MobileMenu';
-function Navbar(data) {
+function Navbar() {
   const ref = useRef(null);
   const [name, setName] = useState('');
   const [info, setInfo] = useState([]);

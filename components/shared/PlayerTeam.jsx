@@ -2,6 +2,7 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { Image, Flex, Divider, Box } from '@chakra-ui/react';
 import Button from './Button';
+
 function PlayerTeam({
   playerDetails,
   firstName,
@@ -23,7 +24,6 @@ function PlayerTeam({
 }) {
   const name = `${firstName} ${lastName}`;
   const commaNumber = require('comma-number');
-
   const ageCountryDraft = () => {
     if (playerDetails) {
       return (
@@ -219,7 +219,7 @@ PlayerTeam.propTypes = {
   avatarName: PropTypes.string,
   avatarSrc: PropTypes.string,
   linkHref: PropTypes.string,
-  playerNumberPosition: PropTypes.string,
+  playerNumberPosition: PropTypes.object,
   age: PropTypes.object,
   height: PropTypes.object,
   country: PropTypes.object,

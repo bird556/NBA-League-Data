@@ -29,7 +29,6 @@ function Divisions({ division, divisionIfStatement, map }) {
                     {item.position}
                   </Text>
                   <Link
-                    key={item.id}
                     href={`/teams/${item.team.slug}/${item.team.id}`}
                     passHref
                   >
@@ -59,21 +58,18 @@ function Divisions({ division, divisionIfStatement, map }) {
                     <div className="Links">
                       <Flex gap="1.5rem" alignItems="center">
                         <Link
-                          key={item.id}
                           href={`/teams/${item.team.slug}/${item.team.id}`}
                           passHref
                         >
                           <a href={`#`}>Statistics</a>
                         </Link>
                         <Link
-                          key={item.id}
                           href={`/teams/${item.team.slug}/${item.team.id}`}
                           passHref
                         >
                           <a href={`#`}>Schedule</a>
                         </Link>
                         <Link
-                          key={item.id}
                           href={`/teams/${item.team.slug}/${item.team.id}`}
                           passHref
                         >
