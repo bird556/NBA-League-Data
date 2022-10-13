@@ -1,4 +1,4 @@
-import { baseUrl, apiKey, apiHost } from '../utils/.fetchApi';
+import { baseUrl, apiKey, apiHost, fetchApi } from '../utils/.fetchApi';
 import Link from 'next/link';
 import { Flex, Box, Image, Text, Divider } from '@chakra-ui/react';
 import { BiSearch } from 'react-icons/bi';
@@ -28,8 +28,8 @@ function Navbar() {
     const res = await fetch(`${baseUrl}/api/basketball/search/${name}`, {
       headers: {
         // Hide API Below 👇
-        'X-RapidAPI-Key': process.env.NBAAPIKEY,
-        'X-RapidAPI-Host': process.env.HOST,
+        'X-RapidAPI-Key': process.env.BASE_URL,
+        'X-RapidAPI-Host': process.env.NEXT_PUBLIC_REACT_APP_URL_HOST,
       },
     });
 
