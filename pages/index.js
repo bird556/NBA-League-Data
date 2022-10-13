@@ -69,7 +69,6 @@ export default function Home({ recentGames }) {
     const teamName = fullName.split(' ');
     return teamName[teamName.length - 1];
   };
-
   return (
     <>
       <Backgroundimgvideo />

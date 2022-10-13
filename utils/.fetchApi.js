@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export const baseUrl = 'https://basketapi1.p.rapidapi.com';
-export const apiKey = 'ffab0449d9msh821216a3c72087fp1edd91jsn59babfa2c26d';
-export const apiHost = 'basketapi1.p.rapidapi.com';
+export const apiKey = process.env.REACT_APP_NBAAPIKEY;
+export const apiHost = process.env.NEXT_PUBLIC_REACT_APP_URL_HOST;
 
 export const fetchApi = async (url) => {
   const { data } = await axios.get(url, {

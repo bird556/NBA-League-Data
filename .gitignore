@@ -45,3 +45,5 @@ next-env.d.ts
 # Hiding Utils
 /utils
 utils
+
+.oldtext.txt
