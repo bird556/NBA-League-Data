@@ -42,5 +42,6 @@ next-env.d.ts
 .env.test.local
 .env.production.local
 
-# Hide utils Fetchapi
-.fetchApi.js
+# # Hide utils Fetchapi
+# fetchApi.js
+# utils

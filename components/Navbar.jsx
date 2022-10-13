@@ -1,4 +1,4 @@
-import { baseUrl, apiKey, apiHost } from '../utils/.fetchApi';
+import { baseUrl, apiKey, apiHost } from '../utils/fetchApi';
 import Link from 'next/link';
 import { Flex, Box, Image, Text, Divider } from '@chakra-ui/react';
 import { BiSearch } from 'react-icons/bi';

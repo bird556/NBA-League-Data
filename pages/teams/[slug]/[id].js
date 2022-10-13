@@ -59,15 +59,7 @@ const teamDetails = ({ teamInfo, standings, roster }) => {
 export default teamDetails;
 
 export async function getServerSideProps({ params: { id } }) {
-  const teamTopPlayers = await fetchApi(
-    `${baseUrl}/api/basketball/team/${id}/tournament/132/season/38191/best-players/regularseason`
-  );
-
   const teamDetails = await fetchApi(`${baseUrl}/api/basketball/team/${id}`);
-
-  const teamMedia = await fetchApi(
-    `${baseUrl}/api/basketball/team/${id}/media`
-  );
 
   const teamStandings = await fetchApi(
     `${baseUrl}/api/basketball/tournament/132/season/38191/standings/total`
@@ -79,11 +71,9 @@ export async function getServerSideProps({ params: { id } }) {
 
   return {
     props: {
-      topPlayers: teamTopPlayers,
       teamInfo: teamDetails,
       roster: teamRoster,
       standings: teamStandings,
-      media: teamMedia,
     },
   };
 }
