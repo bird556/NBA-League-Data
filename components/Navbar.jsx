@@ -28,8 +28,8 @@ function Navbar() {
     const res = await fetch(`${baseUrl}/api/basketball/search/${name}`, {
       headers: {
         // Hide API Below 👇
-        'X-RapidAPI-Key': process.env.REACT_APP_NBAAPIKEY,
-        'X-RapidAPI-Host': process.env.REACT_APP_URL_HOST,
+        'X-RapidAPI-Key': process.env.NEXT_PUBLIC_REACT_APP_NBAAPIKEY,
+        'X-RapidAPI-Host': process.env.NEXT_PUBLIC_REACT_APP_URL_HOST,
       },
     });
 
