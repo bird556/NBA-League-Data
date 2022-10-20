@@ -16,11 +16,11 @@ function Games({ schedule, gameDate, teamName, title }) {
           </Center>
           <div data-aos="fade-down">
             <Flex flexWrap="wrap" justifyContent="center" maxW="160rem">
-              {schedule.events
+              {schedule
                 .map((data) => {
                   if (typeof data.homeScore.current == 'number') {
                     if (
-                      data.tournament.slug === 'nba-2223' ||
+                      data.tournament.slug === 'nba' ||
                       data.tournament.slug === 'nba-preseason'
                     ) {
                       return (

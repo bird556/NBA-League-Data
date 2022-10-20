@@ -77,8 +77,8 @@ export default function Home({ recentGames }) {
           <div data-aos="fade-down">
             {recentGames ? (
               <Games
-                title="Recent Games"
-                schedule={recentGames}
+                title="NBA Games"
+                schedule={recentGames.events}
                 gameDate={gameDate}
                 teamName={teamName}
               />
