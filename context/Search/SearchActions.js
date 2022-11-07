@@ -1,7 +1,7 @@
 import axios from 'axios';
-const NBA_URL = process.env.REACT_APP_URL_HOST;
-const NBA_KEY = process.env.REACT_APP_NBAAPIKEY;
-const NBA_BASE_URL = process.env.REACT_APP_BASEURL;
+const NBA_URL = process.env.NEXT_PUBLIC_REACT_APP_URL_HOST;
+const NBA_KEY = process.env.NEXT_PUBLIC_REACT_APP_NBAAPIKEY;
+const NBA_BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_URL_BASE_HOST;
 const nbaSearch = axios.create({
   //Coming From searchActions ✅
 
