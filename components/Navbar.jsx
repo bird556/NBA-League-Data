@@ -28,11 +28,6 @@ export default function Navbar() {
   const { searchResults, dispatch } = useContext(SearchContext);
   const ref = useRef(null);
   const [name, setName] = useState('');
-  const [info, setInfo] = useState([]);
-  const [res, setRes] = useState([]);
-
-  // console.log(nbaSearching(), 'blank');
-  // console.log(nbaDataSearch('lebron'), 'lebron');
   const debounceValue = useDebounce(name, 1500);
 
   useEffect(() => {
@@ -63,8 +58,6 @@ export default function Navbar() {
   };
 
   const clear = () => {
-    // setInfo(false);
-    // setName('');
     ref.current.value = '';
   };
 
@@ -230,7 +223,7 @@ export default function Navbar() {
           className="burgerMenu"
           onClick={() => {
             document.getElementById('menu').classList.remove('closed-menu');
-            setInfo([]);
+            dispatch({ type: 'CLEAR_SEARCHRESULTS' });
             setName('');
             ref.current.value = '';
           }}
