@@ -23,8 +23,7 @@ export default function stats(data) {
         className="backgroundimg"
         fallbackSrc="/1 copy.jpg"
       />
-
-      <Slider data={topPlayers} />
+      {topPlayers ? <Slider data={topPlayers} /> : null}
       <div className={styles.container}>
         <div className="home">
           <Center>
@@ -36,13 +35,13 @@ export default function stats(data) {
   );
 }
 
-export async function getStaticProps() {
-  const top50Players = await fetchApi(
-    `${baseUrl}/api/basketball/tournament/132/season/38191/best-players/regularseason`
-  );
-  return {
-    props: {
-      top50Players: top50Players?.topPlayers,
-    },
-  };
-}
+// export async function getStaticProps() {
+//   const top50Players = await fetchApi(
+//     `${baseUrl}/api/basketball/tournament/132/season/38191/best-players/regularseason`
+//   );
+//   return {
+//     props: {
+//       top50Players: top50Players?.topPlayers,
+//     },
+//   };
+// }
