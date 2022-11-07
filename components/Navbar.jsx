@@ -1,78 +1,99 @@
-import { baseUrl, apiKey, apiHost, fetchApi } from '../utils/.fetchApi';
 import Link from 'next/link';
 import { Flex, Box, Image, Text, Divider } from '@chakra-ui/react';
 import { BiSearch } from 'react-icons/bi';
 import { NavLink } from './shared/NavLink';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { TiThMenu } from 'react-icons/ti';
 import MobileMenu from './shared/MobileMenu';
-function Navbar() {
+import SearchContext from '../context/Search/SearchContext';
+import { searchUsers } from '../context/Search/SearchActions';
+import NBAContext from '../context/NBAData/NBAContext';
+import axios from 'axios';
+import { baseUrl } from '../utils/.fetchApi';
+
+export function useDebounce(value, delay) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => clearTimeout(timeoutId);
+  }, [value]);
+
+  return debouncedValue;
+}
+
+export default function Navbar() {
+  const { nbaTeamsFull: teams } = useContext(NBAContext);
+  const { searchResults, dispatch } = useContext(SearchContext);
   const ref = useRef(null);
   const [name, setName] = useState('');
   const [info, setInfo] = useState([]);
-  const [team, setTeam] = useState([]);
   const [res, setRes] = useState([]);
+
+  // console.log(nbaSearching(), 'blank');
+  // console.log(nbaDataSearch('lebron'), 'lebron');
+  const debounceValue = useDebounce(name, 1500);
+
   useEffect(() => {
-    searchUsers(name);
-  }, [name]);
+    debounceValue;
+
+    if (debounceValue.length < 2) {
+      dispatch({ type: 'CLEAR_SEARCHRESULTS' });
+      console.log(searchResults, 'CLEARED 💖🤦‍♂️🤣🐮🦍', 'no request');
+      console.log(name.length, 'name.length');
+    } else {
+      searchData(name);
+      console.log(searchResults, debounceValue.length, 'empty info & length');
+    }
+  }, [debounceValue]);
 
   const inputTest = (e) => {
-    if (e.target.value.length >= 2 && e.target.value.length <= 15) {
-      return setName(e.target.value.replace(/ /g, '%20'));
+    if (e.target.value.length >= 2 && e.target.value.length <= 25) {
+      setName(e.target.value.replace(/ /g, '%20'));
     } else {
-      return setName('');
+      return setName(' ');
     }
   };
 
-  const searchUsers = async (name) => {
-    const res = await fetch(`${baseUrl}/api/basketball/search/${name}`, {
-      headers: {
-        // Hide API Below 👇
-        'X-RapidAPI-Key': process.env.REACT_APP_NBAAPIKEY,
-        'X-RapidAPI-Host': process.env.REACT_APP_URL_HOST,
-      },
-    });
+  const searchTeamPlayers = async (name) => {
+    // const res = await fetch(`${baseUrl}/api/basketball/search/${name}`, {
+    try {
+      const res = await axios.get(`${baseUrl}/api/basketball/search/${name}`, {
+        headers: {
+          // Hide API Below 👇
+          'X-RapidAPI-Key':
+            'ffab0449d9msh821216a3c72087fp1edd91jsn59babfa2c26d',
+          'X-RapidAPI-Host': 'basketapi1.p.rapidapi.com',
+        },
+      });
+      const searchInfo = res.data.results;
+      setInfo(searchInfo);
+      // console.log(res);
+      setRes(res);
+    } catch (error) {
+      console.log(error);
+    }
 
-    const data = await res.json();
-    const searchInfo = data.results;
-    setInfo(searchInfo);
-    setRes(res);
+    // const data = await res.json();
+    // console.log(data.results);
+
+    // const searchInfo = data.results;
+    // setInfo(searchInfo);
+    // setRes(res);
   };
-  const nbaTeamsFull = [
-    'Miami Heat',
-    'Boston Celtics',
-    'Milwaukee Bucks',
-    'Philadelphia 76ers',
-    'Toronto Raptors',
-    'Chicago Bulls',
-    'Brooklyn Nets',
-    'Atlanta Hawks',
-    'Cleveland Cavaliers',
-    'Charlotte Hornets',
-    'New York Knicks',
-    'Washington Wizards',
-    'Indiana Pacers',
-    'Detroit Pistons',
-    'Orlando Magic',
-    'Phoenix Suns',
-    'Memphis Grizzlies',
-    'Golden State Warriors',
-    'Dallas Mavericks',
-    'Utah Jazz',
-    'Denver Nuggets',
-    'Minnesota Timberwolves',
-    'New Orleans Pelicans',
-    'Los Angeles Clippers',
-    'San Antonio Spurs',
-    'Los Angeles Lakers',
-    'Sacramento Kings',
-    'Portland Trail Blazers',
-    'Oklahoma City Thunder',
-    'Houston Rockets',
-  ];
+
+  const searchData = async (name) => {
+    console.log('SEARCHED');
+    const results = await searchUsers(name);
+    dispatch({ type: 'GET_SEARCHRESULTS', payload: results });
+  };
+
   const clear = () => {
-    setInfo(false);
-    setName('');
+    // setInfo(false);
+    // setName('');
     ref.current.value = '';
   };
 
@@ -95,7 +116,7 @@ function Navbar() {
           justifyContent="space-between"
           alignItems="center"
         >
-          {info && name ? (
+          {searchResults && debounceValue.length >= 2 ? (
             <Box
               id="Search-Box"
               zIndex="500"
@@ -108,14 +129,14 @@ function Navbar() {
               w="30rem"
             >
               <Flex flexDirection="column" gap="2rem">
-                {info
-                  ? info
+                {searchResults
+                  ? searchResults
                       .filter((item, index) => index < 10)
                       .map((info) => {
                         const data = info.entity;
                         if (
                           info.type === 'player' &&
-                          nbaTeamsFull.includes(data.team.name)
+                          teams.includes(data.team.name)
                         ) {
                           return (
                             <>
@@ -161,7 +182,7 @@ function Navbar() {
                           );
                         } else if (
                           info.type === 'team' &&
-                          nbaTeamsFull.includes(info.entity.name)
+                          teams.includes(info.entity.name)
                         ) {
                           return (
                             <Link
@@ -193,9 +214,7 @@ function Navbar() {
                   : []}
               </Flex>
             </Box>
-          ) : (
-            []
-          )}
+          ) : null}
           <ul className="list">
             <NavLink href="/" exact className="btn" onClick={clear}>
               Home
@@ -225,10 +244,11 @@ function Navbar() {
             <div className="search-input">
               <input
                 ref={ref}
+                // disabled={true}
                 onChange={inputTest}
                 className="search"
                 type="text"
-                placeholder="Search a Player or Team"
+                placeholder="Search Player or Team"
               />
               <BiSearch fontSize="3rem" className="searchIcon" />
             </div>
@@ -249,5 +269,3 @@ function Navbar() {
     </>
   );
 }
-
-export default Navbar;

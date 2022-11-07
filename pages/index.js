@@ -3,6 +3,7 @@ import { Center, useMediaQuery } from '@chakra-ui/react';
 import { baseUrl, fetchApi } from '../utils/.fetchApi';
 import Backgroundimgvideo from '../components/Backgroundimgvideo';
 import Games from '../components/shared/Games';
+
 //
 
 export default function Home({ recentGames }) {
@@ -96,7 +97,7 @@ export default function Home({ recentGames }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const day = new Date().getDate();
   const month = new Date().getMonth() + 1;
   const recentGames = await fetchApi(
@@ -107,5 +108,6 @@ export async function getServerSideProps() {
     props: {
       recentGames: recentGames,
     },
+    revalidate: 30,
   };
 }

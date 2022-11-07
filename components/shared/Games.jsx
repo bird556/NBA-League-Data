@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { Center, Box, Flex, Text, Grid, GridItem } from '@chakra-ui/react';
 import TeamScore from './TeamScore';
 import UseAnimations from 'react-useanimations';
+import { motion } from 'framer-motion';
 // EVERY ANIMATION NEEDS TO BE IMPORTED FIRST -> YOUR BUNDLE WILL INCLUDE ONLY WHAT IT NEEDS
 import airplay from 'react-useanimations/lib/airplay';
 function Games({ schedule, gameDate, teamName, title }) {
@@ -10,21 +11,54 @@ function Games({ schedule, gameDate, teamName, title }) {
       {schedule ? (
         <Box>
           <Center>
-            <Box p="4rem">
-              <h1>{title}</h1>
-            </Box>
+            <motion.div
+              initial={{
+                y: -500,
+                opacity: 0,
+                scale: 0.5,
+              }}
+              animate={{
+                y: 0,
+                opacity: 1,
+                scale: 1,
+              }}
+              transition={{
+                duration: 0.5,
+              }}
+            >
+              <Box p="4rem">
+                <h1>{title}</h1>
+              </Box>
+            </motion.div>
           </Center>
           <div data-aos="fade-down">
             <Flex flexWrap="wrap" justifyContent="center" maxW="160rem">
               {schedule
-                .map((data) => {
+                .map((data, index) => {
                   if (typeof data.homeScore.current == 'number') {
                     if (
                       data.tournament.slug === 'nba' ||
                       data.tournament.slug === 'nba-preseason'
                     ) {
                       return (
-                        <div key={data.id} className="leader-container">
+                        <motion.div
+                          initial={{
+                            x: 500,
+                            opacity: 0,
+                            scale: 0.5,
+                          }}
+                          animate={{
+                            x: 0,
+                            opacity: 1,
+                            scale: 1,
+                          }}
+                          transition={{
+                            duration: 0.5,
+                            delay: `0.${index + 5}`,
+                          }}
+                          key={data.id}
+                          className="leader-container"
+                        >
                           <Box
                             maxW="38rem"
                             h="24rem"
@@ -94,7 +128,7 @@ function Games({ schedule, gameDate, teamName, title }) {
                               </GridItem>
                             </Grid>
                           </Box>
-                        </div>
+                        </motion.div>
                       );
                     }
                   }
@@ -103,9 +137,7 @@ function Games({ schedule, gameDate, teamName, title }) {
             </Flex>
           </div>
         </Box>
-      ) : (
-        []
-      )}
+      ) : null}
     </Flex>
   );
 }
@@ -113,7 +145,7 @@ function Games({ schedule, gameDate, teamName, title }) {
 export default Games;
 
 Games.propTypes = {
-  schedule: PropTypes.object,
+  schedule: PropTypes.array,
   gameDate: PropTypes.func,
   teamName: PropTypes.func,
   title: PropTypes.string,

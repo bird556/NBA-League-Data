@@ -47,3 +47,6 @@ next-env.d.ts
 utils
 
 .oldtext.txt
+
+# Hide Teams
+/context/NBAData
