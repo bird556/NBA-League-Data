@@ -9,7 +9,7 @@ export default function Custom500() {
     setTimeout(() => {
       router.push('/');
     }, 2000);
-  }, []);
+  }, [router]);
 
   return (
     <>

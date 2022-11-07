@@ -8,8 +8,6 @@ import MobileMenu from './shared/MobileMenu';
 import SearchContext from '../context/Search/SearchContext';
 import { searchUsers } from '../context/Search/SearchActions';
 import NBAContext from '../context/NBAData/NBAContext';
-import axios from 'axios';
-import { baseUrl } from '../utils/.fetchApi';
 
 export function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -56,33 +54,6 @@ export default function Navbar() {
     } else {
       return setName(' ');
     }
-  };
-
-  const searchTeamPlayers = async (name) => {
-    // const res = await fetch(`${baseUrl}/api/basketball/search/${name}`, {
-    try {
-      const res = await axios.get(`${baseUrl}/api/basketball/search/${name}`, {
-        headers: {
-          // Hide API Below 👇
-          'X-RapidAPI-Key':
-            'ffab0449d9msh821216a3c72087fp1edd91jsn59babfa2c26d',
-          'X-RapidAPI-Host': 'basketapi1.p.rapidapi.com',
-        },
-      });
-      const searchInfo = res.data.results;
-      setInfo(searchInfo);
-      // console.log(res);
-      setRes(res);
-    } catch (error) {
-      console.log(error);
-    }
-
-    // const data = await res.json();
-    // console.log(data.results);
-
-    // const searchInfo = data.results;
-    // setInfo(searchInfo);
-    // setRes(res);
   };
 
   const searchData = async (name) => {

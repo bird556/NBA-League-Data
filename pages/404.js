@@ -10,7 +10,7 @@ export default function Custom404() {
     setTimeout(() => {
       router.push('/');
     }, 2000);
-  }, []);
+  }, [router]);
   return (
     <>
       <div className="blackBackground"></div>
