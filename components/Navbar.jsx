@@ -195,13 +195,6 @@ export default function Navbar() {
             <NavLink href="#" className="btn" onClick={clear}>
               Stats
             </NavLink>
-
-            {/* <NavLink href="/summerleague" className="btn 
-            onClick={clear}
-            
-            ">
-              Summer League
-            </NavLink> */}
           </ul>
 
           <Flex zIndex="5" p="0 2.4rem" alignItems="center">

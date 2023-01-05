@@ -7,12 +7,7 @@ import PointsLeaders from '../components/Leaders/PointsLeaders';
 import LeagueLeaders from '../components/LeagueLeaders';
 import Slider from '../components/Slider/Slider';
 export default function stats(data) {
-  //NBA API OutDated Though lol 😒
-  // const nba = require('nba-api-client');
   const topPlayers = data.top50Players;
-  console.log(data);
-  // let teamName = (team) => nba.getTeamID(team).Abbrev;
-  //
 
   return (
     <>

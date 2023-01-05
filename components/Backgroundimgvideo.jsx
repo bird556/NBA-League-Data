@@ -15,21 +15,26 @@ function Backgroundimgvideo() {
 
   function determineText() {
     if (isLargerThanHD) {
-      // return `lebrondunk.mp4`;
       return (
-        <video
-          src="antdunk1.mp4"
+        // <video
+        //   src="antdunk1.mp4"
+        //   className="backgroundimg"
+        //   autoPlay
+        //   muted
+        //   loop
+        // ></video>
+        <Image
+          src="/bron.jpg"
+          alt="Background Image"
           className="backgroundimg"
-          autoPlay
-          muted
-          loop
-        ></video>
+          fallbackSrc="/1 copy.jpg"
+        />
       );
     } else {
       return (
         <Image
           src="/bron.jpg"
-          alt="Ja Morant"
+          alt="Background Image"
           className="backgroundimg"
           fallbackSrc="/1 copy.jpg"
         />

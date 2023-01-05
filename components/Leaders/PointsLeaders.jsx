@@ -11,7 +11,7 @@ import {
   Center,
 } from '@chakra-ui/react';
 
-const PointsLeaders = ({ data, index, playerStats, playerDetails }) => {
+const PointsLeaders = ({ data, index }) => {
   return (
     <Link
       key={data.player.id}
