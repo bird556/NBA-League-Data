@@ -36,6 +36,7 @@ function Games({ schedule, gameDate, teamName, title }) {
               {schedule
                 .map((data, index) => {
                   if (typeof data.homeScore.current == 'number') {
+                    // NBA GAMES ONLY
                     if (
                       data.tournament.slug === 'nba' ||
                       data.tournament.slug === 'nba-preseason' ||
