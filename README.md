@@ -1,34 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Logo](public/cover.jpg)
 
-## Getting Started
+# **NBA League Data**
 
-First, run the development server:
+## Optimizations
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- **Responsive** on all devices (**_Mobile_**, **_Tablets_**, **_Desktops_**) ✅
+- GetStaticProps (**Nextjs**) ✅
+- **Hidden** Host & Key (**_process.env_**) ✅
+- Optimized Images via **nextjs** ✅
+- **Adobe Photoshop 2022** was used to add **curve, saturation, noise/distort** for **Team & Player Images** ✅
+- **Search featured** added, clear search when value is **empty** and when **team** or **player** is clicked ✅
+- **Burger Menu** implemented on **smaller screens**, Regular Nav on **desktop screens** ✅
+- Blurry loading screen with animations when page is loading ✅
+- Beautiful UI Design inspired by [**Kostia Osadchy**](https://dribbble.com/shots/4747073-NBA-Player-Profile-Redesign)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Screenshots
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+![App Screenshot](public/player.jpg)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Lessons Learned
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### What did you learn while building this project?
 
-## Learn More
+- Proptypes & Components
 
-To learn more about Next.js, take a look at the following resources:
+- getServerSideProps ([ link id context])
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- How to add class to an active nav link (underlined white on active tab)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- useEffect, useRef, useState hooks
 
-## Deploy on Vercel
+## What challenges did you face and how did you overcome them?
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Took me a while to fully grasp getStaticProps, getServerSideProps etc (nextjs) but after watching some videos and going back to my udemy courses I got it figured out.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Hiding API key, I already knew how to use .env but not for nextjs because if I didn't use getStaticProps or getServerSideProps etc. My key would be undefined & I wouldn't be able to fetch my data from the api but I got it 😉
+
+- I put the key ID into the parent & into the children 😅 which it should be only into the parent but I went through my code & fixed it.
+
+## Acknowledgements
+
+- [Kostia Osadchy](https://dribbble.com/shots/4747073-NBA-Player-Profile-Redesign)
+- Big shoutout to Kostia Osadchy for the Web Design
+
+## Authors
+
+- [**@bird556**](https://github.com/bird556) 🙋‍♂️

@@ -17,17 +17,8 @@ const Lineloader = () => {
 
   return (
     <>
-      <div
-        //
-        id="blurEffect"
-        className=""
-        // className="blurry"
-      >
-        <div
-          id="animationEffect"
-          className=""
-          // className="lds-ellipsis"
-        >
+      <div id="blurEffect">
+        <div id="animationEffect">
           <div></div>
           <div></div>
           <div></div>
