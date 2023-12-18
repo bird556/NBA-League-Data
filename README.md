@@ -1,18 +1,22 @@
+# NBA League Data App
+
 ![Logo](public/cover.jpg)
 
-# **NBA League Data**
+## Project Overview
+
+Welcome to the NBA League Data App! This project is a responsive web application designed to showcase NBA team and player information. Leveraging the power of Next.js, it offers an optimized and visually appealing user interface. The project focuses on various optimizations, UI design, and key technical learnings.
 
 ## Optimizations
 
-- **Responsive** on all devices (**_Mobile_**, **_Tablets_**, **_Desktops_**) ✅
-- GetStaticProps (**Nextjs**) ✅
-- **Hidden** Host & Key (**_process.env_**) ✅
-- Optimized Images via **nextjs** ✅
-- **Adobe Photoshop 2022** was used to add **curve, saturation, noise/distort** for **Team & Player Images** ✅
-- **Search featured** added, clear search when value is **empty** and when **team** or **player** is clicked ✅
-- **Burger Menu** implemented on **smaller screens**, Regular Nav on **desktop screens** ✅
-- Blurry loading screen with animations when page is loading ✅
-- Beautiful UI Design inspired by [**Kostia Osadchy**](https://dribbble.com/shots/4747073-NBA-Player-Profile-Redesign)
+- **Responsive Design**: Ensures optimal viewing experience on all devices, including mobiles, tablets, and desktops.
+- **Next.js Integration**: Utilizes GetStaticProps for improved performance.
+- **Secure API Key Handling**: Safely hides the host and key using process.env for enhanced security.
+- **Image Optimization**: Utilizes Next.js for optimizing images, enhancing the overall performance.
+- **Adobe Photoshop Enhancements**: Employs Adobe Photoshop 2022 for image manipulation, including curve adjustments, saturation, noise, and distortions for both Team and Player Images.
+- **Search Feature**: Implements a search functionality, clearing the search when the value is empty and navigating to team or player details upon selection.
+- **Navigation Menus**: Adopts a Burger Menu for smaller screens and a regular navigation menu for desktop screens.
+- **Loading Screen Animation**: Features a blurry loading screen with animations to enhance the user experience.
+- **UI Design Inspiration**: Draws design inspiration from [Kostia Osadchy](https://dribbble.com/shots/4747073-NBA-Player-Profile-Redesign).
 
 ## Screenshots
 
@@ -20,29 +24,22 @@
 
 ## Lessons Learned
 
-### What did you learn while building this project?
+### Technologies and Concepts Explored
 
-- Proptypes & Components
+- **Proptypes & Components**: Utilized for structured and type-checked components.
+- **getServerSideProps ([link id context])**: Employed to fetch dynamic data for improved server-side rendering.
+- **Hooks Usage**: Incorporated useEffect, useRef, and useState hooks for state management.
 
-- getServerSideProps ([ link id context])
+## Challenges Faced and Overcame
 
-- How to add class to an active nav link (underlined white on active tab)
-
-- useEffect, useRef, useState hooks
-
-## What challenges did you face and how did you overcome them?
-
-- Took me a while to fully grasp getStaticProps, getServerSideProps etc (nextjs) but after watching some videos and going back to my udemy courses I got it figured out.
-
-- Hiding API key, I already knew how to use .env but not for nextjs because if I didn't use getStaticProps or getServerSideProps etc. My key would be undefined & I wouldn't be able to fetch my data from the api but I got it 😉
-
-- I put the key ID into the parent & into the children 😅 which it should be only into the parent but I went through my code & fixed it.
+- **Understanding Next.js Functions**: Initially faced challenges with getStaticProps and getServerSideProps, but overcame them through online resources and revisiting relevant learning materials.
+- **API Key Handling**: Overcame issues related to API key handling in Next.js, ensuring it is securely hidden and accessible when needed.
+- **Code Refactoring**: Discovered and fixed issues, such as placing the API key in both parent and children components, ensuring correct implementation.
 
 ## Acknowledgements
 
-- [Kostia Osadchy](https://dribbble.com/shots/4747073-NBA-Player-Profile-Redesign)
-- Big shoutout to Kostia Osadchy for the Web Design
+- [Kostia Osadchy](https://dribbble.com/shots/4747073-NBA-Player-Profile-Redesign): Inspirational web design for the project.
 
-## Authors
+## Author
 
 - [**@bird556**](https://github.com/bird556) 🙋‍♂️
