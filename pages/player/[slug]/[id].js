@@ -177,6 +177,7 @@ const playerDetails = ({
   );
 
   const customBackground = `/player-background/${playerDetails.player.slug}.jpg`;
+  console.log(playerDetails.player.slug);
   return (
     <>
       <div className="blackBackground"></div>
@@ -223,10 +224,10 @@ export default playerDetails;
 
 export async function getServerSideProps({ params: { id } }) {
   const stats = await fetchApi(
-    `${baseUrl}/api/basketball/player/${id}/tournament/132/season/38191/statistics/regularseason`
+    `${baseUrl}/api/basketball/player/${id}/tournament/132/season/54105/statistics/regularseason`
   );
   const statsPlayoffs = await fetchApi(
-    `${baseUrl}/api/basketball/player/${id}/tournament/132/season/38191/statistics/playoffs`
+    `${baseUrl}/api/basketball/player/${id}/tournament/132/season/54105/statistics/playoffs`
   );
 
   const details = await fetchApi(`${baseUrl}/api/basketball/player/${id}`);

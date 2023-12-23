@@ -61,7 +61,7 @@ export async function getServerSideProps({ params: { id } }) {
   const teamDetails = await fetchApi(`${baseUrl}/api/basketball/team/${id}`);
 
   const teamStandings = await fetchApi(
-    `${baseUrl}/api/basketball/tournament/132/season/38191/standings/total`
+    `${baseUrl}/api/basketball/tournament/132/season/54105/standings/total`
   );
 
   const teamRoster = await fetchApi(

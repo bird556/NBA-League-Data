@@ -1,5 +1,6 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+require('dotenv').config();
+
+module.exports = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
@@ -16,5 +17,3 @@ const nextConfig = {
     BASE_URL: process.env.REACT_APP_NBAAPIKEY,
   },
 };
-
-module.exports = nextConfig;
