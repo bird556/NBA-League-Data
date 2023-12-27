@@ -6,6 +6,7 @@ import { useState, useEffect, useRef, useContext } from 'react';
 import { TiThMenu } from 'react-icons/ti';
 import MobileMenu from './shared/MobileMenu';
 import SearchContext from '../context/Search/SearchContext';
+import { searchUsers } from '../context/Search/SearchActions';
 import NBAContext from '../context/NBAData/NBAContext';
 
 export function useDebounce(value, delay) {
@@ -30,38 +31,37 @@ export default function Navbar() {
   const debounceValue = useDebounce(name, 1500);
 
   useEffect(() => {
-    debounceValue;
+    const searchData = async (name) => {
+      console.log('SEARCHED');
+      const results = await searchUsers(name);
+      dispatch({ type: 'GET_SEARCHRESULTS', payload: results });
+    };
+    // debounceValue;
 
     if (debounceValue.length < 2) {
       dispatch({ type: 'CLEAR_SEARCHRESULTS' });
-      // console.log(searchResults, 'CLEARED 💖🤦‍♂️🤣🐮🦍', 'no request');
+      console.log(searchResults, 'CLEARED 💖🤦‍♂️🤣🐮🦍', 'no request');
       console.log(name.length, 'name.length');
     } else {
+      searchData(debounceValue);
+      // searchData(name);
       console.log(searchResults, debounceValue.length, 'empty info & length');
     }
   }, [debounceValue, dispatch, name, searchResults]);
 
-  //added async
-  const inputTest = async (e) => {
+  const inputTest = (e) => {
     if (e.target.value.length >= 2 && e.target.value.length <= 25) {
       setName(e.target.value.replace(/ /g, '%20'));
-      // december 27th input
-      console.log(`${name} is being searched`);
-      try {
-        const response = await fetch(`/api/search?query=${name}`);
-        const results = await response.json();
-        console.log(results);
-
-        dispatch({ type: 'GET_SEARCHRESULTS', payload: results });
-      } catch (error) {
-        console.error(error);
-        // Handle error as needed
-      }
     } else {
-      dispatch({ type: 'CLEAR_SEARCHRESULTS' });
       return setName(' ');
     }
   };
+
+  // const searchData = async (name) => {
+  //   console.log('SEARCHED');
+  //   const results = await searchUsers(name);
+  //   dispatch({ type: 'GET_SEARCHRESULTS', payload: results });
+  // };
 
   const clear = () => {
     ref.current.value = '';

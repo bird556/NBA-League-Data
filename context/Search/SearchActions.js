@@ -1,15 +1,13 @@
 import axios from 'axios';
-const NBA_URL = process.env.NEXT_PUBLIC_REACT_APP_URL_HOST;
-const NBA_KEY = process.env.NEXT_PUBLIC_REACT_APP_NBAAPIKEY;
 const NBA_BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_URL_BASE_HOST;
+console.log('NBA_BASE_URL:', NBA_BASE_URL);
 const nbaSearch = axios.create({
-  //Coming From searchActions ✅
+  //Coming From searchActions ✅ do not need anymore
 
   baseURL: NBA_BASE_URL,
-  // baseURL: 'https://basketapi1.p.rapidapi.com',
   headers: {
-    'X-RapidAPI-Key': NBA_KEY,
-    'X-RapidAPI-Host': NBA_URL,
+    'X-RapidAPI-Key': process.env.REACT_APP_NBAAPIKEY,
+    'X-RapidAPI-Host': process.env.REACT_APP_URL_HOST,
   },
 });
 
@@ -17,7 +15,7 @@ const nbaSearch = axios.create({
 export const searchUsers = async (name) => {
   try {
     const response = await nbaSearch.get(`/api/basketball/search/${name}`);
-    console.log(response.data.results);
+    console.log(response);
     return response.data.results;
   } catch (error) {
     console.log(error);

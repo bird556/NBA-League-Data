@@ -97,9 +97,10 @@ const teams = ({ teams }) => {
 
 export default teams;
 
-export async function getServerSideProps() {
+// export async function getServerSideProps() {
+export async function getStaticProps() {
   const teamsStandings = await fetchApi(
-    `${baseUrl}/api/basketball/tournament/132/season/38191/standings/total`
+    `${baseUrl}/api/basketball/tournament/132/season/54105/standings/total`
   );
 
   return {

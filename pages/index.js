@@ -102,14 +102,18 @@ export async function getStaticProps() {
   const day = new Date().getDate();
   const month = new Date().getMonth() + 1;
   const year = new Date().getFullYear();
+  const tournamentName = 'NBA';
   const recentGames = await fetchApi(
-    `${baseUrl}/api/basketball/matches/${day}/${month}/${year}`
+    // `${baseUrl}/api/basketball/matches/${day}/${month}/${year}`
+    `${baseUrl}/api/basketball/matches/${day}/${month}/${year}?tournament=${encodeURIComponent(
+      tournamentName
+    )}`
   );
 
   return {
     props: {
       recentGames: recentGames,
     },
-    revalidate: 30,
+    revalidate: 60,
   };
 }

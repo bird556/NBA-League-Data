@@ -177,7 +177,7 @@ const playerDetails = ({
   );
 
   const customBackground = `/player-background/${playerDetails.player.slug}.jpg`;
-  console.log(playerDetails.player.slug);
+  // console.log(playerDetails.player.slug);
   return (
     <>
       <div className="blackBackground"></div>
