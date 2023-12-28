@@ -167,7 +167,7 @@ export default function Navbar() {
                                           }
                                         />
                                         <Text fontSize="2xl">
-                                          {data.team.name}
+                                          {data.team.name}git
                                         </Text>
                                       </Flex>
                                     </Box>
