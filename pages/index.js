@@ -6,7 +6,7 @@ import Games from '../components/shared/Games';
 
 //
 
-export default function Home({ recentGames }) {
+export default function Home({ recentGames, nextGames }) {
   const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)');
   const [isLargerThanHD, isDisplayingInBrowser] = useMediaQuery([
     '(min-width: 1920px)',
@@ -70,28 +70,51 @@ export default function Home({ recentGames }) {
     const teamName = fullName.split(' ');
     return teamName[teamName.length - 1];
   };
+
   return (
     <>
       <Backgroundimgvideo />
       <div className={styles.container}>
         <div className="home">
-          <div data-aos="fade-down">
-            {recentGames ? (
-              <Games
-                title="NBA Games"
-                schedule={recentGames.events}
-                gameDate={gameDate}
-                teamName={teamName}
-                gameID={recentGames.events.id}
-              />
-            ) : (
+          {recentGames || nextGames ? (
+            <>
+              <div data-aos="fade-down">
+                {nextGames ? (
+                  <Games
+                    title="Today's Games"
+                    schedule={nextGames.events}
+                    gameDate={gameDate}
+                    teamName={teamName}
+                    gameID={nextGames.events.id}
+                  />
+                ) : null}
+              </div>
+              {/* Recent Games */}
+              {/* <div data-aos="fade-down" data-aos-offset="800"> */}
+              {/* <div>
+                {recentGames ? (
+                  <Games
+                    title="NBA Games"
+                    gamesLoaded={-8}
+                    schedule={recentGames.events}
+                    gameDate={gameDate}
+                    teamName={teamName}
+                    gameID={recentGames.events.id}
+                  />
+                ) : null}
+              </div> */}
+            </>
+          ) : (
+            <>
               <div data-aos="fade-up">
                 <Center h="95vh">
                   <h1>{determineText()}</h1>
                 </Center>
               </div>
-            )}
-          </div>
+              ;
+            </>
+          )}
+          {/* Upcoming Games of today */}
         </div>
       </div>
     </>
@@ -99,14 +122,18 @@ export default function Home({ recentGames }) {
 }
 
 export async function getStaticProps() {
-  const recentGames = await fetchApi(
-    // `${baseUrl}/api/basketball/matches/${day}/${month}/${year}`
-    `${baseUrl}/api/basketball/tournament/132/season/54105/matches/last/0`
+  // const recentGames = await fetchApi(
+  //   // `${baseUrl}/api/basketball/matches/${day}/${month}/${year}`
+  //   `${baseUrl}/api/basketball/tournament/132/season/54105/matches/last/0`
+  // );
+  const nextGames = await fetchApi(
+    `${baseUrl}/api/basketball/tournament/132/season/54105/matches/next/0`
   );
 
   return {
     props: {
-      recentGames: recentGames,
+      // recentGames: recentGames,
+      nextGames: nextGames,
     },
     revalidate: 60,
   };

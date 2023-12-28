@@ -1,11 +1,19 @@
 import PropTypes from 'prop-types';
-import { Center, Box, Flex, Text, Grid, GridItem } from '@chakra-ui/react';
+import {
+  Center,
+  Box,
+  Flex,
+  Text,
+  Grid,
+  GridItem,
+  Spacer,
+} from '@chakra-ui/react';
 import TeamScore from './TeamScore';
 import UseAnimations from 'react-useanimations';
 import { motion } from 'framer-motion';
 // EVERY ANIMATION NEEDS TO BE IMPORTED FIRST -> YOUR BUNDLE WILL INCLUDE ONLY WHAT IT NEEDS
 import airplay from 'react-useanimations/lib/airplay';
-function Games({ schedule, gameDate, teamName, title, gameID }) {
+function Games({ schedule, gameDate, teamName, title, gameID, gamesLoaded }) {
   const streamLink = (game) => {
     return `https://streameast.to/nba/event/${game}`;
   };
@@ -19,6 +27,33 @@ function Games({ schedule, gameDate, teamName, title, gameID }) {
 
     return `${year}${month}${day}`;
   };
+
+  function convertTimestampToTime(timestamp) {
+    const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+
+    // Format hours
+    const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
+    const amPm = hours < 12 ? 'am' : 'pm';
+
+    // Format minutes
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+
+    // Return the formatted time string
+    return `${formattedHours}:${formattedMinutes}${amPm}`;
+  }
+
+  function isToday(timestamp) {
+    const currentDate = new Date();
+    const inputDate = new Date(timestamp * 1000); // Convert seconds to milliseconds
+
+    return (
+      currentDate.getDate() === inputDate.getDate() &&
+      currentDate.getMonth() === inputDate.getMonth() &&
+      currentDate.getFullYear() === inputDate.getFullYear()
+    );
+  }
 
   return (
     <Flex justifyContent="center" flexWrap="wrap" p="8rem">
@@ -48,9 +83,12 @@ function Games({ schedule, gameDate, teamName, title, gameID }) {
           <div data-aos="fade-down">
             <Flex flexWrap="wrap" justifyContent="center" maxW="160rem">
               {schedule
-                .slice(-12)
+                .slice(gamesLoaded ? gamesLoaded : 0)
                 .map((data, index) => {
-                  if (typeof data.homeScore.current == 'number') {
+                  if (
+                    typeof data.homeScore.current == 'number' ||
+                    isToday(data.startTimestamp)
+                  ) {
                     // NBA GAMES ONLY
                     if (
                       data.tournament.slug === 'nba' ||
@@ -94,9 +132,18 @@ function Games({ schedule, gameDate, teamName, title, gameID }) {
                             >
                               <div className="blur"></div>
                               <GridItem rowSpan={4} colSpan={5}>
-                                <Text fontSize="1.2rem">
-                                  {gameDate(data.startTimestamp)}
-                                </Text>
+                                <Flex>
+                                  <Text fontSize="1.2rem">
+                                    {gameDate(data.startTimestamp)}
+                                  </Text>
+                                  <Spacer />
+
+                                  <Text fontSize="1.2rem">
+                                    {`${convertTimestampToTime(
+                                      data.startTimestamp
+                                    )} ET`}
+                                  </Text>
+                                </Flex>
                               </GridItem>
                               {/* AWAY TEAM */}
 
@@ -170,8 +217,7 @@ function Games({ schedule, gameDate, teamName, title, gameID }) {
                       );
                     }
                   }
-                })
-                .reverse()}
+                })}
             </Flex>
           </div>
         </Box>

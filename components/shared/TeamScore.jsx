@@ -26,24 +26,32 @@ function TeamScore({ team, score, teamName }) {
           <Flex alignItems="center" justifyContent="space-around" gap="0.8rem">
             <VStack w="3.2rem">
               <Text fontSize="1.2rem">1</Text>
-              <Text fontSize="1.6rem">{score.period1 ? score.period1 : 0}</Text>
+              <Text fontSize="1.6rem">
+                {score.period1 ? score.period1 : '-'}
+              </Text>
             </VStack>
             <VStack w="3.2rem">
               <Text fontSize="1.2rem">2</Text>
 
-              <Text fontSize="1.6rem">{score.period2 ? score.period2 : 0}</Text>
+              <Text fontSize="1.6rem">
+                {score.period2 ? score.period2 : '-'}
+              </Text>
             </VStack>
 
             <VStack w="3.2rem">
               <Text fontSize="1.2rem">3</Text>
 
-              <Text fontSize="1.6rem">{score.period3 ? score.period3 : 0}</Text>
+              <Text fontSize="1.6rem">
+                {score.period3 ? score.period3 : '-'}
+              </Text>
             </VStack>
 
             <VStack w="3.2rem">
               <Text fontSize="1.2rem">4</Text>
 
-              <Text fontSize="1.6rem">{score.period4 ? score.period4 : 0}</Text>
+              <Text fontSize="1.6rem">
+                {score.period4 ? score.period4 : '-'}
+              </Text>
             </VStack>
             {score.overtime ? (
               <VStack w="3.2rem">

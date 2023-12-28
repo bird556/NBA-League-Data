@@ -61,7 +61,7 @@ export default function Navbar() {
           console.error('Error from server:', errorData);
         } else {
           const results = await response.json();
-
+          console.log(results);
           dispatch({ type: 'GET_SEARCHRESULTS', payload: results });
           setSearchBox(true);
         }
@@ -90,7 +90,6 @@ export default function Navbar() {
       setName('');
     }
   };
-
   return (
     <>
       <nav>
@@ -167,7 +166,7 @@ export default function Navbar() {
                                           }
                                         />
                                         <Text fontSize="2xl">
-                                          {data.team.name}git
+                                          {data.team.name}
                                         </Text>
                                       </Flex>
                                     </Box>
