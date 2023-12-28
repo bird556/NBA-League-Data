@@ -185,6 +185,7 @@ export default function Navbar() {
                         ) {
                           return (
                             <Link
+                              key={data.id}
                               href={`/teams/${data.slug}/${data.id}`}
                               passHref
                             >
