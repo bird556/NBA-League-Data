@@ -5,7 +5,21 @@ import UseAnimations from 'react-useanimations';
 import { motion } from 'framer-motion';
 // EVERY ANIMATION NEEDS TO BE IMPORTED FIRST -> YOUR BUNDLE WILL INCLUDE ONLY WHAT IT NEEDS
 import airplay from 'react-useanimations/lib/airplay';
-function Games({ schedule, gameDate, teamName, title }) {
+function Games({ schedule, gameDate, teamName, title, gameID }) {
+  const streamLink = (game) => {
+    return `https://streameast.to/nba/event/${game}`;
+  };
+
+  const dateStats = (timestamp) => {
+    const date = new Date(timestamp * 1000); // Multiply by 1000 to convert seconds to milliseconds
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is zero-based, so we add 1
+    const day = String(date.getDate()).padStart(2, '0');
+
+    return `${year}${month}${day}`;
+  };
+
   return (
     <Flex justifyContent="center" flexWrap="wrap" p="8rem">
       {schedule ? (
@@ -34,6 +48,7 @@ function Games({ schedule, gameDate, teamName, title }) {
           <div data-aos="fade-down">
             <Flex flexWrap="wrap" justifyContent="center" maxW="160rem">
               {schedule
+                .slice(-12)
                 .map((data, index) => {
                   if (typeof data.homeScore.current == 'number') {
                     // NBA GAMES ONLY
@@ -105,26 +120,47 @@ function Games({ schedule, gameDate, teamName, title }) {
                               <GridItem colSpan={5} b>
                                 <Center>
                                   <button id="btn-boxscore">
-                                    <Flex alignItems="center" gap="0.8rem">
-                                      <a
-                                        id="follow"
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        href="https://reddit.rnbastreams.com/"
-                                      >
-                                        {data.status.type === 'finished'
-                                          ? `Highlights`
-                                          : `Watch Live`}
-                                      </a>
-                                      <span id="plus-sign">
-                                        {/* <MdOutlineSmartDisplay fontSize="2.4rem" /> */}
-                                        <UseAnimations
-                                          animation={airplay}
-                                          size="24"
-                                          strokeColor="#228be6"
-                                        />
-                                      </span>
-                                    </Flex>
+                                    {data.status.type !== 'finished' ? (
+                                      <Flex alignItems="center" gap="0.8rem">
+                                        <a
+                                          id="follow"
+                                          target="_blank"
+                                          rel="noreferrer"
+                                          href={streamLink(data.id)}
+                                        >
+                                          Watch Live
+                                        </a>
+                                        <span id="plus-sign">
+                                          {/* <MdOutlineSmartDisplay fontSize="2.4rem" /> */}
+                                          <UseAnimations
+                                            animation={airplay}
+                                            size="24"
+                                            strokeColor="#228be6"
+                                          />
+                                        </span>
+                                      </Flex>
+                                    ) : (
+                                      <Flex alignItems="center" gap="0.8rem">
+                                        <a
+                                          id="follow"
+                                          target="_blank"
+                                          rel="noreferrer"
+                                          href={`https://www.espn.com/nba/scoreboard/_/date/${dateStats(
+                                            data.startTimestamp
+                                          )}`}
+                                        >
+                                          Box Score
+                                        </a>
+                                        <span id="plus-sign">
+                                          {/* <MdOutlineSmartDisplay fontSize="2.4rem" /> */}
+                                          <UseAnimations
+                                            animation={airplay}
+                                            size="24"
+                                            strokeColor="#228be6"
+                                          />
+                                        </span>
+                                      </Flex>
+                                    )}
                                   </button>
                                 </Center>
                               </GridItem>
@@ -151,4 +187,5 @@ Games.propTypes = {
   gameDate: PropTypes.func,
   teamName: PropTypes.func,
   title: PropTypes.string,
+  gameID: PropTypes.string,
 };

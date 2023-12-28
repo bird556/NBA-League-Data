@@ -82,6 +82,7 @@ export default function Home({ recentGames }) {
                 schedule={recentGames.events}
                 gameDate={gameDate}
                 teamName={teamName}
+                gameID={recentGames.events.id}
               />
             ) : (
               <div data-aos="fade-up">
@@ -98,16 +99,9 @@ export default function Home({ recentGames }) {
 }
 
 export async function getStaticProps() {
-  // DATE
-  const day = new Date().getDate();
-  const month = new Date().getMonth() + 1;
-  const year = new Date().getFullYear();
-  const tournamentName = 'NBA';
   const recentGames = await fetchApi(
     // `${baseUrl}/api/basketball/matches/${day}/${month}/${year}`
-    `${baseUrl}/api/basketball/matches/${day}/${month}/${year}?tournament=${encodeURIComponent(
-      tournamentName
-    )}`
+    `${baseUrl}/api/basketball/tournament/132/season/54105/matches/last/0`
   );
 
   return {

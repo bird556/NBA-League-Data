@@ -7,6 +7,7 @@ import { TiThMenu } from 'react-icons/ti';
 import MobileMenu from './shared/MobileMenu';
 import SearchContext from '../context/Search/SearchContext';
 import NBAContext from '../context/NBAData/NBAContext';
+import { set } from 'nprogress';
 
 export function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -27,35 +28,45 @@ export default function Navbar() {
   const { searchResults, dispatch } = useContext(SearchContext);
   const ref = useRef(null);
   const [name, setName] = useState('');
-  const debounceValue = useDebounce(name, 1500);
+  const [searchBox, setSearchBox] = useState(false);
+  // const debounceValue = useDebounce(name, 1500);
 
-  useEffect(() => {
-    debounceValue;
-
-    if (debounceValue.length < 2) {
-      dispatch({ type: 'CLEAR_SEARCHRESULTS' });
-      // console.log(searchResults, 'CLEARED 💖🤦‍♂️🤣🐮🦍', 'no request');
-      console.log(name.length, 'name.length');
-    } else {
-      console.log(searchResults, debounceValue.length, 'empty info & length');
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && e.target.value.length >= 2) {
+      e.preventDefault();
+      inputTest(e.target.value);
     }
-  }, [debounceValue, dispatch, name, searchResults]);
+  };
+
+  const handleSearchClick = () => {
+    if (ref.current.value.length >= 2 && ref.current) {
+      inputTest(ref.current.value);
+    }
+  };
 
   //added async
-  const inputTest = async (e) => {
-    if (e.target.value.length >= 2 && e.target.value.length <= 25) {
-      setName(e.target.value.replace(/ /g, '%20'));
+  const inputTest = async (searchName) => {
+    const inputValue = searchName;
+    console.log(searchName);
+    if (searchName.length >= 2) {
+      // setName(e.target.value.replace(/ /g, '%20'));
+      setName((prevName) => inputValue.replace(/ /g, '%20'));
       // december 27th input
-      console.log(`${name} is being searched`);
-      try {
-        const response = await fetch(`/api/search?query=${name}`);
-        const results = await response.json();
-        console.log(results);
 
-        dispatch({ type: 'GET_SEARCHRESULTS', payload: results });
+      try {
+        const response = await fetch(`/api/search?query=${inputValue}`);
+        if (!response.ok) {
+          const errorData = await response.json();
+
+          console.error('Error from server:', errorData);
+        } else {
+          const results = await response.json();
+
+          dispatch({ type: 'GET_SEARCHRESULTS', payload: results });
+          setSearchBox(true);
+        }
       } catch (error) {
-        console.error(error);
-        // Handle error as needed
+        console.error('Unexpected error:', error);
       }
     } else {
       dispatch({ type: 'CLEAR_SEARCHRESULTS' });
@@ -65,6 +76,19 @@ export default function Navbar() {
 
   const clear = () => {
     ref.current.value = '';
+    dispatch({ type: 'CLEAR_SEARCHRESULTS' });
+    setName('');
+    setSearchBox(false);
+  };
+
+  const removeSearchBox = (e) => {
+    const previousValue = name;
+    const currentValue = e.target.value;
+
+    if (previousValue.length > currentValue.length) {
+      dispatch({ type: 'CLEAR_SEARCHRESULTS' });
+      setName('');
+    }
   };
 
   return (
@@ -86,7 +110,11 @@ export default function Navbar() {
           justifyContent="space-between"
           alignItems="center"
         >
-          {searchResults && debounceValue.length >= 2 ? (
+          {/* {Array.isArray(searchResults) && debounceValue.length >= 2 ? ( */}
+          {searchResults &&
+          Boolean(name) &&
+          ref.current.value != '' &&
+          searchBox ? (
             <Box
               id="Search-Box"
               zIndex="500"
@@ -99,7 +127,7 @@ export default function Navbar() {
               w="30rem"
             >
               <Flex flexDirection="column" gap="2rem">
-                {searchResults
+                {Array.isArray(searchResults)
                   ? searchResults
                       .filter((item, index) => index < 10)
                       .map((info) => {
@@ -111,6 +139,7 @@ export default function Navbar() {
                           return (
                             <>
                               <Link
+                                onClick={clear}
                                 key={data.id}
                                 href={`/player/${data.slug}/${data.id}`}
                                 passHref
@@ -208,12 +237,21 @@ export default function Navbar() {
               <input
                 ref={ref}
                 // disabled={true}
-                onChange={inputTest}
+                // onChange={inputTest}
+                onChange={removeSearchBox}
+                onKeyDown={handleKeyDown}
                 className="search"
                 type="text"
                 placeholder="Search Player or Team"
               />
-              <BiSearch fontSize="3rem" className="searchIcon" />
+              <BiSearch
+                ref={ref}
+                onClick={handleSearchClick}
+                fontSize="3rem"
+                className="searchIcon"
+                onMouseOver={() => (document.body.style.cursor = 'pointer')}
+                onMouseOut={() => (document.body.style.cursor = 'default')}
+              />
             </div>
           </Flex>
         </Flex>

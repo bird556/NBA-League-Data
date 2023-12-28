@@ -27,16 +27,23 @@ function Backgroundimgvideo() {
           src="/bron.jpg"
           alt="Background Image"
           className="backgroundimg"
-          fallbackSrc="/1 copy.jpg"
+          // fallbackSrc="/1 copy.jpg"
         />
       );
     } else {
       return (
+        // <video
+        //   src="antdunk1.mp4"
+        //   className="backgroundimg"
+        //   autoPlay
+        //   muted
+        //   loop
+        // ></video>
         <Image
           src="/bron.jpg"
           alt="Background Image"
           className="backgroundimg"
-          fallbackSrc="/1 copy.jpg"
+          // fallbackSrc="/1 copy.jpg"
         />
       );
     }
