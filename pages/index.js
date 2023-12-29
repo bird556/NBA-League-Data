@@ -78,7 +78,7 @@ export default function Home({ recentGames, nextGames, liveGames }) {
         <div className="home">
           {recentGames || nextGames || liveGames ? (
             <>
-              <div data-aos="fade-down">
+              {/* <div data-aos="fade-down">
                 {liveGames ? (
                   <Games
                     title="Today's Games"
@@ -88,7 +88,7 @@ export default function Home({ recentGames, nextGames, liveGames }) {
                     gameID={liveGames.events.id}
                   />
                 ) : null}
-              </div>
+              </div> */}
               {/* <div data-aos="fade-down">
                 {nextGames ? (
                   <Games
@@ -102,7 +102,7 @@ export default function Home({ recentGames, nextGames, liveGames }) {
               </div> */}
               {/* Recent Games */}
               {/* <div data-aos="fade-down" data-aos-offset="800"> */}
-              {/* <div>
+              <div>
                 {recentGames ? (
                   <Games
                     title="NBA Games"
@@ -113,7 +113,7 @@ export default function Home({ recentGames, nextGames, liveGames }) {
                     gameID={recentGames.events.id}
                   />
                 ) : null}
-              </div> */}
+              </div>
             </>
           ) : (
             <>
@@ -133,21 +133,21 @@ export default function Home({ recentGames, nextGames, liveGames }) {
 }
 
 export async function getStaticProps() {
-  // const recentGames = await fetchApi(
-  //   // `${baseUrl}/api/basketball/matches/${day}/${month}/${year}`
-  //   `${baseUrl}/api/basketball/tournament/132/season/54105/matches/last/0`
-  // );
+  const recentGames = await fetchApi(
+    // `${baseUrl}/api/basketball/matches/${day}/${month}/${year}`
+    `${baseUrl}/api/basketball/tournament/132/season/54105/matches/last/0`
+  );
   // const nextGames = await fetchApi(
   //   `${baseUrl}/api/basketball/tournament/132/season/54105/matches/next/0`
   // );
 
-  const liveGames = await fetchApi(`${baseUrl}/api/basketball/matches/live`);
+  // const liveGames = await fetchApi(`${baseUrl}/api/basketball/matches/live`);
 
   return {
     props: {
-      // recentGames: recentGames,
+      recentGames: recentGames,
       // nextGames: nextGames,
-      liveGames: liveGames,
+      // liveGames: liveGames,
     },
     revalidate: 60,
   };
