@@ -6,7 +6,7 @@ import Games from '../components/shared/Games';
 
 //
 
-export default function Home({ recentGames, nextGames }) {
+export default function Home({ recentGames, nextGames, liveGames }) {
   const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)');
   const [isLargerThanHD, isDisplayingInBrowser] = useMediaQuery([
     '(min-width: 1920px)',
@@ -76,9 +76,20 @@ export default function Home({ recentGames, nextGames }) {
       <Backgroundimgvideo />
       <div className={styles.container}>
         <div className="home">
-          {recentGames || nextGames ? (
+          {recentGames || nextGames || liveGames ? (
             <>
               <div data-aos="fade-down">
+                {liveGames ? (
+                  <Games
+                    title="Today's Games"
+                    schedule={liveGames.events}
+                    gameDate={gameDate}
+                    teamName={teamName}
+                    gameID={liveGames.events.id}
+                  />
+                ) : null}
+              </div>
+              {/* <div data-aos="fade-down">
                 {nextGames ? (
                   <Games
                     title="Today's Games"
@@ -88,7 +99,7 @@ export default function Home({ recentGames, nextGames }) {
                     gameID={nextGames.events.id}
                   />
                 ) : null}
-              </div>
+              </div> */}
               {/* Recent Games */}
               {/* <div data-aos="fade-down" data-aos-offset="800"> */}
               {/* <div>
@@ -126,14 +137,17 @@ export async function getStaticProps() {
   //   // `${baseUrl}/api/basketball/matches/${day}/${month}/${year}`
   //   `${baseUrl}/api/basketball/tournament/132/season/54105/matches/last/0`
   // );
-  const nextGames = await fetchApi(
-    `${baseUrl}/api/basketball/tournament/132/season/54105/matches/next/0`
-  );
+  // const nextGames = await fetchApi(
+  //   `${baseUrl}/api/basketball/tournament/132/season/54105/matches/next/0`
+  // );
+
+  const liveGames = await fetchApi(`${baseUrl}/api/basketball/matches/live`);
 
   return {
     props: {
       // recentGames: recentGames,
-      nextGames: nextGames,
+      // nextGames: nextGames,
+      liveGames: liveGames,
     },
     revalidate: 60,
   };
