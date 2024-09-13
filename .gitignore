@@ -50,3 +50,7 @@ utils
 
 # Hide Teams
 # /context/NBAData
+
+# Old Code
+.oldCode.jsx
+/.oldCode.jsx

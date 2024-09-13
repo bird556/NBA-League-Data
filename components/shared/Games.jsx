@@ -54,7 +54,6 @@ function Games({ schedule, gameDate, teamName, title, gameID, gamesLoaded }) {
       currentDate.getFullYear() === inputDate.getFullYear()
     );
   }
-
   return (
     <Flex justifyContent="center" flexWrap="wrap" p="8rem">
       {schedule ? (
@@ -84,6 +83,7 @@ function Games({ schedule, gameDate, teamName, title, gameID, gamesLoaded }) {
             <Flex flexWrap="wrap" justifyContent="center" maxW="160rem">
               {schedule
                 .slice(gamesLoaded ? gamesLoaded : 0)
+                // .reverse()
                 .map((data, index) => {
                   if (
                     typeof data.homeScore.current == 'number' ||
@@ -95,6 +95,7 @@ function Games({ schedule, gameDate, teamName, title, gameID, gamesLoaded }) {
                       data.tournament.slug === 'nba-preseason' ||
                       data.tournament.slug === 'nba-playoffs'
                     ) {
+                      // console.log(data);
                       return (
                         <motion.div
                           initial={{

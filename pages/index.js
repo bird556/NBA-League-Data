@@ -77,6 +77,7 @@ export default function Home({ recentGames, nextGames, liveGames }) {
       <div className={styles.container}>
         <div className="home">
           {recentGames || nextGames || liveGames ? (
+            // {typeof recentGames[0] === 'object' ? (
             <>
               {/* <div data-aos="fade-down">
                 {liveGames ? (
@@ -106,7 +107,7 @@ export default function Home({ recentGames, nextGames, liveGames }) {
                 {recentGames ? (
                   <Games
                     title="NBA Games"
-                    gamesLoaded={-8}
+                    gamesLoaded={3}
                     schedule={recentGames.events}
                     gameDate={gameDate}
                     teamName={teamName}
@@ -118,9 +119,7 @@ export default function Home({ recentGames, nextGames, liveGames }) {
           ) : (
             <>
               <div data-aos="fade-up">
-                <Center h="95vh">
-                  <h1>{determineText()}</h1>
-                </Center>
+                <Center h="95vh">{<h1>{determineText()}</h1>}</Center>
               </div>
               ;
             </>
@@ -134,6 +133,7 @@ export default function Home({ recentGames, nextGames, liveGames }) {
 
 export async function getStaticProps() {
   const recentGames = await fetchApi(
+    // `${baseUrl}/api/basketball/matches/14/2/2024`
     // `${baseUrl}/api/basketball/matches/${day}/${month}/${year}`
     `${baseUrl}/api/basketball/tournament/132/season/54105/matches/last/0`
   );

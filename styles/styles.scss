@@ -220,6 +220,10 @@ nav {
       cursor: pointer;
       color: $text-primary-col;
     }
+
+    .btn--search--icon {
+      border: 50px $btn-outline-col solid;
+    }
     .menu-close {
       z-index: 999;
       cursor: pointer;
