@@ -77,30 +77,7 @@ export default function Home({ recentGames, nextGames, liveGames }) {
       <div className={styles.container}>
         <div className="home">
           {recentGames || nextGames || liveGames ? (
-            // {typeof recentGames[0] === 'object' ? (
             <>
-              {/* <div data-aos="fade-down">
-                {liveGames ? (
-                  <Games
-                    title="Today's Games"
-                    schedule={liveGames.events}
-                    gameDate={gameDate}
-                    teamName={teamName}
-                    gameID={liveGames.events.id}
-                  />
-                ) : null}
-              </div> */}
-              {/* <div data-aos="fade-down">
-                {nextGames ? (
-                  <Games
-                    title="Today's Games"
-                    schedule={nextGames.events}
-                    gameDate={gameDate}
-                    teamName={teamName}
-                    gameID={nextGames.events.id}
-                  />
-                ) : null}
-              </div> */}
               {/* Recent Games */}
               {/* <div data-aos="fade-down" data-aos-offset="800"> */}
               <div>
@@ -133,21 +110,12 @@ export default function Home({ recentGames, nextGames, liveGames }) {
 
 export async function getStaticProps() {
   const recentGames = await fetchApi(
-    // `${baseUrl}/api/basketball/matches/14/2/2024`
-    // `${baseUrl}/api/basketball/matches/${day}/${month}/${year}`
-    `${baseUrl}/api/basketball/tournament/132/season/54105/matches/last/0`
+    `${baseUrl}/api/basketball/tournament/132/season/65360/matches/last/0`
   );
-  // const nextGames = await fetchApi(
-  //   `${baseUrl}/api/basketball/tournament/132/season/54105/matches/next/0`
-  // );
-
-  // const liveGames = await fetchApi(`${baseUrl}/api/basketball/matches/live`);
 
   return {
     props: {
       recentGames: recentGames,
-      // nextGames: nextGames,
-      // liveGames: liveGames,
     },
     revalidate: 60,
   };

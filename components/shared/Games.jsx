@@ -83,7 +83,7 @@ function Games({ schedule, gameDate, teamName, title, gameID, gamesLoaded }) {
             <Flex flexWrap="wrap" justifyContent="center" maxW="160rem">
               {schedule
                 .slice(gamesLoaded ? gamesLoaded : 0)
-                // .reverse()
+                .reverse()
                 .map((data, index) => {
                   if (
                     typeof data.homeScore.current == 'number' ||
@@ -165,7 +165,7 @@ function Games({ schedule, gameDate, teamName, title, gameID, gamesLoaded }) {
                                 />
                               </GridItem>
 
-                              <GridItem colSpan={5} b>
+                              <GridItem colSpan={5}>
                                 <Center>
                                   <button id="btn-boxscore">
                                     {data.status.type !== 'finished' ? (
