@@ -8,7 +8,33 @@ const Layout = ({ children }) => {
         <title>NBA League Data</title>
         <meta
           name="description"
-          content="Get your live update on NBA Games in real-time, search for player info & team info."
+          content="Get live updates on NBA games in real-time, explore player and team info."
+        />
+        <meta
+          name="keywords"
+          content="NBA, Live Updates, NBA Player Info, NBA Team Info, Basketball"
+        />
+        <meta name="author" content="Shaun Bennett" />
+        <meta property="og:title" content="NBA League Data" />
+        <meta
+          property="og:description"
+          content="Get live updates on NBA games in real-time, explore player and team info."
+        />
+        <meta
+          property="og:image"
+          content="https://nbaleague-black.vercel.app/75th.png"
+        />
+        <meta property="og:url" content="https://nbaleague-black.vercel.app/" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="NBA League Data" />
+        <meta
+          name="twitter:description"
+          content="Get live updates on NBA games in real-time, explore player and team info."
+        />
+        <meta
+          name="twitter:image"
+          content="https://nbaleague-black.vercel.app/75th.png"
         />
         <link rel="icon" href="/75th.png" />
       </Head>
@@ -23,3 +49,38 @@ const Layout = ({ children }) => {
   );
 };
 export default Layout;
+
+export const metadata = {
+  metadataBase: new URL('https://nbaleague-black.vercel.app/'), // Replace with your actual live URL
+  title: 'NBA League Data',
+  description:
+    "Welcome to Shaun Bennett's portfolio. Explore my projects, skills, and expertise in web development and programming.",
+  keywords: 'NBA, Live Updates, Player Info, Team Info, Basketball',
+  authors: [
+    { name: 'Shaun Bennett', url: 'https://nbaleague-black.vercel.app/' },
+  ],
+  openGraph: {
+    title: 'NBA League Data',
+    description:
+      'Get live updates on NBA games in real-time, explore player and team info.',
+    url: 'https://nbaleague-black.vercel.app/',
+    siteName: 'NBA League Data',
+    images: [
+      {
+        url: '/75th.png',
+        width: 1200,
+        height: 1024,
+        alt: '75th NBA Logo',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NBA League Data',
+    description:
+      'Get live updates on NBA games in real-time, explore player and team info.',
+    images: ['/75th.png'],
+  },
+};

@@ -13,6 +13,7 @@ import Lineloader from '../components/loader/Lineloader';
 import Script from 'next/script';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Head from 'next/head';
 // import { SearchProvider } from '../context/Search/SearchContext';
 import { NBAProvider } from '../context/NBAData/NBAContext';
 import { AnimatePresence } from 'framer-motion';
@@ -34,7 +35,6 @@ function MyApp({ Component, pageProps }) {
     <>
       <ChakraProvider theme={theme}>
         <Lineloader />
-        {/* <SearchProvider> */}
         <NBAProvider>
           <AnimatePresence>
             <Layout>
@@ -42,7 +42,6 @@ function MyApp({ Component, pageProps }) {
             </Layout>
           </AnimatePresence>
         </NBAProvider>
-        {/* </SearchProvider> */}
       </ChakraProvider>
       <Script src="https://unpkg.com/aos@next/dist/aos.js"></Script>
     </>
