@@ -1,27 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Home Page -->
-  <url>
-    <loc>https://nbaleague-black.vercel.app/</loc>
-    <lastmod>2025-01-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <!-- Player Info Page -->
-  <url>
-    <loc>https://nbaleague-black.vercel.app/player</loc>
-    <lastmod>2025-01-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Team Info Page -->
-  <url>
-    <loc>https://nbaleague-black.vercel.app/teams</loc>
-    <lastmod>2025-01-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-</urlset>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<sitemap><loc>https://nbaleague-black.vercel.app/sitemap-0.xml</loc></sitemap>
+</sitemapindex>

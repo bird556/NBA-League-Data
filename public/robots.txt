@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://nbaleague-black.vercel.app/
+
+# Sitemaps
+Sitemap: https://nbaleague-black.vercel.app/sitemap.xml

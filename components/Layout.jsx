@@ -54,7 +54,7 @@ export const metadata = {
   metadataBase: new URL('https://nbaleague-black.vercel.app/'), // Replace with your actual live URL
   title: 'NBA League Data',
   description:
-    "Welcome to Shaun Bennett's portfolio. Explore my projects, skills, and expertise in web development and programming.",
+    'Stay up-to-date with live NBA game updates, explore player profiles, and view team information in real-time.',
   keywords: 'NBA, Live Updates, Player Info, Team Info, Basketball',
   authors: [
     { name: 'Shaun Bennett', url: 'https://nbaleague-black.vercel.app/' },
@@ -62,7 +62,7 @@ export const metadata = {
   openGraph: {
     title: 'NBA League Data',
     description:
-      'Get live updates on NBA games in real-time, explore player and team info.',
+      'Stay up-to-date with live NBA game updates, explore player profiles, and view team information in real-time.',
     url: 'https://nbaleague-black.vercel.app/',
     siteName: 'NBA League Data',
     images: [
@@ -80,7 +80,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'NBA League Data',
     description:
-      'Get live updates on NBA games in real-time, explore player and team info.',
+      'Stay up-to-date with live NBA game updates, explore player profiles, and view team information in real-time.',
     images: ['/75th.png'],
   },
 };
